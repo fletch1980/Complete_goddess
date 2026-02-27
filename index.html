@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Felicia's Fitness</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background: #0a0010;
+      font-family: system-ui, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .container {
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+    }
+    .crown {
+      font-size: 56px;
+      margin-bottom: 12px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .title {
+      font-size: 32px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #c084fc, #f0abfc, #e879f9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: #9ca3af;
+      margin-bottom: 48px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .card {
+      background: linear-gradient(145deg, #1a0030, #12001f);
+      border: 1px solid #3b0764;
+      border-radius: 20px;
+      padding: 28px 24px;
+      margin-bottom: 16px;
+      text-decoration: none;
+      display: block;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(124, 58, 237, 0.15);
+    }
+    .card:active {
+      transform: scale(0.97);
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(124, 58, 237, 0.3);
+    }
+    .card-emoji {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+    .card-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 6px;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: #a78bfa;
+      line-height: 1.5;
+    }
+    .card-tag {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .tag-purple {
+      background: #3b0764;
+      color: #c084fc;
+    }
+    .tag-pink {
+      background: #500724;
+      color: #f9a8d4;
+    }
+    .divider {
+      color: #3b0764;
+      font-size: 20px;
+      margin: 8px 0 24px;
+    }
+    .footer {
+      margin-top: 40px;
+      font-size: 11px;
+      color: #4b5563;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="crown">👑</div>
+    <div class="title">Felicia's Fitness</div>
+    <div class="subtitle">Train like a goddess</div>
+
+    <a href="https://fletch1980.github.io/bootyworkout-/" class="card">
+      <div class="card-emoji">🍑</div>
+      <div class="card-title">Glute Finisher</div>
+      <div class="card-desc">15–25 min · After Shred App<br/>Build that bubble butt & curves</div>
+      <div class="card-tag tag-purple">5 Days / Week</div>
+    </a>
+
+    <div class="divider">✦</div>
+
+    <a href="https://fletch1980.github.io/goddesstraining/" class="card">
+      <div class="card-emoji">🌀</div>
+      <div class="card-title">Goddess Training</div>
+      <div class="card-desc">Hip control · Core stamina · Pelvic floor<br/>Move like the goddess you are</div>
+      <div class="card-tag tag-pink">5 Days / Week</div>
+    </a>
+
+    <div class="footer">Built for Felicia · Phoenix Brands 🔥</div>
+  </div>
+</body>
+</html>
