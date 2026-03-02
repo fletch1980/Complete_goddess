@@ -3,163 +3,227 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Felicia's Fitness</title>
+  <title>Felicia's Fitness Schedule</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      min-height: 100vh;
-      background: #0a0010;
-      font-family: system-ui, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    .container {
-      max-width: 420px;
-      width: 100%;
-      text-align: center;
-    }
-    .crown {
-      font-size: 56px;
-      margin-bottom: 12px;
-      animation: float 3s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    .title {
-      font-size: 32px;
-      font-weight: 900;
-      background: linear-gradient(135deg, #c084fc, #f0abfc, #e879f9);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -0.5px;
-      margin-bottom: 6px;
-    }
-    .subtitle {
-      font-size: 14px;
-      color: #9ca3af;
-      margin-bottom: 48px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-    .card {
-      background: linear-gradient(145deg, #1a0030, #12001f);
-      border: 1px solid #3b0764;
-      border-radius: 20px;
-      padding: 28px 24px;
-      margin-bottom: 16px;
-      text-decoration: none;
-      display: block;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 24px rgba(124, 58, 237, 0.15);
-    }
-    .card:active { transform: scale(0.97); }
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 32px rgba(124, 58, 237, 0.3);
-    }
-    .card-emoji { font-size: 40px; margin-bottom: 12px; }
-    .card-title { font-size: 20px; font-weight: 800; color: white; margin-bottom: 6px; }
-    .card-desc { font-size: 13px; color: #a78bfa; line-height: 1.5; }
-    .card-tag {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 5px 14px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-    .tag-purple { background: #3b0764; color: #c084fc; }
-    .tag-pink { background: #500724; color: #f9a8d4; }
-    .tag-rose { background: #4a1020; color: #fb7185; }
-    .divider { color: #3b0764; font-size: 20px; margin: 8px 0 24px; }
-    .footer {
-      margin-top: 40px;
-      font-size: 11px;
-      color: #4b5563;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
+    body { background: #0a0010; font-family: system-ui, sans-serif; }
+    @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(192,132,252,0.4)} 50%{box-shadow:0 0 0 8px rgba(192,132,252,0)} }
+    .next-card { animation: pulse 2s infinite; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="crown">👑</div>
-    <div class="title">Felicia's Fitness</div>
-    <div class="subtitle">Train like a goddess</div>
+<div id="root"></div>
+<script>
+var useState = React.useState;
+var ce = React.createElement;
 
-    <a href="https://fletch1980.github.io/bootyworkout-/" class="card" target="_blank">
-      <div class="card-emoji">🍑</div>
-      <div class="card-title">Glute Finisher</div>
-      <div class="card-desc">15–25 min · After Shred App<br/>Build that bubble butt & curves</div>
-      <div class="card-tag tag-purple">5 Days / Week</div>
-    </a>
+var DAYS_ORDER = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+var DAY_ABBR   = ['M','T','W','T','F','S','S'];
+var JS_TO_DAY  = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
-    <div class="divider">✦</div>
+var SCHEDULE = {
+  Monday:    { rest:false, workouts:[
+    {id:'shred',   emoji:'⚡', name:'Shred App',        desc:'Choose your energy level below — then open Shred', link:null, tag:'Choose level', tagColor:'#a78bfa'},
+    {id:'glute',   emoji:'🍑', name:'Glute Finisher',   desc:'15–25 min · Do this right after Shred', link:'https://fletch1980.github.io/bootyworkout-/', tag:'After Shred', tagColor:'#c084fc'},
+    {id:'goddess', emoji:'🌀', name:'Goddess Training', desc:'Hip control · Core stamina · Pelvic floor', link:'https://fletch1980.github.io/goddesstraining/', tag:'5 Days/Week', tagColor:'#f9a8d4'},
+    {id:'flex',    emoji:'🌸', name:'Flexibility',      desc:'🏠 At home · Daily routine — finish strong', link:'https://fletch1980.github.io/Flexibility-/', tag:'🏠 At Home', tagColor:'#c084fc'},
+  ]},
+  Tuesday:   { rest:false, workouts:[
+    {id:'shred',   emoji:'⚡', name:'Shred App',        desc:'Choose your energy level below — then open Shred', link:null, tag:'Choose level', tagColor:'#a78bfa'},
+    {id:'goddess', emoji:'🌀', name:'Goddess Training', desc:'Hip control · Core stamina · Pelvic floor', link:'https://fletch1980.github.io/goddesstraining/', tag:'5 Days/Week', tagColor:'#f9a8d4'},
+    {id:'waist',   emoji:'⏳', name:'Waist Circuit',   desc:'🏠 At home · Obliques · Cinch · Hip Dips · 20–25 min', link:'https://fletch1980.github.io/Waistcinch/', tag:'🏠 Tue & Thu', tagColor:'#fb7185'},
+    {id:'flex',    emoji:'🌸', name:'Flexibility',      desc:'🏠 At home · Daily routine — finish strong', link:'https://fletch1980.github.io/Flexibility-/', tag:'🏠 At Home', tagColor:'#c084fc'},
+  ]},
+  Wednesday: { rest:false, workouts:[
+    {id:'shred',   emoji:'⚡', name:'Shred App',        desc:'Choose your energy level below — then open Shred', link:null, tag:'Choose level', tagColor:'#a78bfa'},
+    {id:'glute',   emoji:'🍑', name:'Glute Finisher',   desc:'15–25 min · Do this right after Shred', link:'https://fletch1980.github.io/bootyworkout-/', tag:'After Shred', tagColor:'#c084fc'},
+    {id:'goddess', emoji:'🌀', name:'Goddess Training', desc:'Hip control · Core stamina · Pelvic floor', link:'https://fletch1980.github.io/goddesstraining/', tag:'5 Days/Week', tagColor:'#f9a8d4'},
+    {id:'flex',    emoji:'🌸', name:'Flexibility',      desc:'🏠 At home · Daily routine — finish strong', link:'https://fletch1980.github.io/Flexibility-/', tag:'🏠 At Home', tagColor:'#c084fc'},
+  ]},
+  Thursday:  { rest:false, workouts:[
+    {id:'shred',   emoji:'⚡', name:'Shred App',        desc:'Choose your energy level below — then open Shred', link:null, tag:'Choose level', tagColor:'#a78bfa'},
+    {id:'goddess', emoji:'🌀', name:'Goddess Training', desc:'Hip control · Core stamina · Pelvic floor', link:'https://fletch1980.github.io/goddesstraining/', tag:'5 Days/Week', tagColor:'#f9a8d4'},
+    {id:'waist',   emoji:'⏳', name:'Waist Circuit',   desc:'🏠 At home · Obliques · Cinch · Hip Dips · 20–25 min', link:'https://fletch1980.github.io/Waistcinch/', tag:'🏠 Tue & Thu', tagColor:'#fb7185'},
+    {id:'flex',    emoji:'🌸', name:'Flexibility',      desc:'🏠 At home · Daily routine — finish strong', link:'https://fletch1980.github.io/Flexibility-/', tag:'🏠 At Home', tagColor:'#c084fc'},
+  ]},
+  Friday:    { rest:false, workouts:[
+    {id:'shred',   emoji:'⚡', name:'Shred App',        desc:'Choose your energy level below — then open Shred', link:null, tag:'Choose level', tagColor:'#a78bfa'},
+    {id:'glute',   emoji:'🍑', name:'Glute Finisher',   desc:'15–25 min · Do this right after Shred', link:'https://fletch1980.github.io/bootyworkout-/', tag:'After Shred', tagColor:'#c084fc'},
+    {id:'deepflex',emoji:'🌸', name:'Deep Flexibility', desc:'🏠 At home · Friday deep session · Open everything up', link:'https://fletch1980.github.io/Flexibility-/', tag:'🏠 Friday Special', tagColor:'#c084fc'},
+  ]},
+  Saturday:  { rest:true, workouts:[] },
+  Sunday:    { rest:true, workouts:[] },
+};
 
-    <a href="https://fletch1980.github.io/goddesstraining/" class="card" target="_blank">
-      <div class="card-emoji">🌀</div>
-      <div class="card-title">Goddess Training</div>
-      <div class="card-desc">Hip control · Core stamina · Pelvic floor<br/>Move like the goddess you are</div>
-      <div class="card-tag tag-pink">5 Days / Week</div>
-    </a>
+var ENERGY = [
+  {key:'strong', emoji:'💪', label:'Bad Ass',  time:'60-75 min', color:'#4ade80', desc:'Shred hard + Glute Finisher + Goddess or Flexibility'},
+  {key:'normal', emoji:'🙂', label:'Regular',  time:'50-60 min', color:'#c084fc', desc:'Solid Shred + Glute Finisher + Goddess or Flexibility'},
+  {key:'tired',  emoji:'😴', label:'Mini',     time:'30 min',    color:'#f9a8d4', desc:'Light Shred + Glute Finisher + Goddess or Flexibility'},
+];
 
-    <a href="https://fletch1980.github.io/Flexibility-/" class="card" target="_blank">
-      <div class="card-emoji">🌸</div>
-      <div class="card-title">Flexibility Training</div>
-      <div class="card-desc">Daily routine + Deep Friday session<br/>Open your hips and feel everything</div>
-      <div class="card-tag" style="background:#1a0030; color:#c084fc;">Every Day</div>
-    </a>
+function App() {
+  var todayName = JS_TO_DAY[new Date().getDay()];
+  var vs = useState(todayName); var view = vs[0]; var setView = vs[1];
+  var cs = useState({}); var checked = cs[0]; var setChecked = cs[1];
+  var es = useState(null); var energy = es[0]; var setEnergy = es[1];
 
-    <a href="https://fletch1980.github.io/Waistcinch/" class="card" target="_blank">
-      <div class="card-emoji">⏳</div>
-      <div class="card-title">Waist Circuit</div>
-      <div class="card-desc">Obliques · Cinch · Hip Dips · 20–25 min<br/>Gym & At-Home versions included</div>
-      <div class="card-tag tag-rose">Tue & Thu</div>
-    </a>
+  var dayData = SCHEDULE[view];
+  var isToday = view === todayName;
+  var trackable = dayData.workouts.filter(function(w){ return w.id !== 'shred'; });
+  var doneIds = trackable.filter(function(w){ return checked[view+'-'+w.id]; }).map(function(w){ return w.id; });
+  var doneCount = doneIds.length;
+  var pct = trackable.length ? (doneCount/trackable.length)*100 : 0;
+  var allDone = doneCount === trackable.length && trackable.length > 0;
 
-    <a href="https://fletch1980.github.io/Fitness_schedule/" class="card" target="_blank">
-      <div class="card-emoji">📅</div>
-      <div class="card-title">Daily Schedule</div>
-      <div class="card-desc">See today's workouts · Track as you go<br/>Know exactly what's next</div>
-      <div class="card-tag" style="background:#1a0030; color:#a78bfa;">Mon – Fri</div>
-    </a>
+  // Find next workout — first trackable not yet checked
+  var nextWorkout = null;
+  for (var i=0; i<dayData.workouts.length; i++) {
+    var w = dayData.workouts[i];
+    if (w.id !== 'shred' && !checked[view+'-'+w.id]) { nextWorkout = w.id; break; }
+  }
 
-    <div class="divider">✦</div>
+  function toggle(key) {
+    setChecked(function(p){ var n=Object.assign({},p); n[key]=!p[key]; return n; });
+  }
+  function resetDay() {
+    setChecked(function(p){
+      var n=Object.assign({},p);
+      dayData.workouts.forEach(function(w){ delete n[view+'-'+w.id]; });
+      return n;
+    });
+  }
 
-    <div style="background: #1a0030; border: 1px solid #3b0764; border-radius: 20px; padding: 28px 24px; margin-bottom: 16px;">
-      <div style="font-size: 20px; margin-bottom: 12px;">⚡ Daily Shred Guide</div>
-      <div style="font-size: 13px; color: #a78bfa; margin-bottom: 16px; font-weight: 600;">Let your body decide — add-ons are always non-negotiable</div>
-      <div style="display: flex; flex-direction: column; gap: 10px;">
-        <div style="background: #0a0010; border-radius: 12px; padding: 12px 14px; border: 1px solid #4a0080;">
-          <div style="color: #4ade80; font-weight: 800; font-size: 14px;">💪 Feeling Strong — Bad Ass (60-75 min)</div>
-          <div style="color: #9ca3af; font-size: 12px; margin-top: 4px;">Shred hard + Glute Finisher + Goddess or Flexibility</div>
-        </div>
-        <div style="background: #0a0010; border-radius: 12px; padding: 12px 14px; border: 1px solid #4a0080;">
-          <div style="color: #c084fc; font-weight: 800; font-size: 14px;">🙂 Feeling Normal — Regular (50-60 min)</div>
-          <div style="color: #9ca3af; font-size: 12px; margin-top: 4px;">Solid Shred + Glute Finisher + Goddess or Flexibility</div>
-        </div>
-        <div style="background: #0a0010; border-radius: 12px; padding: 12px 14px; border: 1px solid #4a0080;">
-          <div style="color: #f9a8d4; font-weight: 800; font-size: 14px;">😴 Feeling Tired — Mini (30 min)</div>
-          <div style="color: #9ca3af; font-size: 12px; margin-top: 4px;">Light Shred + Glute Finisher + Goddess or Flexibility</div>
-        </div>
-        <div style="background: #0a0010; border-radius: 12px; padding: 12px 14px; border: 1px solid #4a0080;">
-          <div style="color: #fbbf24; font-weight: 800; font-size: 14px;">📅 Tuesday & Thursday — Add Waist Circuit</div>
-          <div style="color: #9ca3af; font-size: 12px; margin-top: 4px;">Any Shred length + Goddess Training + Waist Circuit</div>
-        </div>
-        <div style="background: #0a0010; border-radius: 12px; padding: 12px 14px; border: 1px solid #4a0080;">
-          <div style="color: #fb923c; font-weight: 800; font-size: 14px;">🌸 Friday — Deep Flexibility Day</div>
-          <div style="color: #9ca3af; font-size: 12px; margin-top: 4px;">Any Shred + Glute Finisher + Deep Friday Session</div>
-        </div>
-      </div>
-    </div>
+  var dateStr = new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+  var selEnergy = energy ? ENERGY.find(function(e){ return e.key===energy; }) : null;
 
-    <div class="footer">Built for Felicia · Phoenix Brands 🔥</div>
-  </div>
+  return ce('div', {style:{maxWidth:460,margin:'0 auto',padding:16,background:'#0a0010',minHeight:'100vh'}},
+
+    // Header
+    ce('div', {style:{textAlign:'center',marginBottom:18}},
+      ce('div', {style:{fontSize:42,marginBottom:4}}, '👑'),
+      ce('div', {style:{fontSize:23,fontWeight:900,background:'linear-gradient(135deg,#c084fc,#f0abfc)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}, "Felicia's Fitness"),
+      ce('div', {style:{fontSize:11,color:'#6b7280',letterSpacing:2,textTransform:'uppercase',marginTop:4}}, isToday ? dateStr : view)
+    ),
+
+    // Week strip
+    ce('div', {style:{display:'flex',gap:5,marginBottom:18}},
+      DAYS_ORDER.map(function(day,i){
+        var isSel=view===day, isRest=SCHEDULE[day].rest, isTod=day===todayName;
+        var t=SCHEDULE[day].workouts.filter(function(w){return w.id!=='shred';}).length;
+        var d=SCHEDULE[day].workouts.filter(function(w){return w.id!=='shred'&&checked[day+'-'+w.id];}).length;
+        var done=t>0&&d===t;
+        return ce('button',{key:day,onClick:function(){setView(day);},style:{flex:1,padding:'8px 2px',borderRadius:10,border:'none',cursor:'pointer',background:isSel?(isRest?'#1f2937':'#7c3aed'):'#1a0030',outline:isTod?'2px solid #c084fc':'none',outlineOffset:2}},
+          ce('div',{style:{fontSize:11,fontWeight:800,color:isSel?'white':(isRest?'#4b5563':'#9ca3af')}},DAY_ABBR[i]),
+          ce('div',{style:{fontSize:9,marginTop:3,color:done?'#4ade80':(isRest?'#374151':'#4b5563')}},isRest?'REST':(done?'✅':'○'))
+        );
+      })
+    ),
+
+    // REST DAY
+    dayData.rest ? ce('div',{style:{background:'#1a0030',border:'1px solid #3b0764',borderRadius:16,padding:'48px 24px',textAlign:'center'}},
+      ce('div',{style:{fontSize:52,marginBottom:16}},'🛌'),
+      ce('div',{style:{fontSize:22,fontWeight:800,color:'white',marginBottom:10}},'Rest Day'),
+      ce('div',{style:{fontSize:13,color:'#6b7280',lineHeight:1.7}},'Your body is building right now.'+'\nEat well · Hydrate · Sleep.'+'\nYou earned this.')
+    )
+
+    : ce('div', null,
+
+      // ALL DONE banner
+      allDone && ce('div',{style:{background:'linear-gradient(135deg,#14532d,#166534)',border:'2px solid #4ade80',borderRadius:14,padding:'18px',textAlign:'center',marginBottom:14}},
+        ce('div',{style:{fontSize:36,marginBottom:6}},'🔥'),
+        ce('div',{style:{fontSize:18,fontWeight:900,color:'#4ade80'}}, "You crushed it today!"),
+        ce('div',{style:{fontSize:12,color:'#86efac',marginTop:4}},"All workouts complete. Go recover like a goddess.")
+      ),
+
+      // Progress
+      ce('div',{style:{background:'#1a0030',border:'1px solid #3b0764',borderRadius:12,padding:'14px 16px',marginBottom:14}},
+        ce('div',{style:{display:'flex',justifyContent:'space-between',marginBottom:8}},
+          ce('span',{style:{fontSize:13,fontWeight:700,color:'white'}}, isToday ? "Today's Progress" : view+"'s Workouts"),
+          ce('span',{style:{fontSize:12,color:'#a78bfa'}}, doneCount+' of '+trackable.length+' done')
+        ),
+        ce('div',{style:{background:'#0a0010',borderRadius:8,height:10}},
+          ce('div',{style:{background:'linear-gradient(90deg,#7c3aed,#db2777)',borderRadius:8,height:10,width:pct+'%',transition:'width 0.4s'}})
+        )
+      ),
+
+      // Energy picker
+      ce('div',{style:{background:'#1a0030',border:'1px solid #3b0764',borderRadius:12,padding:'14px 16px',marginBottom:14}},
+        ce('div',{style:{fontSize:11,fontWeight:700,color:'#6b7280',letterSpacing:1,textTransform:'uppercase',marginBottom:10}},'⚡ How are you feeling?'),
+        ce('div',{style:{display:'flex',gap:8}},
+          ENERGY.map(function(e){
+            var sel=energy===e.key;
+            return ce('button',{key:e.key,onClick:function(){setEnergy(e.key);},style:{flex:1,padding:'10px 4px',borderRadius:10,border:sel?'2px solid '+e.color:'2px solid transparent',cursor:'pointer',background:sel?'#3b0764':'#0a0010'}},
+              ce('div',{style:{fontSize:20}},e.emoji),
+              ce('div',{style:{fontSize:10,fontWeight:800,color:sel?e.color:'#6b7280',marginTop:4}},e.label),
+              ce('div',{style:{fontSize:9,color:'#4b5563',marginTop:2}},e.time)
+            );
+          })
+        ),
+        selEnergy && ce('div',{style:{marginTop:10,background:'#0a0010',borderRadius:8,padding:'8px 12px',fontSize:12,color:selEnergy.color,lineHeight:1.5}}, selEnergy.desc)
+      ),
+
+      // Checklist label
+      ce('div',{style:{fontSize:11,fontWeight:700,color:'#6b7280',letterSpacing:1,textTransform:'uppercase',marginBottom:10}},'📋 Workout Order — tap when done'),
+
+      // Workout cards
+      dayData.workouts.map(function(w){
+        var key=view+'-'+w.id;
+        var done=!!checked[key];
+        var isShred=w.id==='shred';
+        var isNext=!isShred && w.id===nextWorkout && !allDone;
+
+        return ce('div',{
+          key:w.id,
+          className: isNext ? 'next-card' : '',
+          onClick: isShred ? undefined : function(){toggle(key);},
+          style:{
+            background: done ? '#0f1f0f' : (isNext ? '#1e0040' : '#1a0030'),
+            border: '2px solid '+(done ? '#166534' : (isNext ? '#c084fc' : '#3b0764')),
+            borderRadius:14, padding:'14px 16px', marginBottom:10,
+            display:'flex', alignItems:'center', gap:12,
+            cursor: isShred ? 'default' : 'pointer',
+            opacity: (!isShred && !done && !isNext && nextWorkout !== null) ? 0.5 : 1,
+            transition:'all 0.3s'
+          }
+        },
+          // Step number / check
+          ce('div',{style:{minWidth:32,textAlign:'center'}},
+            isShred
+              ? ce('div',{style:{fontSize:24}},w.emoji)
+              : done
+                ? ce('div',{style:{fontSize:22}},'✅')
+                : isNext
+                  ? ce('div',{style:{width:28,height:28,borderRadius:'50%',background:'#7c3aed',border:'2px solid #c084fc',display:'flex',alignItems:'center',justifyContent:'center',fontSize:13,color:'white',fontWeight:900,margin:'0 auto'}},'▶')
+                  : ce('div',{style:{width:28,height:28,borderRadius:'50%',border:'2px solid #3b0764',margin:'0 auto'}})
+          ),
+          ce('div',{style:{flex:1}},
+            isNext && ce('div',{style:{fontSize:9,fontWeight:900,color:'#c084fc',letterSpacing:2,textTransform:'uppercase',marginBottom:4}},'▶ UP NEXT'),
+            ce('div',{style:{fontSize:14,fontWeight:800,color:done?'#4ade80':(isNext?'white':'#9ca3af')}}, w.name),
+            ce('div',{style:{fontSize:11,color:'#6b7280',marginTop:2}}, w.desc),
+            ce('span',{style:{display:'inline-block',marginTop:6,padding:'3px 10px',borderRadius:20,fontSize:10,fontWeight:700,background:'#0a0010',color:w.tagColor,border:'1px solid '+w.tagColor}}, w.tag)
+          ),
+          !isShred && w.link && ce('a',{
+            href:w.link, target:'_blank',
+            onClick:function(ev){ev.stopPropagation();},
+            style:{background: isNext?'#7c3aed':'#3b0764',borderRadius:8,padding:'8px 12px',fontSize:12,color:'white',fontWeight:700,cursor:'pointer',textDecoration:'none',whiteSpace:'nowrap'}
+          }, isNext ? 'Start →' : 'Open →')
+        );
+      }),
+
+      // Reset
+      doneCount > 0 && ce('button',{
+        onClick:resetDay,
+        style:{width:'100%',marginTop:6,padding:'10px',background:'transparent',border:'1px solid #3b0764',borderRadius:10,color:'#4b5563',fontSize:12,cursor:'pointer'}
+      },'Reset Day')
+    ),
+
+    ce('div',{style:{marginTop:28,fontSize:11,color:'#374151',textAlign:'center',letterSpacing:1,textTransform:'uppercase'}},'Built for Felicia · Phoenix Brands 🔥')
+  );
+}
+
+ReactDOM.render(ce(App,null), document.getElementById('root'));
+</script>
 </body>
 </html>
