@@ -3,163 +3,197 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Felicia's Fitness</title>
+  <title>Felicia's Fitness Suite</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      min-height: 100vh;
-      background: #0a0010;
-      font-family: system-ui, sans-serif;
+    body { background: #0a0010; font-family: system-ui, sans-serif; min-height: 100vh; padding: 20px 16px 40px; }
+
+    .header { text-align: center; padding: 24px 0 18px; }
+    .header h1 { font-size: 26px; font-weight: 900; color: white; }
+    .header p { font-size: 13px; color: #9ca3af; margin-top: 4px; }
+
+    /* TODAY BANNER */
+    .today-banner {
+      background: linear-gradient(135deg, #7c3aed, #db2777);
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+      color: white;
+    }
+    .today-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; opacity: 0.85; text-transform: uppercase; }
+    .today-day { font-size: 24px; font-weight: 900; margin: 4px 0 2px; }
+    .today-theme { font-size: 14px; opacity: 0.9; }
+    .today-stack { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+    .today-item {
+      background: rgba(255,255,255,0.15);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 13px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 24px;
+      gap: 8px;
     }
-    .container {
-      max-width: 420px;
-      width: 100%;
-      text-align: center;
-    }
-    .crown {
-      font-size: 56px;
-      margin-bottom: 12px;
-      animation: float 3s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    .title {
-      font-size: 32px;
-      font-weight: 900;
-      background: linear-gradient(135deg, #c084fc, #f0abfc, #e879f9);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -0.5px;
-      margin-bottom: 6px;
-    }
-    .subtitle {
-      font-size: 14px;
-      color: #9ca3af;
-      margin-bottom: 48px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-    .card {
-      background: linear-gradient(145deg, #1a0030, #12001f);
-      border: 1px solid #3b0764;
-      border-radius: 20px;
-      padding: 28px 24px;
-      margin-bottom: 16px;
-      text-decoration: none;
+    .today-item span { font-weight: 600; }
+    .rest-day { text-align: center; font-size: 16px; padding: 10px 0 4px; opacity: 0.85; }
+
+    /* APP CARDS */
+    .section-label { font-size: 11px; font-weight: 700; color: #6b7280; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
+    .cards { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+
+    a.card {
       display: block;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 24px rgba(124, 58, 237, 0.15);
+      text-decoration: none;
+      border-radius: 16px;
+      padding: 18px 20px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.15s, opacity 0.15s;
     }
-    .card:active { transform: scale(0.97); }
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 32px rgba(124, 58, 237, 0.3);
+    a.card:active { transform: scale(0.97); opacity: 0.9; }
+    .card-glute  { background: linear-gradient(135deg, #b91c1c, #ef4444); }
+    .card-goddess { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+    .card-flex   { background: linear-gradient(135deg, #4338ca, #6366f1); }
+    .card-waist  { background: linear-gradient(135deg, #0369a1, #38bdf8); }
+
+    .card-icon { font-size: 28px; margin-bottom: 6px; }
+    .card-title { font-size: 18px; font-weight: 800; }
+    .card-sub { font-size: 12px; opacity: 0.85; margin-top: 2px; }
+    .card-badge {
+      position: absolute; top: 14px; right: 14px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 20px; padding: 4px 10px;
+      font-size: 11px; font-weight: 700;
     }
-    .card-emoji { font-size: 40px; margin-bottom: 12px; }
-    .card-title { font-size: 20px; font-weight: 800; color: white; margin-bottom: 6px; }
-    .card-desc { font-size: 13px; color: #a78bfa; line-height: 1.5; }
-    .card-tag {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 5px 14px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
+    .card-badge.today-badge {
+      background: white;
+      color: #7c3aed;
     }
-    .tag-purple { background: #3b0764; color: #c084fc; }
-    .tag-pink { background: #500724; color: #f9a8d4; }
-    .tag-rose { background: #4a1020; color: #fb7185; }
-    .divider { color: #3b0764; font-size: 20px; margin: 8px 0 24px; }
-    .footer {
-      margin-top: 40px;
-      font-size: 11px;
-      color: #4b5563;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+
+    /* SHRED GUIDE */
+    .shred-box {
+      background: #1a0030;
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin-bottom: 28px;
     }
+    .shred-box h3 { color: white; font-size: 15px; font-weight: 800; margin-bottom: 12px; }
+    .shred-row { display: flex; gap: 8px; }
+    .shred-option {
+      flex: 1; border-radius: 10px; padding: 10px 8px; text-align: center;
+    }
+    .shred-mini   { background: #1e3a5f; }
+    .shred-reg    { background: #3b1f6e; }
+    .shred-bad    { background: #5b1a1a; }
+    .shred-option .level { font-size: 11px; font-weight: 800; color: #9ca3af; letter-spacing: 1px; }
+    .shred-option .time  { font-size: 16px; font-weight: 900; color: white; margin: 2px 0; }
+    .shred-option .desc  { font-size: 10px; color: #9ca3af; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="crown">👑</div>
-    <div class="title">Felicia's Fitness</div>
-    <div class="subtitle">Train like a goddess</div>
 
-    <a href="https://fletch1980.github.io/bootyworkout-/" class="card" target="_blank">
-      <div class="card-emoji">🍑</div>
-      <div class="card-title">Glute Finisher</div>
-      <div class="card-desc">15–25 min · After Shred App<br/>Build that bubble butt & curves</div>
-      <div class="card-tag tag-purple">Mon · Wed · Fri</div>
-    </a>
+<div class="header">
+  <h1>👑 Felicia's Fitness Suite</h1>
+  <p>Your transformation toolkit</p>
+</div>
 
-    <div class="divider">✦</div>
+<div class="today-banner" id="todayBanner"></div>
 
-    <a href="https://fletch1980.github.io/goddesstraining/" class="card" target="_blank">
-      <div class="card-emoji">🌀</div>
-      <div class="card-title">Goddess Training</div>
-      <div class="card-desc">Hip control · Core stamina · Pelvic floor<br/>Move like the goddess you are</div>
-      <div class="card-tag tag-pink">Mon · Tue · Wed · Thu</div>
-    </a>
+<p class="section-label">Your Apps</p>
+<div class="cards">
+  <a href="https://fletch1980.github.io/Bootyworkout/" class="card card-glute" target="_blank" id="card-glute">
+    <div class="card-icon">🍑</div>
+    <div class="card-title">Glute Finisher</div>
+    <div class="card-sub">Bubble Butt Builder · 5-Day Program</div>
+  </a>
+  <a href="https://fletch1980.github.io/goddesstraining/" class="card card-goddess" target="_blank" id="card-goddess">
+    <div class="card-icon">✨</div>
+    <div class="card-title">Goddess Training</div>
+    <div class="card-sub">Hip Control · Core · Pelvic Floor</div>
+  </a>
+  <a href="https://fletch1980.github.io/Flexibility-/" class="card card-flex" target="_blank" id="card-flex">
+    <div class="card-icon">🌸</div>
+    <div class="card-title">Flexibility Training</div>
+    <div class="card-sub">Daily Routine · Deep Friday Session</div>
+  </a>
+  <a href="https://fletch1980.github.io/waistcircuit/" class="card card-waist" target="_blank" id="card-waist">
+    <div class="card-icon">⚡</div>
+    <div class="card-title">Waist Circuit</div>
+    <div class="card-sub">Tuesday & Thursday · Core Sculpting</div>
+  </a>
+</div>
 
-    <a href="https://fletch1980.github.io/Flexibility-/" class="card" target="_blank">
-      <div class="card-emoji">🌸</div>
-      <div class="card-title">Flexibility Training</div>
-      <div class="card-desc">Daily routine + Deep Friday session<br/>Open your hips and feel everything</div>
-      <div class="card-tag" style="background:#1a0030; color:#c084fc;">Every Day</div>
-    </a>
-
-    <a href="https://fletch1980.github.io/Waistcinch/" class="card" target="_blank">
-      <div class="card-emoji">⏳</div>
-      <div class="card-title">Waist Circuit</div>
-      <div class="card-desc">Obliques · Cinch · Hip Dips · 20–25 min<br/>Gym & At-Home versions included</div>
-      <div class="card-tag tag-rose">Tue & Thu</div>
-    </a>
-
-    <a href="https://fletch1980.github.io/Fitness_schedule/" class="card" target="_blank">
-      <div class="card-emoji">📅</div>
-      <div class="card-title">Daily Schedule</div>
-      <div class="card-desc">See today's workouts · Track as you go<br/>Know exactly what's next</div>
-      <div class="card-tag" style="background:#1a0030; color:#a78bfa;">Mon – Fri</div>
-    </a>
-
-    <div class="divider">✦</div>
-
-    <div style="background: #1a0030; border: 1px solid #3b0764; border-radius: 20px; padding: 28px 24px; margin-bottom: 16px;">
-      <div style="font-size: 20px; margin-bottom: 12px;">⚡ Daily Shred Guide</div>
-      <div style="font-size: 13px; color: #a78bfa; margin-bottom: 16px; font-weight: 600;">Let your body decide — add-ons are always non-negotiable</div>
-      <div style="display: flex; flex-direction: column; gap: 10px;">
-        <div style="background: #0a0010; border-radius: 12px; padding: 12px 14px; border: 1px solid #4a0080;">
-          <div style="color: #4ade80; font-weight: 800; font-size: 14px;">💪 Feeling Strong — Bad Ass (60-75 min)</div>
-          <div style="color: #9ca3af; font-size: 12px; margin-top: 4px;">Shred hard + Glute Finisher + Goddess or Flexibility</div>
-        </div>
-        <div style="background: #0a0010; border-radius: 12px; padding: 12px 14px; border: 1px solid #4a0080;">
-          <div style="color: #c084fc; font-weight: 800; font-size: 14px;">🙂 Feeling Normal — Regular (50-60 min)</div>
-          <div style="color: #9ca3af; font-size: 12px; margin-top: 4px;">Solid Shred + Glute Finisher + Goddess or Flexibility</div>
-        </div>
-        <div style="background: #0a0010; border-radius: 12px; padding: 12px 14px; border: 1px solid #4a0080;">
-          <div style="color: #f9a8d4; font-weight: 800; font-size: 14px;">😴 Feeling Tired — Mini (30 min)</div>
-          <div style="color: #9ca3af; font-size: 12px; margin-top: 4px;">Light Shred + Glute Finisher + Goddess or Flexibility</div>
-        </div>
-        <div style="background: #0a0010; border-radius: 12px; padding: 12px 14px; border: 1px solid #4a0080;">
-          <div style="color: #fbbf24; font-weight: 800; font-size: 14px;">📅 Tuesday & Thursday — Add Waist Circuit</div>
-          <div style="color: #9ca3af; font-size: 12px; margin-top: 4px;">Any Shred length + Goddess Training + Waist Circuit</div>
-        </div>
-        <div style="background: #0a0010; border-radius: 12px; padding: 12px 14px; border: 1px solid #4a0080;">
-          <div style="color: #fb923c; font-weight: 800; font-size: 14px;">🌸 Friday — Deep Flexibility Day</div>
-          <div style="color: #9ca3af; font-size: 12px; margin-top: 4px;">Any Shred + Glute Finisher + Deep Friday Session</div>
-        </div>
-      </div>
+<div class="shred-box">
+  <h3>🔥 Shred Level — Pick by Energy</h3>
+  <div class="shred-row">
+    <div class="shred-option shred-mini">
+      <div class="level">MINI</div>
+      <div class="time">30 min</div>
+      <div class="desc">Low energy day</div>
     </div>
-
-    <div class="footer">Built for Felicia · Phoenix Brands 🔥</div>
+    <div class="shred-option shred-reg">
+      <div class="level">REGULAR</div>
+      <div class="time">50–60 min</div>
+      <div class="desc">Normal day</div>
+    </div>
+    <div class="shred-option shred-bad">
+      <div class="level">BAD ASS</div>
+      <div class="time">60–75 min</div>
+      <div class="desc">Bring it</div>
+    </div>
   </div>
+</div>
+
+<script>
+  const schedule = {
+    1: { day: "Monday",    theme: "Power Day 🔥",      stack: ["🍑 Glute Finisher — Power Day", "✨ Goddess Training", "🌸 Flexibility Daily"] },
+    2: { day: "Tuesday",   theme: "Shape Day 💜",       stack: ["🍑 Glute Finisher — Shape Day", "✨ Goddess Training", "⚡ Waist Circuit", "🌸 Flexibility Daily"] },
+    3: { day: "Wednesday", theme: "Burnout Day 🔥",     stack: ["🍑 Glute Finisher — Burnout Day", "✨ Goddess Training", "🌸 Flexibility Daily"] },
+    4: { day: "Thursday",  theme: "Unilateral Day 🦵",  stack: ["🍑 Glute Finisher — Unilateral Day", "✨ Goddess Training", "⚡ Waist Circuit", "🌸 Flexibility Daily"] },
+    5: { day: "Friday",    theme: "Full Glute Day 🍑",  stack: ["🍑 Glute Finisher — Full Glute Day", "✨ Goddess Training", "🌸 Flexibility DEEP Session"] },
+    6: { day: "Saturday",  theme: "Rest Day 😴",        stack: [] },
+    0: { day: "Sunday",    theme: "Rest Day 😴",        stack: [] },
+  };
+
+  const dow = new Date().getDay();
+  const today = schedule[dow];
+  const banner = document.getElementById("todayBanner");
+
+  let html = `<div class="today-label">Today</div>
+              <div class="today-day">${today.day}</div>
+              <div class="today-theme">${today.theme}</div>`;
+
+  if (today.stack.length > 0) {
+    html += `<div class="today-stack">`;
+    today.stack.forEach(item => {
+      html += `<div class="today-item">✅ <span>${item}</span></div>`;
+    });
+    html += `</div>`;
+  } else {
+    html += `<div class="rest-day">🛁 Recover. Stretch. Eat your protein.</div>`;
+  }
+
+  banner.innerHTML = html;
+
+  // Highlight today's active app cards
+  const activeCards = {
+    1: ["card-glute","card-goddess","card-flex"],
+    2: ["card-glute","card-goddess","card-waist","card-flex"],
+    3: ["card-glute","card-goddess","card-flex"],
+    4: ["card-glute","card-goddess","card-waist","card-flex"],
+    5: ["card-glute","card-goddess","card-flex"],
+    6: [], 0: []
+  };
+
+  activeCards[dow].forEach(id => {
+    const card = document.getElementById(id);
+    if (card) {
+      const badge = document.createElement("div");
+      badge.className = "card-badge today-badge";
+      badge.textContent = "TODAY";
+      card.appendChild(badge);
+    }
+  });
+</script>
 </body>
 </html>
