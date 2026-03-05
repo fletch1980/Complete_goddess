@@ -13,78 +13,73 @@
     .header p { font-size: 13px; color: #9ca3af; margin-top: 4px; }
 
     /* TODAY BANNER */
-    .today-banner {
-      background: linear-gradient(135deg, #7c3aed, #db2777);
-      border-radius: 16px;
-      padding: 18px 20px;
-      margin-bottom: 24px;
-      color: white;
-    }
+    .today-banner { background: linear-gradient(135deg, #7c3aed, #db2777); border-radius: 16px; padding: 18px 20px; margin-bottom: 24px; color: white; }
     .today-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; opacity: 0.85; text-transform: uppercase; }
     .today-day { font-size: 24px; font-weight: 900; margin: 4px 0 2px; }
     .today-theme { font-size: 14px; opacity: 0.9; }
     .today-stack { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
-    .today-item {
-      background: rgba(255,255,255,0.15);
-      border-radius: 8px;
-      padding: 8px 12px;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .today-item { background: rgba(255,255,255,0.15); border-radius: 8px; padding: 8px 12px; font-size: 13px; display: flex; align-items: center; gap: 8px; }
     .today-item span { font-weight: 600; }
     .rest-day { text-align: center; font-size: 16px; padding: 10px 0 4px; opacity: 0.85; }
 
-    /* APP CARDS */
+    /* SNAPSHOT */
+    .snapshot-box { background: #1a0030; border-radius: 16px; padding: 16px 20px; margin-bottom: 24px; }
+    .snapshot-box h3 { color: white; font-size: 13px; font-weight: 800; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
+    .snap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 10px; }
+    .snap-item { background: #0d0d1a; border-radius: 10px; padding: 8px; text-align: center; }
+    .snap-val { font-size: 1.2rem; font-weight: 900; color: #c084fc; }
+    .snap-lbl { font-size: 10px; color: #6b7280; margin-top: 2px; }
+    .snap-bar-wrap { background: #0d0d1a; border-radius: 20px; height: 6px; overflow: hidden; }
+    .snap-bar { height: 100%; border-radius: 20px; background: linear-gradient(90deg,#7c3aed,#db2777); transition: width 0.4s; }
+    .snap-note { font-size: 10px; color: #6b7280; text-align: right; margin-top: 4px; }
+
+    /* TIPS */
     .section-label { font-size: 11px; font-weight: 700; color: #6b7280; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
+    .tips-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 10px; }
+    .tip-chip { flex-shrink: 0; background: #1a0030; border: 1px solid #7c3aed55; border-radius: 20px; padding: 7px 13px; font-size: 12px; color: #d8b4fe; white-space: nowrap; cursor: pointer; transition: all 0.2s; }
+    .tip-chip.active { background: linear-gradient(135deg,#7c3aed,#db2777); border-color: transparent; color: white; font-weight: 700; }
+    .tip-detail { background: #1a0030; border-radius: 12px; padding: 12px 14px; margin-bottom: 24px; font-size: 13px; color: #d8b4fe; line-height: 1.6; }
+    .tip-detail strong { color: #f0abfc; }
+
+    /* WORKOUT ORDER */
+    .order-box { background: #1a0030; border-radius: 16px; padding: 16px 20px; margin-bottom: 24px; }
+    .order-box h3 { color: white; font-size: 13px; font-weight: 800; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
+    .order-steps { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .step { background: rgba(124,58,237,0.25); border: 1px solid #7c3aed66; border-radius: 8px; padding: 7px 11px; font-size: 11px; color: #d8b4fe; }
+    .arrow { color: #7c3aed; font-size: 14px; }
+    .order-note { font-size: 11px; color: #9ca3af; margin-top: 10px; line-height: 1.5; }
+
+    /* APP CARDS */
     .cards { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
-
-    a.card {
-      display: block;
-      text-decoration: none;
-      border-radius: 16px;
-      padding: 18px 20px;
-      color: white;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.15s, opacity 0.15s;
-    }
+    a.card { display: block; text-decoration: none; border-radius: 16px; padding: 18px 20px; color: white; position: relative; overflow: hidden; transition: transform 0.15s, opacity 0.15s; }
     a.card:active { transform: scale(0.97); opacity: 0.9; }
-    .card-glute  { background: linear-gradient(135deg, #b91c1c, #ef4444); }
+    .card-glute   { background: linear-gradient(135deg, #b91c1c, #ef4444); }
     .card-goddess { background: linear-gradient(135deg, #7c3aed, #a855f7); }
-    .card-flex   { background: linear-gradient(135deg, #4338ca, #6366f1); }
-    .card-waist  { background: linear-gradient(135deg, #0369a1, #38bdf8); }
-
+    .card-flex    { background: linear-gradient(135deg, #4338ca, #6366f1); }
+    .card-waist   { background: linear-gradient(135deg, #0369a1, #38bdf8); }
+    .card-tracker { background: linear-gradient(135deg, #065f46, #10b981); }
     .card-icon { font-size: 28px; margin-bottom: 6px; }
     .card-title { font-size: 18px; font-weight: 800; }
     .card-sub { font-size: 12px; opacity: 0.85; margin-top: 2px; }
-    .card-badge {
-      position: absolute; top: 14px; right: 14px;
-      background: rgba(255,255,255,0.25);
-      border-radius: 20px; padding: 4px 10px;
-      font-size: 11px; font-weight: 700;
-    }
-    .card-badge.today-badge {
-      background: white;
-      color: #7c3aed;
-    }
+    .card-badge { position: absolute; top: 14px; right: 14px; background: rgba(255,255,255,0.25); border-radius: 20px; padding: 4px 10px; font-size: 11px; font-weight: 700; }
+    .card-badge.today-badge { background: white; color: #7c3aed; }
 
-    /* SHRED GUIDE */
-    .shred-box {
-      background: #1a0030;
-      border-radius: 16px;
-      padding: 18px 20px;
-      margin-bottom: 28px;
-    }
+    /* MIND-MUSCLE */
+    .mm-box { background: #1a0030; border-radius: 16px; padding: 16px 20px; margin-bottom: 28px; }
+    .mm-box h3 { color: white; font-size: 13px; font-weight: 800; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
+    .mm-item { background: #0d0d1a; border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
+    .mm-item:last-child { margin-bottom: 0; }
+    .mm-ex { font-size: 13px; font-weight: 800; color: #f0abfc; margin-bottom: 3px; }
+    .mm-cue { font-size: 12px; color: #9ca3af; line-height: 1.5; }
+
+    /* SHRED */
+    .shred-box { background: #1a0030; border-radius: 16px; padding: 18px 20px; margin-bottom: 28px; }
     .shred-box h3 { color: white; font-size: 15px; font-weight: 800; margin-bottom: 12px; }
     .shred-row { display: flex; gap: 8px; }
-    .shred-option {
-      flex: 1; border-radius: 10px; padding: 10px 8px; text-align: center;
-    }
-    .shred-mini   { background: #1e3a5f; }
-    .shred-reg    { background: #3b1f6e; }
-    .shred-bad    { background: #5b1a1a; }
+    .shred-option { flex: 1; border-radius: 10px; padding: 10px 8px; text-align: center; }
+    .shred-mini { background: #1e3a5f; }
+    .shred-reg  { background: #3b1f6e; }
+    .shred-bad  { background: #5b1a1a; }
     .shred-option .level { font-size: 11px; font-weight: 800; color: #9ca3af; letter-spacing: 1px; }
     .shred-option .time  { font-size: 16px; font-weight: 900; color: white; margin: 2px 0; }
     .shred-option .desc  { font-size: 10px; color: #9ca3af; }
@@ -97,8 +92,48 @@
   <p>Your transformation toolkit</p>
 </div>
 
+<!-- TODAY BANNER -->
 <div class="today-banner" id="todayBanner"></div>
 
+<!-- DAILY SNAPSHOT -->
+<div class="snapshot-box">
+  <h3>📊 Today's Snapshot</h3>
+  <div class="snap-grid">
+    <div class="snap-item"><div class="snap-val" id="snapProtein">—</div><div class="snap-lbl">Protein (g)</div></div>
+    <div class="snap-item"><div class="snap-val" id="snapSleep">—</div><div class="snap-lbl">Sleep (hrs)</div></div>
+    <div class="snap-item"><div class="snap-val" id="snapFeel">—</div><div class="snap-lbl">Body Feel</div></div>
+  </div>
+  <div class="snap-bar-wrap"><div class="snap-bar" id="snapBar" style="width:0%"></div></div>
+  <div class="snap-note" id="snapNote">Log in Tracker to fill this in</div>
+</div>
+
+<!-- QUICK TIPS -->
+<p class="section-label">💡 Quick Tips</p>
+<div class="tips-row">
+  <div class="tip-chip active" onclick="showTip(0)">🥩 Protein</div>
+  <div class="tip-chip" onclick="showTip(1)">💪 Squeeze</div>
+  <div class="tip-chip" onclick="showTip(2)">😴 Recovery</div>
+  <div class="tip-chip" onclick="showTip(3)">📈 Overload</div>
+  <div class="tip-chip" onclick="showTip(4)">🔥 Cardio Order</div>
+</div>
+<div class="tip-detail" id="tipDetail"></div>
+
+<!-- WORKOUT ORDER -->
+<div class="order-box">
+  <h3>🔥 Workout Order</h3>
+  <div class="order-steps">
+    <div class="step">🍑 Glute Activation</div>
+    <div class="arrow">→</div>
+    <div class="step">🏋️ Shred / Resistance</div>
+    <div class="arrow">→</div>
+    <div class="step">💃 NGF / Cardio</div>
+    <div class="arrow">→</div>
+    <div class="step">🧘 Flexibility</div>
+  </div>
+  <div class="order-note">⚠️ Always do cardio <strong>after</strong> resistance work. Cardio first drains the energy your muscles need to actually grow.</div>
+</div>
+
+<!-- APP CARDS -->
 <p class="section-label">Your Apps</p>
 <div class="cards">
   <a href="https://fletch1980.github.io/bootyworkout-/" class="card card-glute" target="_blank" id="card-glute">
@@ -121,8 +156,24 @@
     <div class="card-title">Waist Circuit</div>
     <div class="card-sub">Tuesday & Thursday · Core Sculpting</div>
   </a>
+  <a href="https://fletch1980.github.io/Fitness_tracker/" class="card card-tracker" id="card-tracker" target="_blank">
+    <div class="card-icon">📊</div>
+    <div class="card-title">Fitness Tracker</div>
+    <div class="card-sub">Protein · Overload · Recovery Log</div>
+  </a>
 </div>
 
+<!-- MIND-MUSCLE CUES -->
+<div class="mm-box">
+  <h3>🧠 Mind-Muscle Cues</h3>
+  <div class="mm-item"><div class="mm-ex">Hip Thrust</div><div class="mm-cue">Drive through your heels. At the top, squeeze your glutes for 2 full seconds before lowering. Think "crush a walnut." Feel it in the glute, not your lower back.</div></div>
+  <div class="mm-item"><div class="mm-ex">Cable / Band Kickback</div><div class="mm-cue">Slow the movement down. Squeeze at full extension for 1–2 sec. If you feel it in your hip flexor or back, you've gone too fast.</div></div>
+  <div class="mm-item"><div class="mm-ex">Romanian Deadlift</div><div class="mm-cue">Feel the stretch in your hamstrings on the way down. Drive your hips forward to stand — glutes finish the movement, not your back.</div></div>
+  <div class="mm-item"><div class="mm-ex">Sumo Squat</div><div class="mm-cue">Push knees out over toes. Pause at the bottom. On the way up, squeeze inner thighs and glutes together at the same time.</div></div>
+  <div class="mm-item"><div class="mm-ex">Every Exercise</div><div class="mm-cue">If you don't feel the target muscle, drop the weight 20% and slow down. Mind-muscle connection beats heavy and sloppy every single time.</div></div>
+</div>
+
+<!-- SHRED GUIDE -->
 <div class="shred-box">
   <h3>🔥 Shred Level — Pick by Energy</h3>
   <div class="shred-row">
@@ -145,55 +196,67 @@
 </div>
 
 <script>
+  // TODAY BANNER
   const schedule = {
-    1: { day: "Monday",    theme: "Power Day 🔥",      stack: ["🍑 Glute Finisher — Power Day", "✨ Goddess Training", "🌸 Flexibility Daily"] },
-    2: { day: "Tuesday",   theme: "Goddess & Waist Day 💜", stack: ["✨ Goddess Training", "⚡ Waist Circuit", "🌸 Flexibility Daily"] },
-    3: { day: "Wednesday", theme: "Burnout Day 🔥",     stack: ["🍑 Glute Finisher — Burnout Day", "✨ Goddess Training", "🌸 Flexibility Daily"] },
-    4: { day: "Thursday",  theme: "Goddess & Waist Day 🦵", stack: ["✨ Goddess Training", "⚡ Waist Circuit", "🌸 Flexibility Daily"] },
-    5: { day: "Friday",    theme: "Full Glute Day 🍑",  stack: ["🍑 Glute Finisher — Full Glute Day", "✨ Goddess Training", "🌸 Flexibility DEEP Session"] },
-    6: { day: "Saturday",  theme: "Rest Day 😴",        stack: [] },
-    0: { day: "Sunday",    theme: "Rest Day 😴",        stack: [] },
+    1: { day:"Monday",    theme:"Power Day 🔥",           stack:["🍑 Glute Finisher — Power Day","✨ Goddess Training","🌸 Flexibility Daily"] },
+    2: { day:"Tuesday",   theme:"Goddess & Waist Day 💜",  stack:["✨ Goddess Training","⚡ Waist Circuit","🌸 Flexibility Daily"] },
+    3: { day:"Wednesday", theme:"Burnout Day 🔥",          stack:["🍑 Glute Finisher — Burnout Day","✨ Goddess Training","🌸 Flexibility Daily"] },
+    4: { day:"Thursday",  theme:"Goddess & Waist Day 🦵",  stack:["✨ Goddess Training","⚡ Waist Circuit","🌸 Flexibility Daily"] },
+    5: { day:"Friday",    theme:"Full Glute Day 🍑",       stack:["🍑 Glute Finisher — Full Glute Day","✨ Goddess Training","🌸 Flexibility DEEP Session"] },
+    6: { day:"Saturday",  theme:"Rest Day 😴",             stack:[] },
+    0: { day:"Sunday",    theme:"Rest Day 😴",             stack:[] },
   };
-
   const dow = new Date().getDay();
   const today = schedule[dow];
   const banner = document.getElementById("todayBanner");
+  let html = `<div class="today-label">Today</div><div class="today-day">${today.day}</div><div class="today-theme">${today.theme}</div>`;
+  if(today.stack.length){
+    html+=`<div class="today-stack">`;
+    today.stack.forEach(i=>{ html+=`<div class="today-item">✅ <span>${i}</span></div>`; });
+    html+=`</div>`;
+  } else { html+=`<div class="rest-day">🛁 Recover. Stretch. Eat your protein.</div>`; }
+  banner.innerHTML=html;
 
-  let html = `<div class="today-label">Today</div>
-              <div class="today-day">${today.day}</div>
-              <div class="today-theme">${today.theme}</div>`;
-
-  if (today.stack.length > 0) {
-    html += `<div class="today-stack">`;
-    today.stack.forEach(item => {
-      html += `<div class="today-item">✅ <span>${item}</span></div>`;
-    });
-    html += `</div>`;
-  } else {
-    html += `<div class="rest-day">🛁 Recover. Stretch. Eat your protein.</div>`;
-  }
-
-  banner.innerHTML = html;
-
-  // Highlight today's active app cards
-  const activeCards = {
-    1: ["card-glute","card-goddess","card-flex"],
-    2: ["card-goddess","card-waist","card-flex"],
-    3: ["card-glute","card-goddess","card-flex"],
-    4: ["card-goddess","card-waist","card-flex"],
-    5: ["card-glute","card-goddess","card-flex"],
-    6: [], 0: []
-  };
-
-  activeCards[dow].forEach(id => {
-    const card = document.getElementById(id);
-    if (card) {
-      const badge = document.createElement("div");
-      badge.className = "card-badge today-badge";
-      badge.textContent = "TODAY";
-      card.appendChild(badge);
-    }
+  const activeCards={1:["card-glute","card-goddess","card-flex"],2:["card-goddess","card-waist","card-flex"],3:["card-glute","card-goddess","card-flex"],4:["card-goddess","card-waist","card-flex"],5:["card-glute","card-goddess","card-flex"],6:[],0:[]};
+  activeCards[dow].forEach(id=>{
+    const c=document.getElementById(id); if(!c) return;
+    const b=document.createElement("div"); b.className="card-badge today-badge"; b.textContent="TODAY"; c.appendChild(b);
   });
+
+  // SNAPSHOT
+  const todayKey = new Date().toISOString().split('T')[0];
+  try {
+    const p=JSON.parse(localStorage.getItem('protein_'+todayKey));
+    if(p){
+      const total=(p.meals||[]).reduce((s,m)=>s+m.p,0);
+      document.getElementById('snapProtein').textContent=total+'g';
+      const pct=Math.min(100,Math.round(total/(p.goal||100)*100));
+      document.getElementById('snapBar').style.width=pct+'%';
+      document.getElementById('snapNote').textContent=pct+'% of protein goal';
+    }
+  } catch(e){}
+  try {
+    const r=JSON.parse(localStorage.getItem('recovery_'+todayKey));
+    if(r){
+      document.getElementById('snapSleep').textContent=r.sleep?r.sleep+'h':'—';
+      const fm={great:'🔥',good:'💪',sore:'😬',rest:'🛌'};
+      document.getElementById('snapFeel').textContent=fm[r.feel]||'—';
+    }
+  } catch(e){}
+
+  // TIPS
+  const tips=[
+    "<strong>🥩 Protein:</strong> Aim for 100–120g daily. Hit protein within <strong>30 min post-workout</strong>. Prioritize it in your first meal — appetite fades as the day goes on. Your muscles can't grow without it.",
+    "<strong>💪 Mind-Muscle Connection:</strong> Feeling the muscle matters more than the weight. Slow down every rep. Add a <strong>2-second squeeze</strong> at the top of hip thrusts and kickbacks. If you don't feel it in your glutes, you're not building them.",
+    "<strong>😴 Recovery:</strong> Muscle is built at <strong>rest, not in the gym</strong>. Aim for 7–9 hours sleep. Take magnesium glycinate at night. Rest days are not skipped days — they're building days.",
+    "<strong>📈 Progressive Overload:</strong> You must do a little more each week to keep growing. Add <strong>5 lbs, 1 rep, or 1 set</strong> when the current load feels comfortable. Log your lifts in the Tracker so you always know what to beat.",
+    "<strong>🔥 Cardio Order:</strong> Always do resistance training <strong>before</strong> cardio. NGF and dance cardio are great — just save them for after Shred and glute work. Cardio first drains the energy you need to actually build muscle."
+  ];
+  function showTip(i){
+    document.getElementById('tipDetail').innerHTML=tips[i];
+    document.querySelectorAll('.tip-chip').forEach((c,j)=>c.classList.toggle('active',j===i));
+  }
+  showTip(0);
 </script>
 </body>
 </html>
