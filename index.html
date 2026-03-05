@@ -12,7 +12,6 @@
     .header h1 { font-size: 26px; font-weight: 900; color: white; }
     .header p { font-size: 13px; color: #9ca3af; margin-top: 4px; }
 
-    /* TODAY BANNER */
     .today-banner { background: linear-gradient(135deg, #7c3aed, #db2777); border-radius: 16px; padding: 18px 20px; margin-bottom: 24px; color: white; }
     .today-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; opacity: 0.85; text-transform: uppercase; }
     .today-day { font-size: 24px; font-weight: 900; margin: 4px 0 2px; }
@@ -22,22 +21,20 @@
     .today-item span { font-weight: 600; }
     .rest-day { text-align: center; font-size: 16px; padding: 10px 0 4px; opacity: 0.85; }
 
-    /* STREAK */
     .streak-row { display: flex; gap: 10px; margin-bottom: 24px; }
     .streak-card { flex: 1; background: #1a0030; border-radius: 14px; padding: 14px; text-align: center; }
     .streak-val { font-size: 2rem; font-weight: 900; color: #f0abfc; }
     .streak-lbl { font-size: 11px; color: #9ca3af; margin-top: 2px; text-transform: uppercase; letter-spacing: 1px; }
     .streak-card.fire .streak-val { color: #fb923c; }
 
-    /* CALENDAR */
-    .cal-box { background: #1a0030; border-radius: 16px; padding: 16px 20px; margin-bottom: 24px; }
+    .cal-box { background: #1a0030; border-radius: 16px; padding: 16px 20px; margin-bottom: 16px; }
     .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
     .cal-title { color: white; font-size: 15px; font-weight: 800; }
     .cal-nav { background: #7c3aed33; border: 1px solid #7c3aed66; color: #c084fc; border-radius: 8px; padding: 4px 10px; font-size: 13px; cursor: pointer; }
     .cal-days-header { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; margin-bottom: 6px; }
-    .cal-days-header span { text-align: center; font-size: 10px; color: #6b7280; font-weight: 700; text-transform: uppercase; }
+    .cal-days-header span { text-align: center; font-size: 10px; color: #6b7280; font-weight: 700; }
     .cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; }
-    .cal-day { aspect-ratio: 1; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #6b7280; background: #0d0d1a; position: relative; cursor: pointer; }
+    .cal-day { aspect-ratio: 1; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #6b7280; background: #0d0d1a; cursor: pointer; }
     .cal-day.today { border: 1.5px solid #7c3aed; color: white; }
     .cal-day.empty { background: transparent; cursor: default; }
     .cal-day.worked { color: white; }
@@ -48,16 +45,24 @@
     .dot-flex    { background: #6366f1; }
     .dot-waist   { background: #38bdf8; }
     .dot-tracker { background: #10b981; }
+    .dot-shred   { background: #f97316; }
 
-    /* LEGEND */
     .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
     .leg-item { display: flex; align-items: center; gap: 4px; font-size: 11px; color: #9ca3af; }
     .leg-dot { width: 8px; height: 8px; border-radius: 50%; }
 
-    /* LOG WORKOUT BUTTON */
+    /* SHRED SNAPSHOT */
+    .shred-snap { background: #1a0030; border-radius: 14px; padding: 14px 16px; margin-bottom: 16px; border: 1px solid #f9731633; }
+    .shred-snap-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .shred-snap-title { color: #f97316; font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+    .shred-snap-content { display: flex; align-items: center; gap: 12px; }
+    .shred-level-pill { background: #f9731622; border: 1.5px solid #f97316; border-radius: 20px; padding: 5px 14px; font-size: 13px; font-weight: 800; color: #f97316; }
+    .shred-snap-note { font-size: 12px; color: #9ca3af; font-style: italic; }
+    .log-shred-btn { background: linear-gradient(135deg, #f97316, #ea580c); border: none; border-radius: 10px; color: white; font-size: 12px; font-weight: 700; padding: 7px 14px; cursor: pointer; white-space: nowrap; }
+
     .log-workout-btn { width: 100%; background: linear-gradient(135deg, #7c3aed, #db2777); border: none; border-radius: 12px; color: white; font-size: 14px; font-weight: 800; padding: 14px; cursor: pointer; margin-bottom: 24px; letter-spacing: 0.5px; }
 
-    /* LOG MODAL */
+    /* MODALS */
     .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 50; align-items: flex-end; justify-content: center; }
     .modal-bg.open { display: flex; }
     .modal { background: #1a0030; border-radius: 20px 20px 0 0; padding: 24px 20px 36px; width: 100%; max-width: 480px; }
@@ -70,9 +75,18 @@
     .app-check .ac-name { font-size: 12px; color: #d8b4fe; font-weight: 600; }
     .modal-btns { display: flex; gap: 10px; }
     .modal-save { flex: 1; background: linear-gradient(135deg,#7c3aed,#db2777); border: none; border-radius: 10px; color: white; font-size: 14px; font-weight: 700; padding: 12px; cursor: pointer; }
+    .modal-save.orange { background: linear-gradient(135deg,#f97316,#ea580c); }
     .modal-cancel { background: #0d0d1a; border: 1px solid #7c3aed44; border-radius: 10px; color: #9ca3af; font-size: 14px; padding: 12px 18px; cursor: pointer; }
 
-    /* SNAPSHOT */
+    /* SHRED LEVEL PICKER */
+    .shred-level-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 16px; }
+    .shred-level-btn { background: #0d0d1a; border: 1.5px solid #7c3aed44; border-radius: 10px; padding: 12px 6px; text-align: center; cursor: pointer; transition: all 0.2s; }
+    .shred-level-btn.sel { border-color: #f97316; background: #f9731622; }
+    .shred-level-btn .sl-label { font-size: 10px; font-weight: 800; color: #9ca3af; letter-spacing: 1px; }
+    .shred-level-btn .sl-time { font-size: 15px; font-weight: 900; color: white; margin: 3px 0; }
+    .shred-level-btn .sl-desc { font-size: 10px; color: #9ca3af; }
+    .shred-note-input { width: 100%; background: #0d0d1a; border: 1px solid #7c3aed44; border-radius: 8px; color: white; padding: 8px 12px; font-size: 13px; outline: none; margin-bottom: 16px; }
+
     .snapshot-box { background: #1a0030; border-radius: 16px; padding: 16px 20px; margin-bottom: 24px; }
     .snapshot-box h3 { color: white; font-size: 13px; font-weight: 800; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
     .snap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 10px; }
@@ -83,7 +97,6 @@
     .snap-bar { height: 100%; border-radius: 20px; background: linear-gradient(90deg,#7c3aed,#db2777); transition: width 0.4s; }
     .snap-note { font-size: 10px; color: #6b7280; text-align: right; margin-top: 4px; }
 
-    /* TIPS */
     .section-label { font-size: 11px; font-weight: 700; color: #6b7280; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
     .tips-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 10px; }
     .tip-chip { flex-shrink: 0; background: #1a0030; border: 1px solid #7c3aed55; border-radius: 20px; padding: 7px 13px; font-size: 12px; color: #d8b4fe; white-space: nowrap; cursor: pointer; transition: all 0.2s; }
@@ -91,7 +104,6 @@
     .tip-detail { background: #1a0030; border-radius: 12px; padding: 12px 14px; margin-bottom: 24px; font-size: 13px; color: #d8b4fe; line-height: 1.6; }
     .tip-detail strong { color: #f0abfc; }
 
-    /* WORKOUT ORDER */
     .order-box { background: #1a0030; border-radius: 16px; padding: 16px 20px; margin-bottom: 24px; }
     .order-box h3 { color: white; font-size: 13px; font-weight: 800; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
     .order-steps { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
@@ -99,7 +111,6 @@
     .arrow { color: #7c3aed; font-size: 14px; }
     .order-note { font-size: 11px; color: #9ca3af; margin-top: 10px; line-height: 1.5; }
 
-    /* APP CARDS */
     .cards { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
     a.card { display: block; text-decoration: none; border-radius: 16px; padding: 18px 20px; color: white; position: relative; overflow: hidden; transition: transform 0.15s, opacity 0.15s; }
     a.card:active { transform: scale(0.97); opacity: 0.9; }
@@ -114,7 +125,6 @@
     .card-badge { position: absolute; top: 14px; right: 14px; background: rgba(255,255,255,0.25); border-radius: 20px; padding: 4px 10px; font-size: 11px; font-weight: 700; }
     .card-badge.today-badge { background: white; color: #7c3aed; }
 
-    /* MIND-MUSCLE */
     .mm-box { background: #1a0030; border-radius: 16px; padding: 16px 20px; margin-bottom: 28px; }
     .mm-box h3 { color: white; font-size: 13px; font-weight: 800; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
     .mm-item { background: #0d0d1a; border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
@@ -122,7 +132,6 @@
     .mm-ex { font-size: 13px; font-weight: 800; color: #f0abfc; margin-bottom: 3px; }
     .mm-cue { font-size: 12px; color: #9ca3af; line-height: 1.5; }
 
-    /* SHRED */
     .shred-box { background: #1a0030; border-radius: 16px; padding: 18px 20px; margin-bottom: 28px; }
     .shred-box h3 { color: white; font-size: 15px; font-weight: 800; margin-bottom: 12px; }
     .shred-row { display: flex; gap: 8px; }
@@ -142,23 +151,13 @@
   <p>Your transformation toolkit</p>
 </div>
 
-<!-- TODAY BANNER -->
 <div class="today-banner" id="todayBanner"></div>
 
 <!-- STREAK -->
 <div class="streak-row">
-  <div class="streak-card fire">
-    <div class="streak-val" id="streakVal">0</div>
-    <div class="streak-lbl">🔥 Day Streak</div>
-  </div>
-  <div class="streak-card">
-    <div class="streak-val" id="totalVal">0</div>
-    <div class="streak-lbl">💪 Total Workouts</div>
-  </div>
-  <div class="streak-card">
-    <div class="streak-val" id="monthVal">0</div>
-    <div class="streak-lbl">📅 This Month</div>
-  </div>
+  <div class="streak-card fire"><div class="streak-val" id="streakVal">0</div><div class="streak-lbl">🔥 Streak</div></div>
+  <div class="streak-card"><div class="streak-val" id="totalVal">0</div><div class="streak-lbl">💪 Total</div></div>
+  <div class="streak-card"><div class="streak-val" id="monthVal">0</div><div class="streak-lbl">📅 Month</div></div>
 </div>
 
 <!-- CALENDAR -->
@@ -173,18 +172,38 @@
   </div>
   <div class="cal-grid" id="calGrid"></div>
   <div class="legend">
+    <div class="leg-item"><div class="leg-dot dot-shred"></div>Shred</div>
     <div class="leg-item"><div class="leg-dot dot-glute"></div>Glute</div>
     <div class="leg-item"><div class="leg-dot dot-goddess"></div>Goddess</div>
-    <div class="leg-item"><div class="leg-dot dot-flex"></div>Flexibility</div>
+    <div class="leg-item"><div class="leg-dot dot-flex"></div>Flex</div>
     <div class="leg-item"><div class="leg-dot dot-waist"></div>Waist</div>
     <div class="leg-item"><div class="leg-dot dot-tracker"></div>Tracker</div>
   </div>
 </div>
 
-<!-- LOG WORKOUT BUTTON -->
-<button class="log-workout-btn" onclick="openModal()">✅ Log Today's Workout</button>
+<!-- SHRED SNAPSHOT -->
+<div class="shred-snap">
+  <div class="shred-snap-header">
+    <div class="shred-snap-title">🔥 Today's Shred</div>
+    <div style="display:flex;gap:8px;">
+      <button class="log-shred-btn" style="background:#1a0030;border:1px solid #f97316;color:#f97316;" onclick="toggleShredHistory()">📋 History</button>
+      <button class="log-shred-btn" onclick="openShredModal()">+ Log Shred</button>
+    </div>
+  </div>
+  <div class="shred-snap-content" id="shredSnapContent">
+    <div style="font-size:12px;color:#6b7280;">Not logged yet — tap to log your Shred session</div>
+  </div>
+</div>
 
-<!-- LOG MODAL -->
+<!-- SHRED HISTORY -->
+<div id="shredHistory" style="display:none; background:#0d0d1a; border-radius:12px; padding:12px 14px; margin-top:-8px; margin-bottom:16px; border:1px solid #f9731633;">
+  <div id="shredHistoryList"></div>
+</div>
+
+<!-- LOG WORKOUT BUTTON -->
+<button class="log-workout-btn" onclick="openModal()">✅ Log Today's Apps</button>
+
+<!-- WORKOUT MODAL -->
 <div class="modal-bg" id="modalBg">
   <div class="modal">
     <h3>✅ What did you do today?</h3>
@@ -197,7 +216,32 @@
     </div>
     <div class="modal-btns">
       <button class="modal-cancel" onclick="closeModal()">Cancel</button>
-      <button class="modal-save" onclick="saveWorkout()">Save Workout 💪</button>
+      <button class="modal-save" onclick="saveWorkout()">Save 💪</button>
+    </div>
+  </div>
+</div>
+
+<!-- SHRED MODAL -->
+<div class="modal-bg" id="shredModalBg">
+  <div class="modal">
+    <h3>🔥 Log Today's Shred</h3>
+    <span class="modal-label">Pick your level</span>
+    <div class="shred-level-grid">
+      <div class="shred-level-btn" id="sl-mini" onclick="selectLevel('mini')">
+        <div class="sl-label">MINI</div><div class="sl-time">30 min</div><div class="sl-desc">Low energy</div>
+      </div>
+      <div class="shred-level-btn" id="sl-regular" onclick="selectLevel('regular')">
+        <div class="sl-label">REGULAR</div><div class="sl-time">50–60</div><div class="sl-desc">Normal day</div>
+      </div>
+      <div class="shred-level-btn" id="sl-badass" onclick="selectLevel('badass')">
+        <div class="sl-label">BAD ASS</div><div class="sl-time">60–75</div><div class="sl-desc">Bring it</div>
+      </div>
+    </div>
+    <span class="modal-label">Note (optional)</span>
+    <input type="text" class="shred-note-input" id="shredNoteInput" placeholder="e.g. felt strong, focused on legs..."/>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeShredModal()">Cancel</button>
+      <button class="modal-save orange" onclick="saveShred()">Save Shred 🔥</button>
     </div>
   </div>
 </div>
@@ -231,7 +275,7 @@
   <div class="order-steps">
     <div class="step">🍑 Glute Activation</div>
     <div class="arrow">→</div>
-    <div class="step">🏋️ Shred / Resistance</div>
+    <div class="step">🏋️ Shred</div>
     <div class="arrow">→</div>
     <div class="step">💃 NGF / Cardio</div>
     <div class="arrow">→</div>
@@ -244,43 +288,38 @@
 <p class="section-label">Your Apps</p>
 <div class="cards">
   <a href="https://fletch1980.github.io/bootyworkout-/" class="card card-glute" target="_blank" id="card-glute">
-    <div class="card-icon">🍑</div>
-    <div class="card-title">Glute Finisher</div>
+    <div class="card-icon">🍑</div><div class="card-title">Glute Finisher</div>
     <div class="card-sub">Bubble Butt Builder · Mon · Wed · Fri</div>
   </a>
   <a href="https://fletch1980.github.io/goddesstraining/" class="card card-goddess" target="_blank" id="card-goddess">
-    <div class="card-icon">✨</div>
-    <div class="card-title">Goddess Training</div>
+    <div class="card-icon">✨</div><div class="card-title">Goddess Training</div>
     <div class="card-sub">Hip Control · Core · Pelvic Floor</div>
   </a>
   <a href="https://fletch1980.github.io/Flexibility-/" class="card card-flex" target="_blank" id="card-flex">
-    <div class="card-icon">🌸</div>
-    <div class="card-title">Flexibility Training</div>
+    <div class="card-icon">🌸</div><div class="card-title">Flexibility Training</div>
     <div class="card-sub">Daily Routine · Deep Friday Session</div>
   </a>
   <a href="https://fletch1980.github.io/Waistcinch/" class="card card-waist" target="_blank" id="card-waist">
-    <div class="card-icon">⚡</div>
-    <div class="card-title">Waist Circuit</div>
+    <div class="card-icon">⚡</div><div class="card-title">Waist Circuit</div>
     <div class="card-sub">Tuesday & Thursday · Core Sculpting</div>
   </a>
-  <a href="https://fletch1980.github.io/Fitness_tracker/" class="card card-tracker" target="_blank" id="card-tracker">
-    <div class="card-icon">📊</div>
-    <div class="card-title">Fitness Tracker</div>
+  <a href="https://fletch1980.github.io/Fitness_tracker/" class="card card-tracker" target="_blank">
+    <div class="card-icon">📊</div><div class="card-title">Fitness Tracker</div>
     <div class="card-sub">Protein · Overload · Recovery Log</div>
   </a>
 </div>
 
-<!-- MIND-MUSCLE CUES -->
+<!-- MIND-MUSCLE -->
 <div class="mm-box">
   <h3>🧠 Mind-Muscle Cues</h3>
-  <div class="mm-item"><div class="mm-ex">Hip Thrust</div><div class="mm-cue">Drive through your heels. At the top, squeeze your glutes for 2 full seconds before lowering. Think "crush a walnut." Feel it in the glute, not your lower back.</div></div>
+  <div class="mm-item"><div class="mm-ex">Hip Thrust</div><div class="mm-cue">Drive through your heels. At the top, squeeze your glutes for 2 full seconds. Think "crush a walnut." Feel it in the glute, not your lower back.</div></div>
   <div class="mm-item"><div class="mm-ex">Cable / Band Kickback</div><div class="mm-cue">Slow the movement down. Squeeze at full extension for 1–2 sec. If you feel it in your hip flexor or back, you've gone too fast.</div></div>
   <div class="mm-item"><div class="mm-ex">Romanian Deadlift</div><div class="mm-cue">Feel the stretch in your hamstrings on the way down. Drive your hips forward to stand — glutes finish the movement, not your back.</div></div>
   <div class="mm-item"><div class="mm-ex">Sumo Squat</div><div class="mm-cue">Push knees out over toes. Pause at the bottom. On the way up, squeeze inner thighs and glutes together at the same time.</div></div>
-  <div class="mm-item"><div class="mm-ex">Every Exercise</div><div class="mm-cue">If you don't feel the target muscle, drop the weight 20% and slow down. Mind-muscle connection beats heavy and sloppy every single time.</div></div>
+  <div class="mm-item"><div class="mm-ex">Every Exercise</div><div class="mm-cue">If you don't feel the target muscle, drop the weight 20% and slow down. Mind-muscle connection beats heavy and sloppy every time.</div></div>
 </div>
 
-<!-- SHRED GUIDE -->
+<!-- SHRED REFERENCE -->
 <div class="shred-box">
   <h3>🔥 Shred Level — Pick by Energy</h3>
   <div class="shred-row">
@@ -291,7 +330,7 @@
 </div>
 
 <script>
-  // TODAY BANNER
+  // ── SCHEDULE ──────────────────────────────────────────────
   const schedule = {
     1:{day:"Monday",theme:"Power Day 🔥",stack:["🍑 Glute Finisher — Power Day","✨ Goddess Training","🌸 Flexibility Daily"]},
     2:{day:"Tuesday",theme:"Goddess & Waist Day 💜",stack:["✨ Goddess Training","⚡ Waist Circuit","🌸 Flexibility Daily"]},
@@ -304,42 +343,43 @@
   const dow = new Date().getDay();
   const tod = schedule[dow];
   const banner = document.getElementById("todayBanner");
-  let html = `<div class="today-label">Today</div><div class="today-day">${tod.day}</div><div class="today-theme">${tod.theme}</div>`;
-  if(tod.stack.length){html+=`<div class="today-stack">`;tod.stack.forEach(i=>{html+=`<div class="today-item">✅ <span>${i}</span></div>`;});html+=`</div>`;}
-  else{html+=`<div class="rest-day">🛁 Recover. Stretch. Eat your protein.</div>`;}
-  banner.innerHTML=html;
+  let bhtml = `<div class="today-label">Today</div><div class="today-day">${tod.day}</div><div class="today-theme">${tod.theme}</div>`;
+  if(tod.stack.length){bhtml+=`<div class="today-stack">`;tod.stack.forEach(i=>{bhtml+=`<div class="today-item">✅ <span>${i}</span></div>`;});bhtml+=`</div>`;}
+  else{bhtml+=`<div class="rest-day">🛁 Recover. Stretch. Eat your protein.</div>`;}
+  banner.innerHTML=bhtml;
 
   const activeCards={1:["card-glute","card-goddess","card-flex"],2:["card-goddess","card-waist","card-flex"],3:["card-glute","card-goddess","card-flex"],4:["card-goddess","card-waist","card-flex"],5:["card-glute","card-goddess","card-flex"],6:[],0:[]};
   activeCards[dow].forEach(id=>{const c=document.getElementById(id);if(!c)return;const b=document.createElement("div");b.className="card-badge today-badge";b.textContent="TODAY";c.appendChild(b);});
 
-  // WORKOUT LOG STORAGE
+  // ── STORAGE HELPERS ───────────────────────────────────────
   function getWorkouts(){try{return JSON.parse(localStorage.getItem('workouts')||'{}');}catch(e){return {};}}
   function saveWorkouts(w){try{localStorage.setItem('workouts',JSON.stringify(w));}catch(e){}}
+  function getShredLogs(){try{return JSON.parse(localStorage.getItem('shred_logs')||'{}');}catch(e){return {};}}
+  function saveShredLogs(s){try{localStorage.setItem('shred_logs',JSON.stringify(s));}catch(e){}}
   function todayStr(){return new Date().toISOString().split('T')[0];}
 
-  // STREAK & TOTALS
+  // ── STREAK & STATS ────────────────────────────────────────
   function calcStats(){
-    const w=getWorkouts();
-    const dates=Object.keys(w).filter(d=>w[d]&&w[d].length>0).sort((a,b)=>b.localeCompare(a));
+    const w=getWorkouts(), s=getShredLogs();
+    const allDates=new Set([...Object.keys(w).filter(d=>w[d]&&w[d].length>0),...Object.keys(s).filter(d=>s[d])]);
+    const dates=[...allDates].sort((a,b)=>b.localeCompare(a));
     document.getElementById('totalVal').textContent=dates.length;
-    const now=new Date();const m=now.getMonth(),y=now.getFullYear();
-    const monthCount=dates.filter(d=>{const dt=new Date(d+'T12:00:00');return dt.getMonth()===m&&dt.getFullYear()===y;}).length;
-    document.getElementById('monthVal').textContent=monthCount;
-    // streak
+    const now=new Date();const mo=now.getMonth(),yr=now.getFullYear();
+    document.getElementById('monthVal').textContent=dates.filter(d=>{const dt=new Date(d+'T12:00:00');return dt.getMonth()===mo&&dt.getFullYear()===yr;}).length;
     let streak=0,check=new Date();
     for(let i=0;i<365;i++){
       const ds=check.toISOString().split('T')[0];
-      if(w[ds]&&w[ds].length>0){streak++;check.setDate(check.getDate()-1);}
+      if(allDates.has(ds)){streak++;check.setDate(check.getDate()-1);}
       else if(i===0){check.setDate(check.getDate()-1);}
       else break;
     }
     document.getElementById('streakVal').textContent=streak;
   }
 
-  // CALENDAR
+  // ── CALENDAR ──────────────────────────────────────────────
   let calYear=new Date().getFullYear(),calMonth=new Date().getMonth();
   function renderCal(){
-    const w=getWorkouts();
+    const w=getWorkouts(), s=getShredLogs();
     const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
     document.getElementById('calTitle').textContent=months[calMonth]+' '+calYear;
     const firstDay=new Date(calYear,calMonth,1).getDay();
@@ -350,56 +390,113 @@
     for(let d=1;d<=daysInMonth;d++){
       const iso=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
       const apps=w[iso]||[];
+      const hasShred=!!s[iso];
       const isToday=iso===todayISO;
-      const worked=apps.length>0;
-      let dots=apps.map(a=>`<div class="dot dot-${a}"></div>`).join('');
+      const worked=apps.length>0||hasShred;
+      let dots='';
+      if(hasShred) dots+=`<div class="dot dot-shred"></div>`;
+      apps.forEach(a=>{ dots+=`<div class="dot dot-${a}"></div>`; });
       html+=`<div class="cal-day${isToday?' today':''}${worked?' worked':''}">
-        ${d}
-        ${worked?`<div class="dot-row">${dots}</div>`:''}
+        ${d}${worked?`<div class="dot-row">${dots}</div>`:''}
       </div>`;
     }
     document.getElementById('calGrid').innerHTML=html;
   }
-  function changeMonth(dir){
-    calMonth+=dir;
-    if(calMonth>11){calMonth=0;calYear++;}
-    if(calMonth<0){calMonth=11;calYear--;}
-    renderCal();
-  }
+  function changeMonth(dir){calMonth+=dir;if(calMonth>11){calMonth=0;calYear++;}if(calMonth<0){calMonth=11;calYear--;}renderCal();}
 
-  // MODAL
+  // ── WORKOUT MODAL ─────────────────────────────────────────
   let checked=new Set();
   function openModal(){checked=new Set();['glute','goddess','flex','waist'].forEach(a=>document.getElementById('chk-'+a).classList.remove('checked'));document.getElementById('modalBg').classList.add('open');}
   function closeModal(){document.getElementById('modalBg').classList.remove('open');}
   function toggleCheck(a){const el=document.getElementById('chk-'+a);if(checked.has(a)){checked.delete(a);el.classList.remove('checked');}else{checked.add(a);el.classList.add('checked');}}
   function saveWorkout(){
     if(!checked.size)return closeModal();
-    const w=getWorkouts();
-    w[todayStr()]=Array.from(checked);
-    saveWorkouts(w);
-    closeModal();renderCal();calcStats();
-    // show toast
-    const t=document.createElement('div');t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#7c3aed;color:#fff;padding:10px 22px;border-radius:20px;font-size:14px;font-weight:700;z-index:99;';t.textContent='Workout logged! 💪';document.body.appendChild(t);setTimeout(()=>t.remove(),2200);
+    const w=getWorkouts(); w[todayStr()]=Array.from(checked); saveWorkouts(w);
+    closeModal(); renderCal(); calcStats(); showToast('Workout logged! 💪');
   }
   document.getElementById('modalBg').addEventListener('click',e=>{if(e.target===document.getElementById('modalBg'))closeModal();});
 
-  // SNAPSHOT
+  // ── SHRED MODAL ───────────────────────────────────────────
+  let selectedLevel='';
+  function openShredModal(){
+    selectedLevel='';
+    ['mini','regular','badass'].forEach(l=>document.getElementById('sl-'+l).classList.remove('sel'));
+    document.getElementById('shredNoteInput').value='';
+    document.getElementById('shredModalBg').classList.add('open');
+  }
+  function closeShredModal(){document.getElementById('shredModalBg').classList.remove('open');}
+  function selectLevel(l){
+    selectedLevel=l;
+    ['mini','regular','badass'].forEach(x=>document.getElementById('sl-'+x).classList.toggle('sel',x===l));
+  }
+  function saveShred(){
+    if(!selectedLevel)return showToast('Pick a Shred level first!');
+    const s=getShredLogs();
+    s[todayStr()]={level:selectedLevel,note:document.getElementById('shredNoteInput').value};
+    saveShredLogs(s);
+    closeShredModal(); renderCal(); calcStats(); renderShredSnap(); showToast('Shred logged! 🔥');
+  }
+  document.getElementById('shredModalBg').addEventListener('click',e=>{if(e.target===document.getElementById('shredModalBg'))closeShredModal();});
+
+  // ── SHRED SNAPSHOT ────────────────────────────────────────
+  const levelLabels={mini:'MINI · 30 min',regular:'REGULAR · 50-60 min',badass:'BAD ASS · 60-75 min'};
+  function renderShredSnap(){
+    const s=getShredLogs(); const entry=s[todayStr()];
+    const el=document.getElementById('shredSnapContent');
+    if(entry){
+      el.innerHTML=`<div class="shred-level-pill">${levelLabels[entry.level]||entry.level}</div>`+
+        (entry.note?`<div class="shred-snap-note">"${entry.note}"</div>`:'');
+    } else {
+      el.innerHTML=`<div style="font-size:12px;color:#6b7280;">Not logged yet — tap to log your Shred session</div>`;
+    }
+  }
+
+  // ── TRACKER SNAPSHOT ──────────────────────────────────────
   const todayKey=todayStr();
   try{const p=JSON.parse(localStorage.getItem('protein_'+todayKey));if(p){const total=(p.meals||[]).reduce((s,m)=>s+m.p,0);document.getElementById('snapProtein').textContent=total+'g';const pct=Math.min(100,Math.round(total/(p.goal||100)*100));document.getElementById('snapBar').style.width=pct+'%';document.getElementById('snapNote').textContent=pct+'% of protein goal';}}catch(e){}
   try{const r=JSON.parse(localStorage.getItem('recovery_'+todayKey));if(r){document.getElementById('snapSleep').textContent=r.sleep?r.sleep+'h':'—';const fm={great:'🔥',good:'💪',sore:'😬',rest:'🛌'};document.getElementById('snapFeel').textContent=fm[r.feel]||'—';}}catch(e){}
 
-  // TIPS
+  // ── TIPS ──────────────────────────────────────────────────
   const tips=[
-    "<strong>🥩 Protein:</strong> Aim for 100–120g daily. Hit protein within <strong>30 min post-workout</strong>. Prioritize it in your first meal — appetite fades as the day goes on. Your muscles can't grow without it.",
-    "<strong>💪 Mind-Muscle Connection:</strong> Feeling the muscle matters more than the weight. Slow down every rep. Add a <strong>2-second squeeze</strong> at the top of hip thrusts and kickbacks. If you don't feel it in your glutes, you're not building them.",
-    "<strong>😴 Recovery:</strong> Muscle is built at <strong>rest, not in the gym</strong>. Aim for 7–9 hours sleep. Take magnesium glycinate at night. Rest days are not skipped days — they're building days.",
-    "<strong>📈 Progressive Overload:</strong> You must do a little more each week to keep growing. Add <strong>5 lbs, 1 rep, or 1 set</strong> when the current load feels comfortable. Log your lifts in the Tracker so you always know what to beat.",
-    "<strong>🔥 Cardio Order:</strong> Always do resistance training <strong>before</strong> cardio. NGF and dance cardio are great — just save them for after Shred and glute work. Cardio first drains the energy you need to actually build muscle."
+    "<strong>🥩 Protein:</strong> Aim for 100–120g daily. Hit protein within <strong>30 min post-workout</strong>. Prioritize it in your first meal — appetite fades as the day goes on.",
+    "<strong>💪 Mind-Muscle Connection:</strong> Feeling the muscle matters more than the weight. Slow down every rep. Add a <strong>2-second squeeze</strong> at the top of hip thrusts and kickbacks.",
+    "<strong>😴 Recovery:</strong> Muscle is built at <strong>rest, not in the gym</strong>. Aim for 7–9 hours sleep. Take magnesium glycinate at night. Rest days are building days.",
+    "<strong>📈 Progressive Overload:</strong> Add <strong>5 lbs, 1 rep, or 1 set</strong> when the current load feels comfortable. Log your lifts in the Tracker so you always know what to beat.",
+    "<strong>🔥 Cardio Order:</strong> Always do resistance training <strong>before</strong> cardio. NGF and dance cardio are great — just save them for after Shred and glute work."
   ];
   function showTip(i){document.getElementById('tipDetail').innerHTML=tips[i];document.querySelectorAll('.tip-chip').forEach((c,j)=>c.classList.toggle('active',j===i));}
   showTip(0);
 
-  renderCal();calcStats();
+  // ── TOAST ─────────────────────────────────────────────────
+  function showToast(msg){const t=document.createElement('div');t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#7c3aed;color:#fff;padding:10px 22px;border-radius:20px;font-size:14px;font-weight:700;z-index:99;';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2200);}
+
+  // ── SHRED HISTORY ─────────────────────────────────────────
+  function toggleShredHistory(){
+    const el=document.getElementById('shredHistory');
+    const isOpen=el.style.display==='block';
+    if(!isOpen){renderShredHistory();}
+    el.style.display=isOpen?'none':'block';
+  }
+  function renderShredHistory(){
+    const s=getShredLogs();
+    const dates=Object.keys(s).sort((a,b)=>b.localeCompare(a));
+    const el=document.getElementById('shredHistoryList');
+    if(!dates.length){el.innerHTML='<div style="text-align:center;color:#6b7280;font-size:12px;padding:10px 0;">No Shred sessions logged yet.</div>';return;}
+    el.innerHTML=dates.map(d=>{
+      const entry=s[d];
+      const friendly=new Date(d+'T12:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+      return `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f9731622;">
+        <div style="font-size:12px;color:#f97316;font-weight:700;">${friendly}</div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="background:#f9731622;border:1px solid #f97316;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:800;color:#f97316;">${levelLabels[entry.level]||entry.level}</span>
+          ${entry.note?`<span style="font-size:11px;color:#9ca3af;font-style:italic;">"${entry.note}"</span>`:''}
+        </div>
+      </div>`;
+    }).join('')+'<div style="font-size:10px;color:#6b7280;text-align:center;margin-top:8px;">'+dates.length+' session'+(dates.length!==1?'s':'')+' logged</div>';
+  }
+
+  // ── INIT ──────────────────────────────────────────────────
+  renderCal(); calcStats(); renderShredSnap();
 </script>
 </body>
 </html>
