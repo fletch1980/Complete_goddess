@@ -79,7 +79,6 @@
     .shred-level-btn .sl-time { font-size: 15px; font-weight: 900; color: white; margin: 3px 0; }
     .shred-level-btn .sl-desc { font-size: 10px; color: #9ca3af; }
     .shred-note-input { width: 100%; background: #0d0d1a; border: 1px solid #7c3aed44; border-radius: 8px; color: white; padding: 8px 12px; font-size: 13px; outline: none; margin-bottom: 16px; }
-    /* Day detail modal */
     .day-app-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #7c3aed22; }
     .day-app-row:last-child { border-bottom: none; }
     .day-app-name { font-size: 13px; color: #d8b4fe; display: flex; align-items: center; gap: 8px; }
@@ -169,7 +168,6 @@
   </div>
 </div>
 
-<!-- SHRED SNAPSHOT -->
 <div class="shred-snap">
   <div class="shred-snap-header">
     <div class="shred-snap-title">🔥 Today's Shred</div>
@@ -178,12 +176,10 @@
   <div class="shred-snap-content" id="shredSnapContent"></div>
 </div>
 
-<!-- SHRED HISTORY -->
 <div id="shredHistory" style="display:none;background:#0d0d1a;border-radius:12px;padding:12px 14px;margin-top:-8px;margin-bottom:16px;border:1px solid #f9731633;">
   <div id="shredHistoryList"></div>
 </div>
 
-<!-- LOG APPS BUTTON -->
 <button class="log-workout-btn" onclick="openModal()">✅ Log Today's Apps</button>
 
 <!-- APPS MODAL -->
@@ -205,7 +201,7 @@
   </div>
 </div>
 
-<!-- DAY DETAIL MODAL (tap a calendar day) -->
+<!-- DAY DETAIL MODAL -->
 <div class="modal-bg" id="dayModalBg">
   <div class="modal">
     <h3 id="dayModalTitle">📅 Day Log</h3>
@@ -237,7 +233,6 @@
   </div>
 </div>
 
-<!-- DAILY SNAPSHOT -->
 <div class="snapshot-box">
   <h3>📊 Today's Snapshot</h3>
   <div class="snap-grid">
@@ -308,9 +303,19 @@
 </div>
 
 <script>
+  // ── LOCAL DATE (never UTC) ────────────────────────────────
+  function today() {
+    var n = new Date();
+    var y = n.getFullYear();
+    var mo = n.getMonth() + 1;
+    var d = n.getDate();
+    return y + '-' + (mo < 10 ? '0'+mo : mo) + '-' + (d < 10 ? '0'+d : d);
+  }
+  function localDow() { return new Date().getDay(); }
+
   // ── SCHEDULE ──────────────────────────────────────────────
   const schedule={1:{day:"Monday",theme:"Power Day 🔥",stack:["🍑 Glute Finisher","✨ Goddess Training","🌸 Flexibility Daily"]},2:{day:"Tuesday",theme:"Goddess & Waist Day 💜",stack:["✨ Goddess Training","⚡ Waist Circuit","🌸 Flexibility Daily"]},3:{day:"Wednesday",theme:"Burnout Day 🔥",stack:["🍑 Glute Finisher","✨ Goddess Training","🌸 Flexibility Daily"]},4:{day:"Thursday",theme:"Goddess & Waist Day 🦵",stack:["✨ Goddess Training","⚡ Waist Circuit","🌸 Flexibility Daily"]},5:{day:"Friday",theme:"Full Glute Day 🍑",stack:["🍑 Glute Finisher","✨ Goddess Training","🌸 Flexibility DEEP"]},6:{day:"Saturday",theme:"Rest Day 😴",stack:[]},0:{day:"Sunday",theme:"Rest Day 😴",stack:[]}};
-  const dow=new Date().getDay(),tod=schedule[dow],banner=document.getElementById("todayBanner");
+  const dow=localDow(), tod=schedule[dow], banner=document.getElementById("todayBanner");
   let bh=`<div class="today-label">Today</div><div class="today-day">${tod.day}</div><div class="today-theme">${tod.theme}</div>`;
   if(tod.stack.length){bh+=`<div class="today-stack">`;tod.stack.forEach(i=>{bh+=`<div class="today-item">✅ <span>${i}</span></div>`;});bh+=`</div>`;}
   else bh+=`<div class="rest-day">🛁 Recover. Stretch. Eat your protein.</div>`;
@@ -318,12 +323,12 @@
   const activeCards={1:["card-glute","card-goddess","card-flex"],2:["card-goddess","card-waist","card-flex"],3:["card-glute","card-goddess","card-flex"],4:["card-goddess","card-waist","card-flex"],5:["card-glute","card-goddess","card-flex"],6:[],0:[]};
   activeCards[dow].forEach(id=>{const c=document.getElementById(id);if(!c)return;const b=document.createElement("div");b.className="card-badge today-badge";b.textContent="TODAY";c.appendChild(b);});
 
-  // ── STORAGE (works in both Claude and GitHub Pages) ───────
+  // ── STORAGE ───────────────────────────────────────────────
   function getW(){try{return JSON.parse(localStorage.getItem('workouts')||'{}');}catch(e){try{return JSON.parse(sessionStorage.getItem('workouts')||'{}');}catch(e2){return {};}}}
   function setW(w){try{localStorage.setItem('workouts',JSON.stringify(w));}catch(e){try{sessionStorage.setItem('workouts',JSON.stringify(w));}catch(e2){}}}
   function getS(){try{return JSON.parse(localStorage.getItem('shred_logs')||'{}');}catch(e){try{return JSON.parse(sessionStorage.getItem('shred_logs')||'{}');}catch(e2){return {};}}}
   function setS(s){try{localStorage.setItem('shred_logs',JSON.stringify(s));}catch(e){try{sessionStorage.setItem('shred_logs',JSON.stringify(s));}catch(e2){}}}
-  function today(){return new Date().toISOString().split('T')[0];}
+  function safeGet(key){try{return localStorage.getItem(key);}catch(e){try{return sessionStorage.getItem(key);}catch(e2){return null;}}}
 
   // ── STATS ─────────────────────────────────────────────────
   function calcStats(){
@@ -333,8 +338,13 @@
     document.getElementById('totalVal').textContent=dates.length;
     const now=new Date(),mo=now.getMonth(),yr=now.getFullYear();
     document.getElementById('monthVal').textContent=dates.filter(d=>{const dt=new Date(d+'T12:00:00');return dt.getMonth()===mo&&dt.getFullYear()===yr;}).length;
-    let streak=0,chk=new Date();
-    for(let i=0;i<365;i++){const ds=chk.toISOString().split('T')[0];if(all.has(ds)){streak++;chk.setDate(chk.getDate()-1);}else if(i===0){chk.setDate(chk.getDate()-1);}else break;}
+    let streak=0;
+    for(let i=0;i<365;i++){
+      const n=new Date(); n.setDate(n.getDate()-i);
+      const y=n.getFullYear(),mo2=n.getMonth()+1,d2=n.getDate();
+      const ds=y+'-'+(mo2<10?'0'+mo2:mo2)+'-'+(d2<10?'0'+d2:d2);
+      if(all.has(ds)){streak++;}else if(i===0){/* skip today if not logged */}else break;
+    }
     document.getElementById('streakVal').textContent=streak;
   }
 
@@ -361,28 +371,24 @@
   }
   function changeMonth(dir){calMonth+=dir;if(calMonth>11){calMonth=0;calYear++;}if(calMonth<0){calMonth=11;calYear--;}renderCal();}
 
-  // ── DAY DETAIL MODAL ──────────────────────────────────────
+  // ── DAY DETAIL MODAL — delete allowed on ANY day ─────────
   let dayModalDate='';
   function openDayModal(iso){
     const w=getW(),s=getS();
     const apps=w[iso]||[],shred=s[iso];
-    if(!apps.length&&!shred) return; // nothing logged, do nothing
+    if(!apps.length&&!shred) return;
     dayModalDate=iso;
     const friendly=new Date(iso+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
     document.getElementById('dayModalTitle').textContent='📅 '+friendly;
-    const editBtn=document.getElementById('dayModalEditBtn');
-    // only show edit for today
-    editBtn.style.display=iso===today()?'block':'none';
+    // Edit button only for today; Remove buttons always visible
+    document.getElementById('dayModalEditBtn').style.display=iso===today()?'block':'none';
     let html='';
     if(shred){
-      html+=`<div class="day-app-row"><div class="day-app-name">🔥 Shred — <strong style="color:#f97316">${levelLabels[shred.level]||shred.level}</strong>${shred.note?` <span style="color:#9ca3af;font-style:italic;">"${shred.note}"</span>`:''}</div>${iso===today()?`<button class="remove-btn" onclick="removeShredFromDay()">Remove</button>`:''}</div>`;
+      html+=`<div class="day-app-row"><div class="day-app-name">🔥 Shred — <strong style="color:#f97316">${levelLabels[shred.level]||shred.level}</strong>${shred.note?` <span style="color:#9ca3af;font-style:italic;">"${shred.note}"</span>`:''}</div><button class="remove-btn" onclick="removeShredFromDay()">Remove</button></div>`;
     }
-    if(apps.length){
-      apps.forEach((a,i)=>{
-        html+=`<div class="day-app-row"><div class="day-app-name">${appNames[a]||a}</div>${iso===today()?`<button class="remove-btn" onclick="removeAppFromDay('${a}')">Remove</button>`:''}</div>`;
-      });
-    }
-    if(!shred&&!apps.length) html='<div style="color:#6b7280;font-size:13px;text-align:center;padding:10px 0;">Nothing logged this day.</div>';
+    apps.forEach(a=>{
+      html+=`<div class="day-app-row"><div class="day-app-name">${appNames[a]||a}</div><button class="remove-btn" onclick="removeAppFromDay('${a}')">Remove</button></div>`;
+    });
     document.getElementById('dayModalContent').innerHTML=html;
     document.getElementById('dayModalBg').classList.add('open');
   }
@@ -392,14 +398,15 @@
   function removeAppFromDay(app){
     const w=getW(),iso=dayModalDate;
     if(w[iso]){w[iso]=w[iso].filter(a=>a!==app);if(!w[iso].length)delete w[iso];}
-    setW(w);renderCal();calcStats();openDayModal(iso);
+    setW(w);renderCal();calcStats();
+    const s=getS();
+    if((w[iso]&&w[iso].length)||s[iso]){openDayModal(iso);}else{closeDayModal();}
   }
   function removeShredFromDay(){
     const s=getS(),iso=dayModalDate;
     delete s[iso];setS(s);renderCal();calcStats();renderShredSnap();
-    // re-open modal to reflect change
     const w=getW();
-    if((w[iso]&&w[iso].length)){openDayModal(iso);}else{closeDayModal();}
+    if(w[iso]&&w[iso].length){openDayModal(iso);}else{closeDayModal();}
   }
 
   // ── APPS MODAL ────────────────────────────────────────────
@@ -407,9 +414,7 @@
   function openModal(){
     const w=getW(),existing=w[today()]||[];
     checked=new Set(existing);
-    ['glute','goddess','flex','waist'].forEach(a=>{
-      document.getElementById('chk-'+a).classList.toggle('checked',checked.has(a));
-    });
+    ['glute','goddess','flex','waist'].forEach(a=>{document.getElementById('chk-'+a).classList.toggle('checked',checked.has(a));});
     const hasExisting=existing.length>0;
     document.getElementById('modalTitle').textContent=hasExisting?'✏️ Edit Today\'s Log':'✅ What did you do today?';
     document.getElementById('modalSubLabel').textContent=hasExisting?'Tap to add or remove apps':'Tap everything you completed';
@@ -480,7 +485,7 @@
         <div style="display:flex;align-items:center;gap:8px;">
           <span style="background:#f9731622;border:1px solid #f97316;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:800;color:#f97316;">${levelLabels[e.level]||e.level}</span>
           ${e.note?`<span style="font-size:11px;color:#9ca3af;font-style:italic;">"${e.note}"</span>`:''}
-          ${d===today()?`<button class="remove-btn" onclick="deleteShredFromHistory('${d}')">🗑</button>`:''}
+          <button class="remove-btn" onclick="deleteShredFromHistory('${d}')">🗑</button>
         </div>
       </div>`;
     }).join('')+`<div style="font-size:10px;color:#6b7280;text-align:center;margin-top:8px;">${dates.length} session${dates.length!==1?'s':''} logged</div>`;
@@ -490,7 +495,6 @@
   }
 
   // ── TRACKER SNAPSHOT ──────────────────────────────────────
-  function safeGet(key){try{return localStorage.getItem(key);}catch(e){try{return sessionStorage.getItem(key);}catch(e2){return null;}}}
   const tk=today();
   try{const p=JSON.parse(safeGet('protein_'+tk));if(p){const tot=(p.meals||[]).reduce((s,m)=>s+m.p,0);document.getElementById('snapProtein').textContent=tot+'g';const pct=Math.min(100,Math.round(tot/(p.goal||100)*100));document.getElementById('snapBar').style.width=pct+'%';document.getElementById('snapNote').textContent=pct+'% of protein goal';}}catch(e){}
   try{const r=JSON.parse(safeGet('recovery_'+tk));if(r){document.getElementById('snapSleep').textContent=r.sleep?r.sleep+'h':'—';const fm={great:'🔥',good:'💪',sore:'😬',rest:'🛌'};document.getElementById('snapFeel').textContent=fm[r.feel]||'—';}}catch(e){}
