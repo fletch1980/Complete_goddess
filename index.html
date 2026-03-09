@@ -32,8 +32,11 @@
     .cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; }
     .cal-day { aspect-ratio: 1; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #6b7280; background: #0d0d1a; cursor: pointer; transition: opacity 0.15s; }
     .cal-day:active { opacity: 0.7; }
+    .cal-day:hover { border: 1px solid #7c3aed55; color: #c084fc; }
     .cal-day.today { border: 1.5px solid #7c3aed; color: white; }
-    .cal-day.empty { background: transparent; cursor: default; }
+    .cal-day.empty { background: transparent; cursor: default; pointer-events: none; }
+    .cal-day.empty:hover { border: none; }
+    .cal-day.future { opacity: 0.3; cursor: default; pointer-events: none; }
     .cal-day.worked { color: white; }
     .cal-day .dot-row { display: flex; gap: 2px; margin-top: 2px; flex-wrap: wrap; justify-content: center; }
     .dot { width: 5px; height: 5px; border-radius: 50%; }
@@ -133,6 +136,8 @@
     .shred-option .level { font-size: 11px; font-weight: 800; color: #9ca3af; letter-spacing: 1px; }
     .shred-option .time { font-size: 16px; font-weight: 900; color: white; margin: 2px 0; }
     .shred-option .desc { font-size: 10px; color: #9ca3af; }
+    /* Past day log modal */
+    .past-date-label { font-size: 12px; color: #9ca3af; margin-bottom: 14px; text-align: center; font-style: italic; }
   </style>
 </head>
 <body>
@@ -180,14 +185,16 @@
   <div id="shredHistoryList"></div>
 </div>
 
-<button class="log-workout-btn" onclick="openModal()">✅ Log Today's Apps</button>
+<button class="log-workout-btn" onclick="openModal(today())">✅ Log Today's Apps</button>
 
-<!-- APPS MODAL -->
+<!-- APPS MODAL (works for any date) -->
 <div class="modal-bg" id="modalBg">
   <div class="modal">
     <h3 id="modalTitle">✅ What did you do today?</h3>
+    <div id="modalDateLabel" class="past-date-label" style="display:none;"></div>
     <span class="modal-label" id="modalSubLabel">Tap everything you completed</span>
     <div class="app-check-grid">
+      <div class="app-check" id="chk-shred" onclick="toggleCheck('shred')"><span class="ac-icon">🔥</span><span class="ac-name">Shred</span></div>
       <div class="app-check" id="chk-glute" onclick="toggleCheck('glute')"><span class="ac-icon">🍑</span><span class="ac-name">Glute Finisher</span></div>
       <div class="app-check" id="chk-goddess" onclick="toggleCheck('goddess')"><span class="ac-icon">✨</span><span class="ac-name">Goddess Training</span></div>
       <div class="app-check" id="chk-flex" onclick="toggleCheck('flex')"><span class="ac-icon">🌸</span><span class="ac-name">Flexibility</span></div>
@@ -303,15 +310,16 @@
 </div>
 
 <script>
-  // ── LOCAL DATE (never UTC) ────────────────────────────────
+  // ── LOCAL DATE ────────────────────────────────────────────
   function today() {
     var n = new Date();
-    var y = n.getFullYear();
-    var mo = n.getMonth() + 1;
-    var d = n.getDate();
-    return y + '-' + (mo < 10 ? '0'+mo : mo) + '-' + (d < 10 ? '0'+d : d);
+    var y = n.getFullYear(), mo = n.getMonth()+1, d = n.getDate();
+    return y+'-'+(mo<10?'0'+mo:mo)+'-'+(d<10?'0'+d:d);
   }
   function localDow() { return new Date().getDay(); }
+  function isoToFriendly(iso) {
+    return new Date(iso+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+  }
 
   // ── SCHEDULE ──────────────────────────────────────────────
   const schedule={1:{day:"Monday",theme:"Power Day 🔥",stack:["🍑 Glute Finisher","✨ Goddess Training","🌸 Flexibility Daily"]},2:{day:"Tuesday",theme:"Goddess & Waist Day 💜",stack:["✨ Goddess Training","⚡ Waist Circuit","🌸 Flexibility Daily"]},3:{day:"Wednesday",theme:"Burnout Day 🔥",stack:["🍑 Glute Finisher","✨ Goddess Training","🌸 Flexibility Daily"]},4:{day:"Thursday",theme:"Goddess & Waist Day 🦵",stack:["✨ Goddess Training","⚡ Waist Circuit","🌸 Flexibility Daily"]},5:{day:"Friday",theme:"Full Glute Day 🍑",stack:["🍑 Glute Finisher","✨ Goddess Training","🌸 Flexibility DEEP"]},6:{day:"Saturday",theme:"Rest Day 😴",stack:[]},0:{day:"Sunday",theme:"Rest Day 😴",stack:[]}};
@@ -340,7 +348,7 @@
     document.getElementById('monthVal').textContent=dates.filter(d=>{const dt=new Date(d+'T12:00:00');return dt.getMonth()===mo&&dt.getFullYear()===yr;}).length;
     let streak=0;
     for(let i=0;i<365;i++){
-      const n=new Date(); n.setDate(n.getDate()-i);
+      const n=new Date();n.setDate(n.getDate()-i);
       const y=n.getFullYear(),mo2=n.getMonth()+1,d2=n.getDate();
       const ds=y+'-'+(mo2<10?'0'+mo2:mo2)+'-'+(d2<10?'0'+d2:d2);
       if(all.has(ds)){streak++;}else if(i===0){/* skip today if not logged */}else break;
@@ -350,38 +358,51 @@
 
   // ── CALENDAR ──────────────────────────────────────────────
   let calYear=new Date().getFullYear(),calMonth=new Date().getMonth();
-  const appNames={glute:'🍑 Glute',goddess:'✨ Goddess',flex:'🌸 Flex',waist:'⚡ Waist',tracker:'📊 Tracker'};
+  const appNames={shred:'🔥 Shred',glute:'🍑 Glute',goddess:'✨ Goddess',flex:'🌸 Flex',waist:'⚡ Waist',tracker:'📊 Tracker'};
   const levelLabels={mini:'MINI · 30 min',regular:'REGULAR · 50-60 min',badass:'BAD ASS · 60-75 min'};
 
   function renderCal(){
-    const w=getW(),s=getS();
+    const w=getW(),s=getS(),todayISO=today();
     const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
     document.getElementById('calTitle').textContent=months[calMonth]+' '+calYear;
-    const firstDay=new Date(calYear,calMonth,1).getDay(),daysInMonth=new Date(calYear,calMonth+1,0).getDate(),todayISO=today();
+    const firstDay=new Date(calYear,calMonth,1).getDay(),daysInMonth=new Date(calYear,calMonth+1,0).getDate();
     let html='';
     for(let i=0;i<firstDay;i++) html+=`<div class="cal-day empty"></div>`;
     for(let d=1;d<=daysInMonth;d++){
       const iso=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const isFuture=iso>todayISO;
       const apps=w[iso]||[],hasShred=!!s[iso],isToday=iso===todayISO,worked=apps.length||hasShred;
       let dots=hasShred?`<div class="dot dot-shred"></div>`:'';
       apps.forEach(a=>{dots+=`<div class="dot dot-${a}"></div>`;});
-      html+=`<div class="cal-day${isToday?' today':''}${worked?' worked':''}" onclick="openDayModal('${iso}')">${d}${worked?`<div class="dot-row">${dots}</div>`:''}</div>`;
+      const cls=['cal-day',isToday?'today':'',worked?'worked':'',isFuture?'future':''].filter(Boolean).join(' ');
+      // All past+today days are always clickable
+      html+=`<div class="${cls}" onclick="${isFuture?'':(`openCalDay('${iso}')`)}">${d}${worked?`<div class="dot-row">${dots}</div>`:''}</div>`;
     }
     document.getElementById('calGrid').innerHTML=html;
   }
   function changeMonth(dir){calMonth+=dir;if(calMonth>11){calMonth=0;calYear++;}if(calMonth<0){calMonth=11;calYear--;}renderCal();}
 
-  // ── DAY DETAIL MODAL — delete allowed on ANY day ─────────
+  // ── OPEN CAL DAY — show detail if logged, log modal if empty ──
+  function openCalDay(iso) {
+    const w=getW(),s=getS();
+    const apps=w[iso]||[],hasShred=!!s[iso];
+    if(apps.length||hasShred){
+      openDayModal(iso);
+    } else {
+      // Empty day — open log modal for this date
+      openModal(iso);
+    }
+  }
+
+  // ── DAY DETAIL MODAL ──────────────────────────────────────
   let dayModalDate='';
   function openDayModal(iso){
     const w=getW(),s=getS();
     const apps=w[iso]||[],shred=s[iso];
-    if(!apps.length&&!shred) return;
     dayModalDate=iso;
-    const friendly=new Date(iso+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
-    document.getElementById('dayModalTitle').textContent='📅 '+friendly;
-    // Edit button only for today; Remove buttons always visible
-    document.getElementById('dayModalEditBtn').style.display=iso===today()?'block':'none';
+    document.getElementById('dayModalTitle').textContent='📅 '+isoToFriendly(iso);
+    document.getElementById('dayModalEditBtn').textContent='✏️ Edit';
+    document.getElementById('dayModalEditBtn').onclick=editDayWorkout;
     let html='';
     if(shred){
       html+=`<div class="day-app-row"><div class="day-app-name">🔥 Shred — <strong style="color:#f97316">${levelLabels[shred.level]||shred.level}</strong>${shred.note?` <span style="color:#9ca3af;font-style:italic;">"${shred.note}"</span>`:''}</div><button class="remove-btn" onclick="removeShredFromDay()">Remove</button></div>`;
@@ -389,11 +410,12 @@
     apps.forEach(a=>{
       html+=`<div class="day-app-row"><div class="day-app-name">${appNames[a]||a}</div><button class="remove-btn" onclick="removeAppFromDay('${a}')">Remove</button></div>`;
     });
+    if(!html) html='<div style="text-align:center;color:#6b7280;font-size:13px;padding:16px 0;">Nothing logged for this day.</div>';
     document.getElementById('dayModalContent').innerHTML=html;
     document.getElementById('dayModalBg').classList.add('open');
   }
   function closeDayModal(){document.getElementById('dayModalBg').classList.remove('open');}
-  function editDayWorkout(){closeDayModal();openModal();}
+  function editDayWorkout(){closeDayModal();openModal(dayModalDate);}
 
   function removeAppFromDay(app){
     const w=getW(),iso=dayModalDate;
@@ -409,32 +431,89 @@
     if(w[iso]&&w[iso].length){openDayModal(iso);}else{closeDayModal();}
   }
 
-  // ── APPS MODAL ────────────────────────────────────────────
+  // ── APPS MODAL (any date) ─────────────────────────────────
   let checked=new Set();
-  function openModal(){
-    const w=getW(),existing=w[today()]||[];
+  let modalDate='';
+
+  function openModal(iso){
+    iso=iso||today();
+    modalDate=iso;
+    const w=getW(),s=getS();
+    const existing=w[iso]||[];
+    const hasShred=!!s[iso];
     checked=new Set(existing);
-    ['glute','goddess','flex','waist'].forEach(a=>{document.getElementById('chk-'+a).classList.toggle('checked',checked.has(a));});
-    const hasExisting=existing.length>0;
-    document.getElementById('modalTitle').textContent=hasExisting?'✏️ Edit Today\'s Log':'✅ What did you do today?';
+    const isToday=iso===today();
+    const isPast=iso<today();
+
+    ['shred','glute','goddess','flex','waist'].forEach(a=>{
+      const el=document.getElementById('chk-'+a);
+      // shred checkbox: checked if shred exists for this date
+      if(a==='shred'){el.classList.toggle('checked',hasShred);}
+      else{el.classList.toggle('checked',checked.has(a));}
+    });
+
+    const hasExisting=existing.length>0||hasShred;
+    if(isPast){
+      document.getElementById('modalTitle').textContent='📅 Log Past Workout';
+      document.getElementById('modalDateLabel').textContent=isoToFriendly(iso);
+      document.getElementById('modalDateLabel').style.display='block';
+    } else {
+      document.getElementById('modalTitle').textContent=hasExisting?'✏️ Edit Today\'s Log':'✅ What did you do today?';
+      document.getElementById('modalDateLabel').style.display='none';
+    }
     document.getElementById('modalSubLabel').textContent=hasExisting?'Tap to add or remove apps':'Tap everything you completed';
     document.getElementById('modalDeleteBtn').style.display=hasExisting?'block':'none';
     document.getElementById('modalBg').classList.add('open');
   }
   function closeModal(){document.getElementById('modalBg').classList.remove('open');}
-  function toggleCheck(a){const el=document.getElementById('chk-'+a);if(checked.has(a)){checked.delete(a);el.classList.remove('checked');}else{checked.add(a);el.classList.add('checked');}}
+
+  function toggleCheck(a){
+    if(a==='shred'){
+      // Shred toggle: open/close the shred modal for context, but here just visually toggle
+      const el=document.getElementById('chk-shred');
+      const isChecked=el.classList.contains('checked');
+      el.classList.toggle('checked',!isChecked);
+    } else {
+      const el=document.getElementById('chk-'+a);
+      if(checked.has(a)){checked.delete(a);el.classList.remove('checked');}
+      else{checked.add(a);el.classList.add('checked');}
+    }
+  }
+
   function saveWorkout(){
-    const w=getW();
-    if(checked.size){w[today()]=Array.from(checked);}else{delete w[today()];}
-    setW(w);closeModal();renderCal();calcStats();showToast(checked.size?'Workout saved! 💪':'Log cleared');
+    const w=getW(),s=getS();
+    const iso=modalDate;
+    // Save app checkboxes (exclude shred — shred has its own storage)
+    if(checked.size){w[iso]=Array.from(checked);}else{delete w[iso];}
+    setW(w);
+    // If shred was toggled on for a past date with no existing entry, create a placeholder
+    const shredChecked=document.getElementById('chk-shred').classList.contains('checked');
+    if(shredChecked&&!s[iso]){
+      s[iso]={level:'regular',note:'logged retroactively'};
+      setS(s);
+    } else if(!shredChecked&&s[iso]&&iso!==today()){
+      // Unchecked shred for a past day — remove it
+      delete s[iso];
+      setS(s);
+    }
+    closeModal();renderCal();calcStats();
+    if(iso===today())renderShredSnap();
+    showToast(checked.size||shredChecked?'Workout saved! 💪':'Log cleared');
   }
+
   function deleteWorkout(){
-    const w=getW();delete w[today()];setW(w);closeModal();renderCal();calcStats();showToast('Workout log deleted 🗑');
+    const w=getW(),s=getS(),iso=modalDate;
+    delete w[iso];
+    if(iso!==today()){delete s[iso];setS(s);}
+    setW(w);closeModal();renderCal();calcStats();
+    if(iso===today())renderShredSnap();
+    showToast('Workout log deleted 🗑');
   }
+
   document.getElementById('modalBg').addEventListener('click',e=>{if(e.target===document.getElementById('modalBg'))closeModal();});
   document.getElementById('dayModalBg').addEventListener('click',e=>{if(e.target===document.getElementById('dayModalBg'))closeDayModal();});
 
-  // ── SHRED MODAL ───────────────────────────────────────────
+  // ── SHRED MODAL (today only) ───────────────────────────────
   let selectedLevel='';
   function openShredModal(){
     const s=getS(),existing=s[today()];
