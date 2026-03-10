@@ -10,24 +10,36 @@
     .header { text-align: center; padding: 24px 0 18px; }
     .header h1 { font-size: 26px; font-weight: 900; color: white; }
     .header p { font-size: 13px; color: #9ca3af; margin-top: 4px; }
-    /* TODAY BANNER */
-    .today-banner { background: linear-gradient(135deg, #7c3aed, #db2777); border-radius: 16px; padding: 18px 20px; margin-bottom: 24px; color: white; }
+
+    /* COLLAPSIBLE */
+    .collapsible { overflow: hidden; transition: max-height 0.35s ease; max-height: 0; }
+    .collapsible.open { max-height: 9999px; }
+    .collapse-card { border-radius: 16px; margin-bottom: 14px; overflow: hidden; }
+    .collapse-trigger { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; cursor: pointer; border: none; background: transparent; text-align: left; }
+    .collapse-trigger:active { opacity: 0.8; }
+    .ct-left { display: flex; align-items: center; gap: 12px; }
+    .ct-icon { font-size: 24px; }
+    .ct-title { font-size: 16px; font-weight: 800; color: white; }
+    .ct-sub { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+    .ct-arrow { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.15); border-radius: 20px; padding: 4px 10px; white-space: nowrap; }
+    .collapse-body { padding: 0 20px 18px; }
+
+    /* TODAY CARD */
+    .today-card { background: linear-gradient(135deg, #7c3aed, #db2777); }
     .today-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; opacity: 0.85; text-transform: uppercase; }
-    .today-day { font-size: 24px; font-weight: 900; margin: 4px 0 2px; }
-    .today-theme { font-size: 14px; opacity: 0.9; margin-bottom: 14px; }
+    .today-day { font-size: 22px; font-weight: 900; margin: 2px 0 1px; }
+    .today-theme { font-size: 13px; opacity: 0.85; }
     .rest-day { text-align: center; font-size: 16px; padding: 10px 0 4px; opacity: 0.85; }
-    /* ENERGY PICKER inside banner */
-    .energy-row { display: flex; gap: 6px; margin-bottom: 14px; }
+    .energy-row { display: flex; gap: 6px; margin: 14px 0; }
     .energy-btn { flex: 1; background: rgba(255,255,255,0.12); border: 1.5px solid transparent; border-radius: 10px; padding: 8px 4px; text-align: center; cursor: pointer; transition: all 0.2s; }
     .energy-btn.sel { background: rgba(255,255,255,0.25); border-color: white; }
     .energy-btn .e-emoji { font-size: 18px; }
-    .energy-btn .e-label { font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.9); margin-top: 3px; letter-spacing: 0.5px; }
+    .energy-btn .e-label { font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.9); margin-top: 3px; }
     .energy-btn .e-time { font-size: 9px; color: rgba(255,255,255,0.6); margin-top: 1px; }
-    /* WORKOUT CHECKLIST inside banner */
     .workout-list { display: flex; flex-direction: column; gap: 7px; }
-    .w-item { background: rgba(255,255,255,0.12); border: 1.5px solid transparent; border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: all 0.2s; position: relative; }
+    .w-item { background: rgba(255,255,255,0.12); border: 1.5px solid transparent; border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: all 0.2s; }
     .w-item.done { background: rgba(74,222,128,0.18); border-color: rgba(74,222,128,0.5); }
-    .w-item.next { background: rgba(255,255,255,0.2); border-color: white; }
+    .w-item.next { background: rgba(255,255,255,0.2); border-color: white; animation: pulse 2s infinite; }
     .w-item.dimmed { opacity: 0.45; }
     .w-check { width: 24px; height: 24px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.5); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; }
     .w-item.done .w-check { background: #4ade80; border-color: #4ade80; }
@@ -36,56 +48,69 @@
     .w-name { font-size: 13px; font-weight: 700; color: white; }
     .w-desc { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 1px; }
     .w-next-tag { font-size: 9px; font-weight: 900; color: white; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 2px; opacity: 0.8; }
-    .w-open-btn { background: rgba(255,255,255,0.25); border: none; border-radius: 7px; color: white; font-size: 11px; font-weight: 700; padding: 5px 10px; cursor: pointer; white-space: nowrap; text-decoration: none; flex-shrink: 0; }
+    .w-open-btn { background: rgba(255,255,255,0.25); border: none; border-radius: 7px; color: white; font-size: 11px; font-weight: 700; padding: 5px 10px; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
     .w-item.next .w-open-btn { background: white; color: #7c3aed; }
     .all-done-bar { background: rgba(74,222,128,0.2); border: 1.5px solid #4ade80; border-radius: 10px; padding: 10px 14px; text-align: center; margin-bottom: 10px; }
     .all-done-bar .ad-title { font-size: 15px; font-weight: 900; color: #4ade80; }
     .all-done-bar .ad-sub { font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+
+    /* APPS CARD */
+    .apps-card { background: linear-gradient(135deg, #1a0030, #2d0050); border: 1px solid #7c3aed55; }
+    .inner-cards { display: flex; flex-direction: column; gap: 10px; }
+    a.card { display: block; text-decoration: none; border-radius: 12px; padding: 14px 16px; color: white; position: relative; overflow: hidden; transition: transform 0.15s, opacity 0.15s; }
+    a.card:active { transform: scale(0.97); opacity: 0.9; }
+    .card-glute { background: linear-gradient(135deg, #b91c1c, #ef4444); }
+    .card-goddess { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+    .card-flex { background: linear-gradient(135deg, #4338ca, #6366f1); }
+    .card-waist { background: linear-gradient(135deg, #0369a1, #38bdf8); }
+    .card-tracker { background: linear-gradient(135deg, #065f46, #10b981); }
+    .card-icon { font-size: 22px; margin-bottom: 4px; }
+    .card-title { font-size: 15px; font-weight: 800; }
+    .card-sub { font-size: 11px; opacity: 0.85; margin-top: 2px; }
+    .card-badge { position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.25); border-radius: 20px; padding: 3px 8px; font-size: 10px; font-weight: 700; }
+    .card-badge.today-badge { background: white; color: #7c3aed; }
+
     /* STREAK */
-    .streak-row { display: flex; gap: 10px; margin-bottom: 24px; }
+    .streak-row { display: flex; gap: 10px; margin-bottom: 14px; }
     .streak-card { flex: 1; background: #1a0030; border-radius: 14px; padding: 14px; text-align: center; }
     .streak-val { font-size: 2rem; font-weight: 900; color: #f0abfc; }
     .streak-lbl { font-size: 11px; color: #9ca3af; margin-top: 2px; text-transform: uppercase; letter-spacing: 1px; }
     .streak-card.fire .streak-val { color: #fb923c; }
+
     /* CALENDAR */
-    .cal-box { background: #1a0030; border-radius: 16px; padding: 16px 20px; margin-bottom: 16px; }
+    .cal-box { background: #1a0030; border-radius: 16px; padding: 16px 20px; margin-bottom: 14px; }
     .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
     .cal-title { color: white; font-size: 15px; font-weight: 800; }
     .cal-nav { background: #7c3aed33; border: 1px solid #7c3aed66; color: #c084fc; border-radius: 8px; padding: 4px 10px; font-size: 13px; cursor: pointer; }
     .cal-days-header { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; margin-bottom: 6px; }
     .cal-days-header span { text-align: center; font-size: 10px; color: #6b7280; font-weight: 700; }
     .cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; }
-    .cal-day { aspect-ratio: 1; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #6b7280; background: #0d0d1a; cursor: pointer; transition: opacity 0.15s; }
-    .cal-day:active { opacity: 0.7; }
+    .cal-day { aspect-ratio: 1; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #6b7280; background: #0d0d1a; cursor: pointer; }
     .cal-day:hover { border: 1px solid #7c3aed55; color: #c084fc; }
     .cal-day.today { border: 1.5px solid #7c3aed; color: white; }
     .cal-day.empty { background: transparent; cursor: default; pointer-events: none; }
-    .cal-day.empty:hover { border: none; }
     .cal-day.future { opacity: 0.3; cursor: default; pointer-events: none; }
     .cal-day.worked { color: white; }
     .cal-day .dot-row { display: flex; gap: 2px; margin-top: 2px; flex-wrap: wrap; justify-content: center; }
     .dot { width: 5px; height: 5px; border-radius: 50%; }
-    .dot-glute { background: #ef4444; }
-    .dot-goddess { background: #a855f7; }
-    .dot-flex { background: #6366f1; }
-    .dot-waist { background: #38bdf8; }
-    .dot-tracker { background: #10b981; }
-    .dot-shred { background: #f97316; }
+    .dot-glute{background:#ef4444;}.dot-goddess{background:#a855f7;}.dot-flex{background:#6366f1;}.dot-waist{background:#38bdf8;}.dot-tracker{background:#10b981;}.dot-shred{background:#f97316;}
     .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
     .leg-item { display: flex; align-items: center; gap: 4px; font-size: 11px; color: #9ca3af; }
     .leg-dot { width: 8px; height: 8px; border-radius: 50%; }
+
     /* SHRED SNAP */
-    .shred-snap { background: #1a0030; border-radius: 14px; padding: 14px 16px; margin-bottom: 16px; border: 1px solid #f9731633; }
+    .shred-snap { background: #1a0030; border-radius: 14px; padding: 14px 16px; margin-bottom: 14px; border: 1px solid #f9731633; }
     .shred-snap-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
     .shred-snap-title { color: #f97316; font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
     .shred-snap-content { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .shred-level-pill { background: #f9731622; border: 1.5px solid #f97316; border-radius: 20px; padding: 5px 14px; font-size: 13px; font-weight: 800; color: #f97316; }
     .shred-snap-note { font-size: 12px; color: #9ca3af; font-style: italic; }
     .shred-btn-row { display: flex; gap: 8px; }
-    .log-shred-btn { background: linear-gradient(135deg, #f97316, #ea580c); border: none; border-radius: 10px; color: white; font-size: 12px; font-weight: 700; padding: 7px 14px; cursor: pointer; white-space: nowrap; }
+    .log-shred-btn { background: linear-gradient(135deg,#f97316,#ea580c); border: none; border-radius: 10px; color: white; font-size: 12px; font-weight: 700; padding: 7px 14px; cursor: pointer; white-space: nowrap; }
     .outline-btn { background: #1a0030; border: 1px solid #f97316; color: #f97316; border-radius: 10px; font-size: 12px; font-weight: 700; padding: 7px 14px; cursor: pointer; white-space: nowrap; }
     .danger-btn { background: #1a0010; border: 1px solid #ef4444; color: #ef4444; border-radius: 10px; font-size: 12px; font-weight: 700; padding: 7px 14px; cursor: pointer; white-space: nowrap; }
-    .log-workout-btn { width: 100%; background: linear-gradient(135deg, #7c3aed, #db2777); border: none; border-radius: 12px; color: white; font-size: 14px; font-weight: 800; padding: 14px; cursor: pointer; margin-bottom: 24px; letter-spacing: 0.5px; }
+    .log-workout-btn { width: 100%; background: linear-gradient(135deg,#7c3aed,#db2777); border: none; border-radius: 12px; color: white; font-size: 14px; font-weight: 800; padding: 14px; cursor: pointer; margin-bottom: 14px; letter-spacing: 0.5px; }
+
     /* MODALS */
     .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 50; align-items: flex-end; justify-content: center; }
     .modal-bg.open { display: flex; }
@@ -113,8 +138,10 @@
     .day-app-row:last-child { border-bottom: none; }
     .day-app-name { font-size: 13px; color: #d8b4fe; display: flex; align-items: center; gap: 8px; }
     .remove-btn { background: #1a0010; border: 1px solid #ef444455; color: #ef4444; border-radius: 6px; font-size: 11px; font-weight: 700; padding: 4px 10px; cursor: pointer; }
+    .past-date-label { font-size: 12px; color: #9ca3af; margin-bottom: 14px; text-align: center; font-style: italic; }
+
     /* SNAPSHOT */
-    .snapshot-box { background: #1a0030; border-radius: 16px; padding: 16px 20px; margin-bottom: 24px; }
+    .snapshot-box { background: #1a0030; border-radius: 16px; padding: 16px 20px; margin-bottom: 14px; }
     .snapshot-box h3 { color: white; font-size: 13px; font-weight: 800; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
     .snap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 10px; }
     .snap-item { background: #0d0d1a; border-radius: 10px; padding: 8px; text-align: center; }
@@ -123,50 +150,24 @@
     .snap-bar-wrap { background: #0d0d1a; border-radius: 20px; height: 6px; overflow: hidden; }
     .snap-bar { height: 100%; border-radius: 20px; background: linear-gradient(90deg,#7c3aed,#db2777); transition: width 0.4s; }
     .snap-note { font-size: 10px; color: #6b7280; text-align: right; margin-top: 4px; }
+
+    /* TIPS */
     .section-label { font-size: 11px; font-weight: 700; color: #6b7280; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
     .tips-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 10px; }
     .tip-chip { flex-shrink: 0; background: #1a0030; border: 1px solid #7c3aed55; border-radius: 20px; padding: 7px 13px; font-size: 12px; color: #d8b4fe; white-space: nowrap; cursor: pointer; }
     .tip-chip.active { background: linear-gradient(135deg,#7c3aed,#db2777); border-color: transparent; color: white; font-weight: 700; }
-    .tip-detail { background: #1a0030; border-radius: 12px; padding: 12px 14px; margin-bottom: 24px; font-size: 13px; color: #d8b4fe; line-height: 1.6; }
+    .tip-detail { background: #1a0030; border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; font-size: 13px; color: #d8b4fe; line-height: 1.6; }
     .tip-detail strong { color: #f0abfc; }
-    .order-box { background: #1a0030; border-radius: 16px; padding: 16px 20px; margin-bottom: 24px; }
-    .order-box h3 { color: white; font-size: 13px; font-weight: 800; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
-    .order-steps { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-    .step { background: rgba(124,58,237,0.25); border: 1px solid #7c3aed66; border-radius: 8px; padding: 7px 11px; font-size: 11px; color: #d8b4fe; }
-    .arrow { color: #7c3aed; font-size: 14px; }
-    .order-note { font-size: 11px; color: #9ca3af; margin-top: 10px; line-height: 1.5; }
-    .cards { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
-    a.card { display: block; text-decoration: none; border-radius: 16px; padding: 18px 20px; color: white; position: relative; overflow: hidden; transition: transform 0.15s, opacity 0.15s; }
-    a.card:active { transform: scale(0.97); opacity: 0.9; }
-    .card-glute { background: linear-gradient(135deg, #b91c1c, #ef4444); }
-    .card-goddess { background: linear-gradient(135deg, #7c3aed, #a855f7); }
-    .card-flex { background: linear-gradient(135deg, #4338ca, #6366f1); }
-    .card-waist { background: linear-gradient(135deg, #0369a1, #38bdf8); }
-    .card-tracker { background: linear-gradient(135deg, #065f46, #10b981); }
-    .card-icon { font-size: 28px; margin-bottom: 6px; }
-    .card-title { font-size: 18px; font-weight: 800; }
-    .card-sub { font-size: 12px; opacity: 0.85; margin-top: 2px; }
-    .card-badge { position: absolute; top: 14px; right: 14px; background: rgba(255,255,255,0.25); border-radius: 20px; padding: 4px 10px; font-size: 11px; font-weight: 700; }
-    .card-badge.today-badge { background: white; color: #7c3aed; }
-    .mm-box { background: #1a0030; border-radius: 16px; padding: 16px 20px; margin-bottom: 28px; }
+
+    /* MM CUES */
+    .mm-box { background: #1a0030; border-radius: 16px; padding: 16px 20px; margin-bottom: 14px; }
     .mm-box h3 { color: white; font-size: 13px; font-weight: 800; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
     .mm-item { background: #0d0d1a; border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
     .mm-item:last-child { margin-bottom: 0; }
     .mm-ex { font-size: 13px; font-weight: 800; color: #f0abfc; margin-bottom: 3px; }
     .mm-cue { font-size: 12px; color: #9ca3af; line-height: 1.5; }
-    .shred-box { background: #1a0030; border-radius: 16px; padding: 18px 20px; margin-bottom: 28px; }
-    .shred-box h3 { color: white; font-size: 15px; font-weight: 800; margin-bottom: 12px; }
-    .shred-row { display: flex; gap: 8px; }
-    .shred-option { flex: 1; border-radius: 10px; padding: 10px 8px; text-align: center; }
-    .shred-mini { background: #1e3a5f; }
-    .shred-reg { background: #3b1f6e; }
-    .shred-bad { background: #5b1a1a; }
-    .shred-option .level { font-size: 11px; font-weight: 800; color: #9ca3af; letter-spacing: 1px; }
-    .shred-option .time { font-size: 16px; font-weight: 900; color: white; margin: 2px 0; }
-    .shred-option .desc { font-size: 10px; color: #9ca3af; }
-    .past-date-label { font-size: 12px; color: #9ca3af; margin-bottom: 14px; text-align: center; font-style: italic; }
+
     @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,0.3)} 50%{box-shadow:0 0 0 6px rgba(255,255,255,0)} }
-    .w-item.next { animation: pulse 2s infinite; }
   </style>
 </head>
 <body>
@@ -176,14 +177,31 @@
   <p>Your transformation toolkit</p>
 </div>
 
-<div class="today-banner" id="todayBanner"></div>
+<!-- TODAY COLLAPSIBLE CARD -->
+<div class="collapse-card today-card">
+  <button class="collapse-trigger" onclick="toggleSection('todayBody','todayArrow')">
+    <div class="ct-left">
+      <div class="ct-icon">📅</div>
+      <div>
+        <div class="ct-title" id="todayCardTitle">Today's Plan</div>
+        <div class="ct-sub" id="todayCardSub">Tap to expand</div>
+      </div>
+    </div>
+    <div class="ct-arrow" id="todayArrow">▼ Show</div>
+  </button>
+  <div id="todayBody" class="collapsible collapse-body">
+    <div id="todayBanner"></div>
+  </div>
+</div>
 
+<!-- STREAKS -->
 <div class="streak-row">
   <div class="streak-card fire"><div class="streak-val" id="streakVal">0</div><div class="streak-lbl">🔥 Streak</div></div>
   <div class="streak-card"><div class="streak-val" id="totalVal">0</div><div class="streak-lbl">💪 Total</div></div>
   <div class="streak-card"><div class="streak-val" id="monthVal">0</div><div class="streak-lbl">📅 Month</div></div>
 </div>
 
+<!-- CALENDAR -->
 <div class="cal-box">
   <div class="cal-header">
     <button class="cal-nav" onclick="changeMonth(-1)">◀</button>
@@ -202,6 +220,7 @@
   </div>
 </div>
 
+<!-- SHRED SNAP -->
 <div class="shred-snap">
   <div class="shred-snap-header">
     <div class="shred-snap-title">🔥 Today's Shred</div>
@@ -209,14 +228,79 @@
   </div>
   <div class="shred-snap-content" id="shredSnapContent"></div>
 </div>
-
-<div id="shredHistory" style="display:none;background:#0d0d1a;border-radius:12px;padding:12px 14px;margin-top:-8px;margin-bottom:16px;border:1px solid #f9731633;">
+<div id="shredHistory" style="display:none;background:#0d0d1a;border-radius:12px;padding:12px 14px;margin-top:-8px;margin-bottom:14px;border:1px solid #f9731633;">
   <div id="shredHistoryList"></div>
 </div>
 
 <button class="log-workout-btn" onclick="openModal(today())">✅ Log Today's Apps</button>
 
-<!-- APPS MODAL -->
+<!-- APPS COLLAPSIBLE CARD -->
+<div class="collapse-card apps-card">
+  <button class="collapse-trigger" onclick="toggleSection('appsBody','appsArrow')">
+    <div class="ct-left">
+      <div class="ct-icon">🗂️</div>
+      <div>
+        <div class="ct-title">Your Apps</div>
+        <div class="ct-sub">Glute · Goddess · Flex · Waist · Tracker</div>
+      </div>
+    </div>
+    <div class="ct-arrow" id="appsArrow">▼ Show</div>
+  </button>
+  <div id="appsBody" class="collapsible collapse-body">
+    <div class="inner-cards">
+      <a href="https://fletch1980.github.io/bootyworkout-/" class="card card-glute" target="_blank" id="card-glute">
+        <div class="card-icon">🍑</div><div class="card-title">Glute Finisher</div><div class="card-sub">Bubble Butt Builder · Mon · Wed · Fri</div>
+      </a>
+      <a href="https://fletch1980.github.io/goddesstraining/" class="card card-goddess" target="_blank" id="card-goddess">
+        <div class="card-icon">✨</div><div class="card-title">Goddess Training</div><div class="card-sub">Hip Control · Core · Pelvic Floor</div>
+      </a>
+      <a href="https://fletch1980.github.io/Flexibility-/" class="card card-flex" target="_blank" id="card-flex">
+        <div class="card-icon">🌸</div><div class="card-title">Flexibility Training</div><div class="card-sub">Daily Routine · Deep Friday Session</div>
+      </a>
+      <a href="https://fletch1980.github.io/Waistcinch/" class="card card-waist" target="_blank" id="card-waist">
+        <div class="card-icon">⚡</div><div class="card-title">Waist Circuit</div><div class="card-sub">Tuesday & Thursday · Core Sculpting</div>
+      </a>
+      <a href="https://fletch1980.github.io/Fitness_tracker/" class="card card-tracker" target="_blank">
+        <div class="card-icon">📊</div><div class="card-title">Fitness Tracker</div><div class="card-sub">Protein · Overload · Recovery Log</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- SNAPSHOT -->
+<div class="snapshot-box">
+  <h3>📊 Today's Snapshot</h3>
+  <div class="snap-grid">
+    <div class="snap-item"><div class="snap-val" id="snapProtein">—</div><div class="snap-lbl">Protein (g)</div></div>
+    <div class="snap-item"><div class="snap-val" id="snapSleep">—</div><div class="snap-lbl">Sleep (hrs)</div></div>
+    <div class="snap-item"><div class="snap-val" id="snapFeel">—</div><div class="snap-lbl">Body Feel</div></div>
+  </div>
+  <div class="snap-bar-wrap"><div class="snap-bar" id="snapBar" style="width:0%"></div></div>
+  <div class="snap-note" id="snapNote">Log in Tracker to fill this in</div>
+</div>
+
+<!-- TIPS -->
+<p class="section-label">💡 Quick Tips</p>
+<div class="tips-row">
+  <div class="tip-chip active" onclick="showTip(0)">🥩 Protein</div>
+  <div class="tip-chip" onclick="showTip(1)">💪 Squeeze</div>
+  <div class="tip-chip" onclick="showTip(2)">😴 Recovery</div>
+  <div class="tip-chip" onclick="showTip(3)">📈 Overload</div>
+  <div class="tip-chip" onclick="showTip(4)">🔥 Cardio Order</div>
+</div>
+<div class="tip-detail" id="tipDetail"></div>
+
+<!-- MIND MUSCLE -->
+<div class="mm-box">
+  <h3>🧠 Mind-Muscle Cues</h3>
+  <div class="mm-item"><div class="mm-ex">Hip Thrust</div><div class="mm-cue">Drive through your heels. Squeeze glutes for 2 full seconds at the top. Feel it in the glute, not your lower back.</div></div>
+  <div class="mm-item"><div class="mm-ex">Cable / Band Kickback</div><div class="mm-cue">Slow down. Squeeze at full extension for 1–2 sec. If you feel it in your hip flexor or back, you've gone too fast.</div></div>
+  <div class="mm-item"><div class="mm-ex">Romanian Deadlift</div><div class="mm-cue">Feel the hamstring stretch on the way down. Drive hips forward to stand — glutes finish the movement.</div></div>
+  <div class="mm-item"><div class="mm-ex">Sumo Squat</div><div class="mm-cue">Push knees out. Pause at the bottom. Squeeze inner thighs and glutes together on the way up.</div></div>
+  <div class="mm-item"><div class="mm-ex">Every Exercise</div><div class="mm-cue">If you don't feel the target muscle, drop weight 20% and slow down. Mind-muscle beats heavy and sloppy every time.</div></div>
+</div>
+
+<!-- MODALS -->
 <div class="modal-bg" id="modalBg">
   <div class="modal">
     <h3 id="modalTitle">✅ What did you do today?</h3>
@@ -237,7 +321,6 @@
   </div>
 </div>
 
-<!-- DAY DETAIL MODAL -->
 <div class="modal-bg" id="dayModalBg">
   <div class="modal">
     <h3 id="dayModalTitle">📅 Day Log</h3>
@@ -249,7 +332,6 @@
   </div>
 </div>
 
-<!-- SHRED MODAL -->
 <div class="modal-bg" id="shredModalBg">
   <div class="modal">
     <h3>🔥 Log Today's Shred</h3>
@@ -269,186 +351,107 @@
   </div>
 </div>
 
-<div class="snapshot-box">
-  <h3>📊 Today's Snapshot</h3>
-  <div class="snap-grid">
-    <div class="snap-item"><div class="snap-val" id="snapProtein">—</div><div class="snap-lbl">Protein (g)</div></div>
-    <div class="snap-item"><div class="snap-val" id="snapSleep">—</div><div class="snap-lbl">Sleep (hrs)</div></div>
-    <div class="snap-item"><div class="snap-val" id="snapFeel">—</div><div class="snap-lbl">Body Feel</div></div>
-  </div>
-  <div class="snap-bar-wrap"><div class="snap-bar" id="snapBar" style="width:0%"></div></div>
-  <div class="snap-note" id="snapNote">Log in Tracker to fill this in</div>
-</div>
-
-<p class="section-label">💡 Quick Tips</p>
-<div class="tips-row">
-  <div class="tip-chip active" onclick="showTip(0)">🥩 Protein</div>
-  <div class="tip-chip" onclick="showTip(1)">💪 Squeeze</div>
-  <div class="tip-chip" onclick="showTip(2)">😴 Recovery</div>
-  <div class="tip-chip" onclick="showTip(3)">📈 Overload</div>
-  <div class="tip-chip" onclick="showTip(4)">🔥 Cardio Order</div>
-</div>
-<div class="tip-detail" id="tipDetail"></div>
-
-<div class="order-box">
-  <h3>🔥 Workout Order</h3>
-  <div class="order-steps">
-    <div class="step">🍑 Glute Activation</div><div class="arrow">→</div>
-    <div class="step">🏋️ Shred</div><div class="arrow">→</div>
-    <div class="step">💃 NGF / Cardio</div><div class="arrow">→</div>
-    <div class="step">🧘 Flexibility</div>
-  </div>
-  <div class="order-note">⚠️ Always do cardio <strong>after</strong> resistance work.</div>
-</div>
-
-<p class="section-label">Your Apps</p>
-<div class="cards">
-  <a href="https://fletch1980.github.io/bootyworkout-/" class="card card-glute" target="_blank" id="card-glute">
-    <div class="card-icon">🍑</div><div class="card-title">Glute Finisher</div><div class="card-sub">Bubble Butt Builder · Mon · Wed · Fri</div>
-  </a>
-  <a href="https://fletch1980.github.io/goddesstraining/" class="card card-goddess" target="_blank" id="card-goddess">
-    <div class="card-icon">✨</div><div class="card-title">Goddess Training</div><div class="card-sub">Hip Control · Core · Pelvic Floor</div>
-  </a>
-  <a href="https://fletch1980.github.io/Flexibility-/" class="card card-flex" target="_blank" id="card-flex">
-    <div class="card-icon">🌸</div><div class="card-title">Flexibility Training</div><div class="card-sub">Daily Routine · Deep Friday Session</div>
-  </a>
-  <a href="https://fletch1980.github.io/Waistcinch/" class="card card-waist" target="_blank" id="card-waist">
-    <div class="card-icon">⚡</div><div class="card-title">Waist Circuit</div><div class="card-sub">Tuesday & Thursday · Core Sculpting</div>
-  </a>
-  <a href="https://fletch1980.github.io/Fitness_tracker/" class="card card-tracker" target="_blank">
-    <div class="card-icon">📊</div><div class="card-title">Fitness Tracker</div><div class="card-sub">Protein · Overload · Recovery Log</div>
-  </a>
-</div>
-
-<div class="mm-box">
-  <h3>🧠 Mind-Muscle Cues</h3>
-  <div class="mm-item"><div class="mm-ex">Hip Thrust</div><div class="mm-cue">Drive through your heels. Squeeze glutes for 2 full seconds at the top. Feel it in the glute, not your lower back.</div></div>
-  <div class="mm-item"><div class="mm-ex">Cable / Band Kickback</div><div class="mm-cue">Slow down. Squeeze at full extension for 1–2 sec. If you feel it in your hip flexor or back, you've gone too fast.</div></div>
-  <div class="mm-item"><div class="mm-ex">Romanian Deadlift</div><div class="mm-cue">Feel the hamstring stretch on the way down. Drive hips forward to stand — glutes finish the movement.</div></div>
-  <div class="mm-item"><div class="mm-ex">Sumo Squat</div><div class="mm-cue">Push knees out. Pause at the bottom. Squeeze inner thighs and glutes together on the way up.</div></div>
-  <div class="mm-item"><div class="mm-ex">Every Exercise</div><div class="mm-cue">If you don't feel the target muscle, drop weight 20% and slow down. Mind-muscle beats heavy and sloppy every time.</div></div>
-</div>
-
-<div class="shred-box">
-  <h3>🔥 Shred Level — Pick by Energy</h3>
-  <div class="shred-row">
-    <div class="shred-option shred-mini"><div class="level">MINI</div><div class="time">30 min</div><div class="desc">Low energy</div></div>
-    <div class="shred-option shred-reg"><div class="level">REGULAR</div><div class="time">50–60 min</div><div class="desc">Normal day</div></div>
-    <div class="shred-option shred-bad"><div class="level">BAD ASS</div><div class="time">60–75 min</div><div class="desc">Bring it</div></div>
-  </div>
-</div>
-
 <script>
-  // ── LOCAL DATE ────────────────────────────────────────────
-  function today() {
-    var n=new Date(),y=n.getFullYear(),mo=n.getMonth()+1,d=n.getDate();
-    return y+'-'+(mo<10?'0'+mo:mo)+'-'+(d<10?'0'+d:d);
-  }
+  function today(){var n=new Date(),y=n.getFullYear(),mo=n.getMonth()+1,d=n.getDate();return y+'-'+(mo<10?'0'+mo:mo)+'-'+(d<10?'0'+d:d);}
   function localDow(){return new Date().getDay();}
   function isoToFriendly(iso){return new Date(iso+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});}
 
+  // ── COLLAPSE ──────────────────────────────────────────────
+  function toggleSection(bodyId,arrowId){
+    var body=document.getElementById(bodyId);
+    var arrow=document.getElementById(arrowId);
+    var isOpen=body.classList.contains('open');
+    body.classList.toggle('open',!isOpen);
+    arrow.textContent=isOpen?'▼ Show':'▲ Hide';
+  }
+
   // ── SCHEDULE ──────────────────────────────────────────────
-  const WORKOUTS={
+  var WORKOUTS={
     1:[
-      {id:'shred',  emoji:'🔥', name:'Shred',             desc:'Pick your energy level · Do this first',     link:null},
-      {id:'glute',  emoji:'🍑', name:'Glute Finisher',    desc:'15–25 min · Right after Shred',              link:'https://fletch1980.github.io/bootyworkout-/'},
-      {id:'goddess',emoji:'✨', name:'Goddess Training',  desc:'Hip control · Core stamina · Pelvic floor',  link:'https://fletch1980.github.io/goddesstraining/'},
-      {id:'flex',   emoji:'🌸', name:'Flexibility Daily', desc:'🏠 Evening · 15–20 min',                    link:'https://fletch1980.github.io/Flexibility-/'}
+      {id:'shred',  emoji:'🔥',name:'Shred',            desc:'Pick your energy level · Do this first',    link:null},
+      {id:'glute',  emoji:'🍑',name:'Glute Finisher',   desc:'15–25 min · Right after Shred',             link:'https://fletch1980.github.io/bootyworkout-/'},
+      {id:'goddess',emoji:'✨',name:'Goddess Training', desc:'Hip control · Core stamina · Pelvic floor', link:'https://fletch1980.github.io/goddesstraining/'},
+      {id:'flex',   emoji:'🌸',name:'Flexibility Daily',desc:'🏠 Evening · 15–20 min',                   link:'https://fletch1980.github.io/Flexibility-/'}
     ],
     2:[
-      {id:'shred',  emoji:'🔥', name:'Shred',             desc:'Pick your energy level · Do this first',     link:null},
-      {id:'goddess',emoji:'✨', name:'Goddess Training',  desc:'Hip control · Core stamina · Pelvic floor',  link:'https://fletch1980.github.io/goddesstraining/'},
-      {id:'waist',  emoji:'⏳', name:'Waist Circuit',     desc:'🏠 Evening · After Goddess · 20–25 min',    link:'https://fletch1980.github.io/Waistcinch/'},
-      {id:'flex',   emoji:'🌸', name:'Flexibility Daily', desc:'🏠 Evening · 15–20 min',                    link:'https://fletch1980.github.io/Flexibility-/'}
+      {id:'shred',  emoji:'🔥',name:'Shred',            desc:'Pick your energy level · Do this first',    link:null},
+      {id:'goddess',emoji:'✨',name:'Goddess Training', desc:'Hip control · Core stamina · Pelvic floor', link:'https://fletch1980.github.io/goddesstraining/'},
+      {id:'waist',  emoji:'⏳',name:'Waist Circuit',   desc:'🏠 Evening · After Goddess · 20–25 min',    link:'https://fletch1980.github.io/Waistcinch/'},
+      {id:'flex',   emoji:'🌸',name:'Flexibility Daily',desc:'🏠 Evening · 15–20 min',                   link:'https://fletch1980.github.io/Flexibility-/'}
     ],
     3:[
-      {id:'shred',  emoji:'🔥', name:'Shred',             desc:'Pick your energy level · Do this first',     link:null},
-      {id:'glute',  emoji:'🍑', name:'Glute Finisher',    desc:'15–25 min · Right after Shred',              link:'https://fletch1980.github.io/bootyworkout-/'},
-      {id:'goddess',emoji:'✨', name:'Goddess Training',  desc:'Hip control · Core stamina · Pelvic floor',  link:'https://fletch1980.github.io/goddesstraining/'},
-      {id:'flex',   emoji:'🌸', name:'Flexibility Daily', desc:'🏠 Evening · 15–20 min',                    link:'https://fletch1980.github.io/Flexibility-/'}
+      {id:'shred',  emoji:'🔥',name:'Shred',            desc:'Pick your energy level · Do this first',    link:null},
+      {id:'glute',  emoji:'🍑',name:'Glute Finisher',   desc:'15–25 min · Right after Shred',             link:'https://fletch1980.github.io/bootyworkout-/'},
+      {id:'goddess',emoji:'✨',name:'Goddess Training', desc:'Hip control · Core stamina · Pelvic floor', link:'https://fletch1980.github.io/goddesstraining/'},
+      {id:'flex',   emoji:'🌸',name:'Flexibility Daily',desc:'🏠 Evening · 15–20 min',                   link:'https://fletch1980.github.io/Flexibility-/'}
     ],
     4:[
-      {id:'shred',  emoji:'🔥', name:'Shred',             desc:'Pick your energy level · Do this first',     link:null},
-      {id:'goddess',emoji:'✨', name:'Goddess Training',  desc:'Hip control · Core stamina · Pelvic floor',  link:'https://fletch1980.github.io/goddesstraining/'},
-      {id:'waist',  emoji:'⏳', name:'Waist Circuit',     desc:'🏠 Evening · After Goddess · 20–25 min',    link:'https://fletch1980.github.io/Waistcinch/'},
-      {id:'flex',   emoji:'🌸', name:'Flexibility Daily', desc:'🏠 Evening · 15–20 min',                    link:'https://fletch1980.github.io/Flexibility-/'}
+      {id:'shred',  emoji:'🔥',name:'Shred',            desc:'Pick your energy level · Do this first',    link:null},
+      {id:'goddess',emoji:'✨',name:'Goddess Training', desc:'Hip control · Core stamina · Pelvic floor', link:'https://fletch1980.github.io/goddesstraining/'},
+      {id:'waist',  emoji:'⏳',name:'Waist Circuit',   desc:'🏠 Evening · After Goddess · 20–25 min',    link:'https://fletch1980.github.io/Waistcinch/'},
+      {id:'flex',   emoji:'🌸',name:'Flexibility Daily',desc:'🏠 Evening · 15–20 min',                   link:'https://fletch1980.github.io/Flexibility-/'}
     ],
     5:[
-      {id:'shred',  emoji:'🔥', name:'Shred',             desc:'Pick your energy level · Do this first',     link:null},
-      {id:'glute',  emoji:'🍑', name:'Glute Finisher',    desc:'15–25 min · Right after Shred',              link:'https://fletch1980.github.io/bootyworkout-/'},
-      {id:'goddess',emoji:'✨', name:'Goddess Training',  desc:'Hip control · Core stamina · Pelvic floor',  link:'https://fletch1980.github.io/goddesstraining/'},
-      {id:'flex',   emoji:'🌸', name:'Deep Flexibility',  desc:'🏠 Evening · 30–40 min · Deep Friday',      link:'https://fletch1980.github.io/Flexibility-/'}
+      {id:'shred',  emoji:'🔥',name:'Shred',            desc:'Pick your energy level · Do this first',    link:null},
+      {id:'glute',  emoji:'🍑',name:'Glute Finisher',   desc:'15–25 min · Right after Shred',             link:'https://fletch1980.github.io/bootyworkout-/'},
+      {id:'goddess',emoji:'✨',name:'Goddess Training', desc:'Hip control · Core stamina · Pelvic floor', link:'https://fletch1980.github.io/goddesstraining/'},
+      {id:'flex',   emoji:'🌸',name:'Deep Flexibility', desc:'🏠 Evening · 30–40 min · Deep Friday',     link:'https://fletch1980.github.io/Flexibility-/'}
     ]
   };
-  const THEMES={1:'Power Day 🔥',2:'Goddess & Waist Day 💜',3:'Burnout Day 🔥',4:'Goddess & Waist Day 🦵',5:'Full Glute Day 🍑',6:'Rest Day 😴',0:'Rest Day 😴'};
-  const DAYS={0:'Sunday',1:'Monday',2:'Tuesday',3:'Wednesday',4:'Thursday',5:'Friday',6:'Saturday'};
+  var THEMES={1:'Power Day 🔥',2:'Goddess & Waist Day 💜',3:'Burnout Day 🔥',4:'Goddess & Waist Day 🦵',5:'Full Glute Day 🍑',6:'Rest Day 😴',0:'Rest Day 😴'};
+  var DAYNAMES={0:'Sunday',1:'Monday',2:'Tuesday',3:'Wednesday',4:'Thursday',5:'Friday',6:'Saturday'};
 
-  const schedule={1:{day:"Monday",theme:"Power Day 🔥",stack:["🍑 Glute Finisher","✨ Goddess Training","🌸 Flexibility Daily"]},2:{day:"Tuesday",theme:"Goddess & Waist Day 💜",stack:["✨ Goddess Training","⚡ Waist Circuit","🌸 Flexibility Daily"]},3:{day:"Wednesday",theme:"Burnout Day 🔥",stack:["🍑 Glute Finisher","✨ Goddess Training","🌸 Flexibility Daily"]},4:{day:"Thursday",theme:"Goddess & Waist Day 🦵",stack:["✨ Goddess Training","⚡ Waist Circuit","🌸 Flexibility Daily"]},5:{day:"Friday",theme:"Full Glute Day 🍑",stack:["🍑 Glute Finisher","✨ Goddess Training","🌸 Flexibility DEEP"]},6:{day:"Saturday",theme:"Rest Day 😴",stack:[]},0:{day:"Sunday",theme:"Rest Day 😴",stack:[]}};
+  var dow=localDow();
+  var selectedEnergy='';
+  var checkedToday=new Set();
 
-  // ── TODAY BANNER WITH DAILY PLAN ─────────────────────────
-  const dow=localDow();
-  let selectedEnergy='';
-  let checkedToday=new Set();
-
+  // ── TODAY BANNER ──────────────────────────────────────────
   function renderBanner(){
-    const banner=document.getElementById('todayBanner');
-    const tod=schedule[dow];
-    const workouts=WORKOUTS[dow]||[];
-    const isRest=dow===0||dow===6;
-    const w=getW();
-    const existing=w[today()]||[];
+    var banner=document.getElementById('todayBanner');
+    var workouts=WORKOUTS[dow]||[];
+    var isRest=dow===0||dow===6;
+    var w=getW(),s=getS();
+    var existing=w[today()]||[];
     checkedToday=new Set(existing);
 
-    let html=`<div class="today-label">Today</div><div class="today-day">${tod.day}</div><div class="today-theme">${tod.theme}</div>`;
+    // Update card subtitle
+    var sub=document.getElementById('todayCardSub');
+    if(sub) sub.textContent=THEMES[dow]||'';
 
-    if(isRest){
-      html+=`<div class="rest-day">🛁 Recover. Stretch. Eat your protein.</div>`;
-      banner.innerHTML=html; return;
-    }
+    var html='<div class="today-label">Today</div><div class="today-day">'+DAYNAMES[dow]+'</div><div class="today-theme">'+(THEMES[dow]||'')+'</div>';
+
+    if(isRest){html+='<div class="rest-day">🛁 Recover. Stretch. Eat your protein.</div>';banner.innerHTML=html;return;}
 
     // Energy picker
-    html+=`<div class="energy-row">
-      <div class="energy-btn${selectedEnergy==='mini'?' sel':''}" onclick="pickEnergy('mini')"><div class="e-emoji">😴</div><div class="e-label">Mini</div><div class="e-time">30 min</div></div>
-      <div class="energy-btn${selectedEnergy==='normal'?' sel':''}" onclick="pickEnergy('normal')"><div class="e-emoji">🙂</div><div class="e-label">Regular</div><div class="e-time">50–60 min</div></div>
-      <div class="energy-btn${selectedEnergy==='badass'?' sel':''}" onclick="pickEnergy('badass')"><div class="e-emoji">💪</div><div class="e-label">Bad Ass</div><div class="e-time">60–75 min</div></div>
-    </div>`;
+    html+='<div class="energy-row">'
+      +'<div class="energy-btn'+(selectedEnergy==='mini'?' sel':'')+'" onclick="pickEnergy(\'mini\')"><div class="e-emoji">😴</div><div class="e-label">Mini</div><div class="e-time">30 min</div></div>'
+      +'<div class="energy-btn'+(selectedEnergy==='normal'?' sel':'')+'" onclick="pickEnergy(\'normal\')"><div class="e-emoji">🙂</div><div class="e-label">Regular</div><div class="e-time">50–60 min</div></div>'
+      +'<div class="energy-btn'+(selectedEnergy==='badass'?' sel':'')+'" onclick="pickEnergy(\'badass\')"><div class="e-emoji">💪</div><div class="e-label">Bad Ass</div><div class="e-time">60–75 min</div></div>'
+      +'</div>';
 
-    // All done check — shred counts via shred_logs
-    const s=getS(),shredLogged=!!s[today()];
-    const allDone=workouts.length>0&&workouts.every(function(wk){return wk.id==='shred'?shredLogged:checkedToday.has(wk.id);});
-    if(allDone){
-      html+=`<div class="all-done-bar"><div class="ad-title">🔥 You crushed it today!</div><div class="ad-sub">All workouts complete. Go recover like a goddess.</div></div>`;
-    }
+    var shredLogged=!!s[today()];
+    var allDone=workouts.length>0&&workouts.every(function(wk){return wk.id==='shred'?shredLogged:checkedToday.has(wk.id);});
+    if(allDone) html+='<div class="all-done-bar"><div class="ad-title">🔥 You crushed it today!</div><div class="ad-sub">All workouts complete. Go recover like a goddess.</div></div>';
 
-    // Find next unchecked
-    let nextId=null;
-    for(var i=0;i<workouts.length;i++){
-      const wk=workouts[i];
-      const isDoneCheck=wk.id==='shred'?shredLogged:checkedToday.has(wk.id);
-      if(!isDoneCheck){nextId=wk.id;break;}
-    }
+    var nextId=null;
+    for(var i=0;i<workouts.length;i++){var wk=workouts[i];if(!(wk.id==='shred'?shredLogged:checkedToday.has(wk.id))){nextId=wk.id;break;}}
 
-    // Workout list
-    html+=`<div class="workout-list">`;
+    html+='<div class="workout-list">';
     workouts.forEach(function(wk){
-      const done=wk.id==='shred'?shredLogged:checkedToday.has(wk.id);
-      const isNext=!allDone&&wk.id===nextId;
-      const dimmed=!done&&!isNext&&nextId!==null;
-      const cls='w-item'+(done?' done':'')+(isNext?' next':'')+(dimmed?' dimmed':'');
-      const checkIcon=done?'✅':(isNext?'▶':'');
-      const btnLabel=wk.id==='shred'?(done?'Edit 🔥':'Log 🔥'):(isNext?'Start →':'Open →');
-      const btnAction=wk.id==='shred'?`openShredModal()`:`window.open('${wk.link}','_blank')`;
-      html+=`<div class="${cls}" onclick="toggleBannerCheck('${wk.id}')">
-        <div class="w-check">${checkIcon}</div>
-        <div class="w-info">
-          ${isNext?'<div class="w-next-tag">▶ UP NEXT</div>':''}
-          <div class="w-name">${wk.emoji} ${wk.name}</div>
-          <div class="w-desc">${wk.desc}</div>
-        </div>
-        <button class="w-open-btn" onclick="event.stopPropagation();${btnAction}">${btnLabel}</button>
-      </div>`;
+      var done=wk.id==='shred'?shredLogged:checkedToday.has(wk.id);
+      var isNext=!allDone&&wk.id===nextId;
+      var dimmed=!done&&!isNext&&nextId!==null;
+      var cls='w-item'+(done?' done':'')+(isNext?' next':'')+(dimmed?' dimmed':'');
+      var checkIcon=done?'✅':(isNext?'▶':'');
+      var btnLabel=wk.id==='shred'?(done?'Edit 🔥':'Log 🔥'):(isNext?'Start →':'Open →');
+      var btnAction=wk.id==='shred'?'openShredModal()':"window.open('"+wk.link+"','_blank')";
+      html+='<div class="'+cls+'" onclick="toggleBannerCheck(\''+wk.id+'\')">'
+        +'<div class="w-check">'+checkIcon+'</div>'
+        +'<div class="w-info">'+(isNext?'<div class="w-next-tag">▶ UP NEXT</div>':'')+'<div class="w-name">'+wk.emoji+' '+wk.name+'</div><div class="w-desc">'+wk.desc+'</div></div>'
+        +'<button class="w-open-btn" onclick="event.stopPropagation();'+btnAction+'">'+btnLabel+'</button>'
+        +'</div>';
     });
-    html+=`</div>`;
+    html+='</div>';
     banner.innerHTML=html;
   }
 
@@ -456,7 +459,7 @@
 
   function toggleBannerCheck(id){
     if(id==='shred'){openShredModal();return;}
-    const w=getW(),iso=today();
+    var w=getW(),iso=today();
     var existing=w[iso]||[];
     if(checkedToday.has(id)){checkedToday.delete(id);existing=existing.filter(function(a){return a!==id;});}
     else{checkedToday.add(id);if(!existing.includes(id))existing.push(id);}
@@ -465,222 +468,131 @@
   }
 
   // ── ACTIVE CARD BADGES ────────────────────────────────────
-  const activeCards={1:["card-glute","card-goddess","card-flex"],2:["card-goddess","card-waist","card-flex"],3:["card-glute","card-goddess","card-flex"],4:["card-goddess","card-waist","card-flex"],5:["card-glute","card-goddess","card-flex"],6:[],0:[]};
-  activeCards[dow].forEach(function(id){const c=document.getElementById(id);if(!c)return;const b=document.createElement("div");b.className="card-badge today-badge";b.textContent="TODAY";c.appendChild(b);});
+  var activeCards={1:["card-glute","card-goddess","card-flex"],2:["card-goddess","card-waist","card-flex"],3:["card-glute","card-goddess","card-flex"],4:["card-goddess","card-waist","card-flex"],5:["card-glute","card-goddess","card-flex"],6:[],0:[]};
+  activeCards[dow].forEach(function(id){var c=document.getElementById(id);if(!c)return;var b=document.createElement("div");b.className="card-badge today-badge";b.textContent="TODAY";c.appendChild(b);});
 
   // ── STORAGE ───────────────────────────────────────────────
   function getW(){try{return JSON.parse(localStorage.getItem('workouts')||'{}');}catch(e){try{return JSON.parse(sessionStorage.getItem('workouts')||'{}');}catch(e2){return {};}}}
   function setW(w){try{localStorage.setItem('workouts',JSON.stringify(w));}catch(e){try{sessionStorage.setItem('workouts',JSON.stringify(w));}catch(e2){}}}
   function getS(){try{return JSON.parse(localStorage.getItem('shred_logs')||'{}');}catch(e){try{return JSON.parse(sessionStorage.getItem('shred_logs')||'{}');}catch(e2){return {};}}}
   function setS(s){try{localStorage.setItem('shred_logs',JSON.stringify(s));}catch(e){try{sessionStorage.setItem('shred_logs',JSON.stringify(s));}catch(e2){}}}
-  function safeGet(key){try{return localStorage.getItem(key);}catch(e){try{return sessionStorage.getItem(key);}catch(e2){return null;}}}
+  function safeGet(k){try{return localStorage.getItem(k);}catch(e){try{return sessionStorage.getItem(k);}catch(e2){return null;}}}
 
   // ── STATS ─────────────────────────────────────────────────
   function calcStats(){
-    const w=getW(),s=getS();
-    const all=new Set([...Object.keys(w).filter(function(d){return w[d]&&w[d].length;}),...Object.keys(s).filter(function(d){return s[d];})]);
-    const dates=[...all].sort(function(a,b){return b.localeCompare(a);});
+    var w=getW(),s=getS();
+    var all=new Set([...Object.keys(w).filter(function(d){return w[d]&&w[d].length;}),...Object.keys(s).filter(function(d){return s[d];})]);
+    var dates=[...all].sort(function(a,b){return b.localeCompare(a);});
     document.getElementById('totalVal').textContent=dates.length;
-    const now=new Date(),mo=now.getMonth(),yr=now.getFullYear();
-    document.getElementById('monthVal').textContent=dates.filter(function(d){const dt=new Date(d+'T12:00:00');return dt.getMonth()===mo&&dt.getFullYear()===yr;}).length;
-    let streak=0;
-    for(let i=0;i<365;i++){
-      const n=new Date();n.setDate(n.getDate()-i);
-      const y=n.getFullYear(),mo2=n.getMonth()+1,d2=n.getDate();
-      const ds=y+'-'+(mo2<10?'0'+mo2:mo2)+'-'+(d2<10?'0'+d2:d2);
-      if(all.has(ds)){streak++;}else if(i===0){}else break;
-    }
+    var now=new Date(),mo=now.getMonth(),yr=now.getFullYear();
+    document.getElementById('monthVal').textContent=dates.filter(function(d){var dt=new Date(d+'T12:00:00');return dt.getMonth()===mo&&dt.getFullYear()===yr;}).length;
+    var streak=0;
+    for(var i=0;i<365;i++){var n=new Date();n.setDate(n.getDate()-i);var y2=n.getFullYear(),mo2=n.getMonth()+1,d2=n.getDate();var ds=y2+'-'+(mo2<10?'0'+mo2:mo2)+'-'+(d2<10?'0'+d2:d2);if(all.has(ds)){streak++;}else if(i===0){}else break;}
     document.getElementById('streakVal').textContent=streak;
   }
 
   // ── CALENDAR ──────────────────────────────────────────────
-  let calYear=new Date().getFullYear(),calMonth=new Date().getMonth();
-  const appNames={shred:'🔥 Shred',glute:'🍑 Glute',goddess:'✨ Goddess',flex:'🌸 Flex',waist:'⚡ Waist',tracker:'📊 Tracker'};
-  const levelLabels={mini:'MINI · 30 min',regular:'REGULAR · 50-60 min',badass:'BAD ASS · 60-75 min'};
+  var calYear=new Date().getFullYear(),calMonth=new Date().getMonth();
+  var appNames={shred:'🔥 Shred',glute:'🍑 Glute',goddess:'✨ Goddess',flex:'🌸 Flex',waist:'⚡ Waist',tracker:'📊 Tracker'};
+  var levelLabels={mini:'MINI · 30 min',regular:'REGULAR · 50-60 min',badass:'BAD ASS · 60-75 min'};
 
   function renderCal(){
-    const w=getW(),s=getS(),todayISO=today();
-    const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var w=getW(),s=getS(),todayISO=today();
+    var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
     document.getElementById('calTitle').textContent=months[calMonth]+' '+calYear;
-    const firstDay=new Date(calYear,calMonth,1).getDay(),daysInMonth=new Date(calYear,calMonth+1,0).getDate();
-    let html='';
-    for(let i=0;i<firstDay;i++) html+=`<div class="cal-day empty"></div>`;
-    for(let d=1;d<=daysInMonth;d++){
-      const iso=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-      const isFuture=iso>todayISO;
-      const apps=w[iso]||[],hasShred=!!s[iso],isToday=iso===todayISO,worked=apps.length||hasShred;
-      let dots=hasShred?`<div class="dot dot-shred"></div>`:'';
-      apps.forEach(function(a){dots+=`<div class="dot dot-${a}"></div>`;});
-      const cls=['cal-day',isToday?'today':'',worked?'worked':'',isFuture?'future':''].filter(Boolean).join(' ');
-      html+=`<div class="${cls}" onclick="${isFuture?'':(`openCalDay('${iso}')`)}">${d}${worked?`<div class="dot-row">${dots}</div>`:''}</div>`;
+    var firstDay=new Date(calYear,calMonth,1).getDay(),daysInMonth=new Date(calYear,calMonth+1,0).getDate();
+    var html='';
+    for(var i=0;i<firstDay;i++) html+='<div class="cal-day empty"></div>';
+    for(var d=1;d<=daysInMonth;d++){
+      var iso=calYear+'-'+String(calMonth+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+      var isFuture=iso>todayISO,apps=w[iso]||[],hasShred=!!s[iso],isToday=iso===todayISO,worked=apps.length||hasShred;
+      var dots=hasShred?'<div class="dot dot-shred"></div>':'';
+      apps.forEach(function(a){dots+='<div class="dot dot-'+a+'"></div>';});
+      var cls=['cal-day',isToday?'today':'',worked?'worked':'',isFuture?'future':''].filter(Boolean).join(' ');
+      html+='<div class="'+cls+'" onclick="'+(isFuture?'':("openCalDay('"+iso+"')"))+'"">'+d+(worked?'<div class="dot-row">'+dots+'</div>':'')+'</div>';
     }
     document.getElementById('calGrid').innerHTML=html;
   }
   function changeMonth(dir){calMonth+=dir;if(calMonth>11){calMonth=0;calYear++;}if(calMonth<0){calMonth=11;calYear--;}renderCal();}
 
-  function openCalDay(iso){
-    const w=getW(),s=getS();
-    const apps=w[iso]||[],hasShred=!!s[iso];
-    if(apps.length||hasShred){openDayModal(iso);}else{openModal(iso);}
-  }
+  function openCalDay(iso){var w=getW(),s=getS();if((w[iso]&&w[iso].length)||s[iso]){openDayModal(iso);}else{openModal(iso);}}
 
   // ── DAY DETAIL MODAL ──────────────────────────────────────
-  let dayModalDate='';
+  var dayModalDate='';
   function openDayModal(iso){
-    const w=getW(),s=getS();
-    const apps=w[iso]||[],shred=s[iso];
+    var w=getW(),s=getS(),apps=w[iso]||[],shred=s[iso];
     dayModalDate=iso;
     document.getElementById('dayModalTitle').textContent='📅 '+isoToFriendly(iso);
-    document.getElementById('dayModalEditBtn').textContent='✏️ Edit';
-    document.getElementById('dayModalEditBtn').onclick=editDayWorkout;
-    let html='';
-    if(shred){html+=`<div class="day-app-row"><div class="day-app-name">🔥 Shred — <strong style="color:#f97316">${levelLabels[shred.level]||shred.level}</strong>${shred.note?` <span style="color:#9ca3af;font-style:italic;">"${shred.note}"</span>`:''}</div><button class="remove-btn" onclick="removeShredFromDay()">Remove</button></div>`;}
-    apps.forEach(function(a){html+=`<div class="day-app-row"><div class="day-app-name">${appNames[a]||a}</div><button class="remove-btn" onclick="removeAppFromDay('${a}')">Remove</button></div>`;});
+    var html='';
+    if(shred) html+='<div class="day-app-row"><div class="day-app-name">🔥 Shred — <strong style="color:#f97316">'+(levelLabels[shred.level]||shred.level)+'</strong>'+(shred.note?' <span style="color:#9ca3af;font-style:italic;">"'+shred.note+'"</span>':'')+'</div><button class="remove-btn" onclick="removeShredFromDay()">Remove</button></div>';
+    apps.forEach(function(a){html+='<div class="day-app-row"><div class="day-app-name">'+(appNames[a]||a)+'</div><button class="remove-btn" onclick="removeAppFromDay(\''+a+'\')">Remove</button></div>';});
     if(!html) html='<div style="text-align:center;color:#6b7280;font-size:13px;padding:16px 0;">Nothing logged for this day.</div>';
     document.getElementById('dayModalContent').innerHTML=html;
     document.getElementById('dayModalBg').classList.add('open');
   }
   function closeDayModal(){document.getElementById('dayModalBg').classList.remove('open');}
   function editDayWorkout(){closeDayModal();openModal(dayModalDate);}
-  function removeAppFromDay(app){
-    const w=getW(),iso=dayModalDate;
-    if(w[iso]){w[iso]=w[iso].filter(function(a){return a!==app;});if(!w[iso].length)delete w[iso];}
-    setW(w);renderCal();calcStats();renderBanner();
-    const s=getS();
-    if((w[iso]&&w[iso].length)||s[iso]){openDayModal(iso);}else{closeDayModal();}
-  }
-  function removeShredFromDay(){
-    const s=getS(),iso=dayModalDate;
-    delete s[iso];setS(s);renderCal();calcStats();renderShredSnap();
-    const w=getW();
-    if(w[iso]&&w[iso].length){openDayModal(iso);}else{closeDayModal();}
-  }
+  function removeAppFromDay(app){var w=getW(),iso=dayModalDate;if(w[iso]){w[iso]=w[iso].filter(function(a){return a!==app;});if(!w[iso].length)delete w[iso];}setW(w);renderCal();calcStats();renderBanner();var s=getS();if((w[iso]&&w[iso].length)||s[iso]){openDayModal(iso);}else{closeDayModal();}}
+  function removeShredFromDay(){var s=getS(),iso=dayModalDate;delete s[iso];setS(s);renderCal();calcStats();renderShredSnap();var w=getW();if(w[iso]&&w[iso].length){openDayModal(iso);}else{closeDayModal();}}
 
   // ── APPS MODAL ────────────────────────────────────────────
-  let checked=new Set();
-  let modalDate='';
+  var checked=new Set(),modalDate='';
   function openModal(iso){
-    iso=iso||today();
-    modalDate=iso;
-    const w=getW(),s=getS();
-    const existing=w[iso]||[],hasShred=!!s[iso];
+    iso=iso||today();modalDate=iso;
+    var w=getW(),s=getS(),existing=w[iso]||[],hasShred=!!s[iso];
     checked=new Set(existing);
-    const isPast=iso<today();
-    ['shred','glute','goddess','flex','waist'].forEach(function(a){
-      const el=document.getElementById('chk-'+a);
-      if(a==='shred'){el.classList.toggle('checked',hasShred);}
-      else{el.classList.toggle('checked',checked.has(a));}
-    });
-    const hasExisting=existing.length>0||hasShred;
-    if(isPast){
-      document.getElementById('modalTitle').textContent='📅 Log Past Workout';
-      document.getElementById('modalDateLabel').textContent=isoToFriendly(iso);
-      document.getElementById('modalDateLabel').style.display='block';
-    }else{
-      document.getElementById('modalTitle').textContent=hasExisting?'✏️ Edit Today\'s Log':'✅ What did you do today?';
-      document.getElementById('modalDateLabel').style.display='none';
-    }
+    var isPast=iso<today();
+    ['shred','glute','goddess','flex','waist'].forEach(function(a){var el=document.getElementById('chk-'+a);if(a==='shred'){el.classList.toggle('checked',hasShred);}else{el.classList.toggle('checked',checked.has(a));}});
+    var hasExisting=existing.length>0||hasShred;
+    if(isPast){document.getElementById('modalTitle').textContent='📅 Log Past Workout';document.getElementById('modalDateLabel').textContent=isoToFriendly(iso);document.getElementById('modalDateLabel').style.display='block';}
+    else{document.getElementById('modalTitle').textContent=hasExisting?'✏️ Edit Today\'s Log':'✅ What did you do today?';document.getElementById('modalDateLabel').style.display='none';}
     document.getElementById('modalSubLabel').textContent=hasExisting?'Tap to add or remove apps':'Tap everything you completed';
     document.getElementById('modalDeleteBtn').style.display=hasExisting?'block':'none';
     document.getElementById('modalBg').classList.add('open');
   }
   function closeModal(){document.getElementById('modalBg').classList.remove('open');}
-  function toggleCheck(a){
-    if(a==='shred'){document.getElementById('chk-shred').classList.toggle('checked');}
-    else{const el=document.getElementById('chk-'+a);if(checked.has(a)){checked.delete(a);el.classList.remove('checked');}else{checked.add(a);el.classList.add('checked');}}
-  }
+  function toggleCheck(a){if(a==='shred'){document.getElementById('chk-shred').classList.toggle('checked');}else{var el=document.getElementById('chk-'+a);if(checked.has(a)){checked.delete(a);el.classList.remove('checked');}else{checked.add(a);el.classList.add('checked');}}}
   function saveWorkout(){
-    const w=getW(),s=getS(),iso=modalDate;
-    if(checked.size){w[iso]=Array.from(checked);}else{delete w[iso];}
-    setW(w);
-    const shredChecked=document.getElementById('chk-shred').classList.contains('checked');
+    var w=getW(),s=getS(),iso=modalDate;
+    if(checked.size){w[iso]=Array.from(checked);}else{delete w[iso];}setW(w);
+    var shredChecked=document.getElementById('chk-shred').classList.contains('checked');
     if(shredChecked&&!s[iso]){s[iso]={level:'regular',note:'logged retroactively'};setS(s);}
     else if(!shredChecked&&s[iso]&&iso!==today()){delete s[iso];setS(s);}
     closeModal();renderCal();calcStats();renderBanner();
     if(iso===today())renderShredSnap();
     showToast(checked.size||shredChecked?'Workout saved! 💪':'Log cleared');
   }
-  function deleteWorkout(){
-    const w=getW(),s=getS(),iso=modalDate;
-    delete w[iso];
-    if(iso!==today()){delete s[iso];setS(s);}
-    setW(w);closeModal();renderCal();calcStats();renderBanner();
-    if(iso===today())renderShredSnap();
-    showToast('Workout log deleted 🗑');
-  }
+  function deleteWorkout(){var w=getW(),s=getS(),iso=modalDate;delete w[iso];if(iso!==today()){delete s[iso];setS(s);}setW(w);closeModal();renderCal();calcStats();renderBanner();if(iso===today())renderShredSnap();showToast('Workout log deleted 🗑');}
   document.getElementById('modalBg').addEventListener('click',function(e){if(e.target===document.getElementById('modalBg'))closeModal();});
   document.getElementById('dayModalBg').addEventListener('click',function(e){if(e.target===document.getElementById('dayModalBg'))closeDayModal();});
 
   // ── SHRED MODAL ───────────────────────────────────────────
-  let selectedLevel='';
-  function openShredModal(){
-    const s=getS(),existing=s[today()];
-    selectedLevel=existing?existing.level:'';
-    ['mini','regular','badass'].forEach(function(l){document.getElementById('sl-'+l).classList.toggle('sel',l===selectedLevel);});
-    document.getElementById('shredNoteInput').value=existing?existing.note||'':'';
-    document.getElementById('shredDeleteBtn').style.display=existing?'block':'none';
-    document.getElementById('shredModalBg').classList.add('open');
-  }
+  var selectedLevel='';
+  function openShredModal(){var s=getS(),existing=s[today()];selectedLevel=existing?existing.level:'';['mini','regular','badass'].forEach(function(l){document.getElementById('sl-'+l).classList.toggle('sel',l===selectedLevel);});document.getElementById('shredNoteInput').value=existing?existing.note||'':'';document.getElementById('shredDeleteBtn').style.display=existing?'block':'none';document.getElementById('shredModalBg').classList.add('open');}
   function closeShredModal(){document.getElementById('shredModalBg').classList.remove('open');}
   function selectLevel(l){selectedLevel=l;['mini','regular','badass'].forEach(function(x){document.getElementById('sl-'+x).classList.toggle('sel',x===l);});}
-  function saveShred(){
-    if(!selectedLevel)return showToast('Pick a Shred level first!');
-    const s=getS();s[today()]={level:selectedLevel,note:document.getElementById('shredNoteInput').value};
-    setS(s);closeShredModal();renderCal();calcStats();renderShredSnap();renderBanner();showToast('Shred logged! 🔥');
-  }
-  function deleteShred(){
-    const s=getS();delete s[today()];setS(s);closeShredModal();renderCal();calcStats();renderShredSnap();showToast('Shred log deleted 🗑');
-  }
+  function saveShred(){if(!selectedLevel)return showToast('Pick a Shred level first!');var s=getS();s[today()]={level:selectedLevel,note:document.getElementById('shredNoteInput').value};setS(s);closeShredModal();renderCal();calcStats();renderShredSnap();renderBanner();showToast('Shred logged! 🔥');}
+  function deleteShred(){var s=getS();delete s[today()];setS(s);closeShredModal();renderCal();calcStats();renderShredSnap();renderBanner();showToast('Shred log deleted 🗑');}
   document.getElementById('shredModalBg').addEventListener('click',function(e){if(e.target===document.getElementById('shredModalBg'))closeShredModal();});
 
   // ── SHRED SNAPSHOT ────────────────────────────────────────
-  function renderShredSnap(){
-    const s=getS(),entry=s[today()];
-    document.getElementById('shredSnapContent').innerHTML=entry
-      ?`<div class="shred-level-pill">${levelLabels[entry.level]||entry.level}</div>${entry.note?`<div class="shred-snap-note">"${entry.note}"</div>`:''}`
-      :`<div style="font-size:12px;color:#6b7280;">Not logged yet</div>`;
-    document.getElementById('shredBtnRow').innerHTML=entry
-      ?`<button class="outline-btn" onclick="toggleShredHistory()">📋 History</button><button class="outline-btn" onclick="openShredModal()">✏️ Edit</button><button class="danger-btn" onclick="deleteShred()">🗑</button>`
-      :`<button class="outline-btn" onclick="toggleShredHistory()">📋 History</button><button class="log-shred-btn" onclick="openShredModal()">+ Log Shred</button>`;
-  }
-  function toggleShredHistory(){
-    const el=document.getElementById('shredHistory');
-    const isOpen=el.style.display==='block';
-    if(!isOpen)renderShredHistory();
-    el.style.display=isOpen?'none':'block';
-  }
-  function renderShredHistory(){
-    const s=getS(),dates=Object.keys(s).sort(function(a,b){return b.localeCompare(a);});
-    const el=document.getElementById('shredHistoryList');
-    if(!dates.length){el.innerHTML='<div style="text-align:center;color:#6b7280;font-size:12px;padding:10px 0;">No Shred sessions logged yet.</div>';return;}
-    el.innerHTML=dates.map(function(d){
-      const e=s[d],friendly=new Date(d+'T12:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
-      return `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f9731622;">
-        <div style="font-size:12px;color:#f97316;font-weight:700;">${friendly}</div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span style="background:#f9731622;border:1px solid #f97316;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:800;color:#f97316;">${levelLabels[e.level]||e.level}</span>
-          ${e.note?`<span style="font-size:11px;color:#9ca3af;font-style:italic;">"${e.note}"</span>`:''}
-          <button class="remove-btn" onclick="deleteShredFromHistory('${d}')">🗑</button>
-        </div>
-      </div>`;
-    }).join('')+`<div style="font-size:10px;color:#6b7280;text-align:center;margin-top:8px;">${dates.length} session${dates.length!==1?'s':''} logged</div>`;
-  }
-  function deleteShredFromHistory(date){
-    const s=getS();delete s[date];setS(s);renderCal();calcStats();renderShredSnap();renderShredHistory();showToast('Session deleted 🗑');
-  }
+  function renderShredSnap(){var s=getS(),entry=s[today()];document.getElementById('shredSnapContent').innerHTML=entry?'<div class="shred-level-pill">'+(levelLabels[entry.level]||entry.level)+'</div>'+(entry.note?'<div class="shred-snap-note">"'+entry.note+'"</div>':''):'<div style="font-size:12px;color:#6b7280;">Not logged yet</div>';document.getElementById('shredBtnRow').innerHTML=entry?'<button class="outline-btn" onclick="toggleShredHistory()">📋 History</button><button class="outline-btn" onclick="openShredModal()">✏️ Edit</button><button class="danger-btn" onclick="deleteShred()">🗑</button>':'<button class="outline-btn" onclick="toggleShredHistory()">📋 History</button><button class="log-shred-btn" onclick="openShredModal()">+ Log Shred</button>';}
+  function toggleShredHistory(){var el=document.getElementById('shredHistory');var isOpen=el.style.display==='block';if(!isOpen)renderShredHistory();el.style.display=isOpen?'none':'block';}
+  function renderShredHistory(){var s=getS(),dates=Object.keys(s).sort(function(a,b){return b.localeCompare(a);});var el=document.getElementById('shredHistoryList');if(!dates.length){el.innerHTML='<div style="text-align:center;color:#6b7280;font-size:12px;padding:10px 0;">No Shred sessions logged yet.</div>';return;}el.innerHTML=dates.map(function(d){var e=s[d],friendly=new Date(d+'T12:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});return'<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f9731622;"><div style="font-size:12px;color:#f97316;font-weight:700;">'+friendly+'</div><div style="display:flex;align-items:center;gap:8px;"><span style="background:#f9731622;border:1px solid #f97316;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:800;color:#f97316;">'+(levelLabels[e.level]||e.level)+'</span>'+(e.note?'<span style="font-size:11px;color:#9ca3af;font-style:italic;">"'+e.note+'"</span>':'')+'<button class="remove-btn" onclick="deleteShredFromHistory(\''+d+'\')">🗑</button></div></div>';}).join('')+'<div style="font-size:10px;color:#6b7280;text-align:center;margin-top:8px;">'+dates.length+' session'+(dates.length!==1?'s':'')+' logged</div>';}
+  function deleteShredFromHistory(date){var s=getS();delete s[date];setS(s);renderCal();calcStats();renderShredSnap();renderShredHistory();showToast('Session deleted 🗑');}
 
   // ── TRACKER SNAPSHOT ──────────────────────────────────────
-  const tk=today();
-  try{const p=JSON.parse(safeGet('protein_'+tk));if(p){const tot=(p.meals||[]).reduce(function(s,m){return s+m.p;},0);document.getElementById('snapProtein').textContent=tot+'g';const pct=Math.min(100,Math.round(tot/(p.goal||100)*100));document.getElementById('snapBar').style.width=pct+'%';document.getElementById('snapNote').textContent=pct+'% of protein goal';}}catch(e){}
-  try{const r=JSON.parse(safeGet('recovery_'+tk));if(r){document.getElementById('snapSleep').textContent=r.sleep?r.sleep+'h':'—';const fm={great:'🔥',good:'💪',sore:'😬',rest:'🛌'};document.getElementById('snapFeel').textContent=fm[r.feel]||'—';}}catch(e){}
+  var tk=today();
+  try{var p=JSON.parse(safeGet('protein_'+tk));if(p){var tot=(p.meals||[]).reduce(function(s,m){return s+m.p;},0);document.getElementById('snapProtein').textContent=tot+'g';var pct=Math.min(100,Math.round(tot/(p.goal||100)*100));document.getElementById('snapBar').style.width=pct+'%';document.getElementById('snapNote').textContent=pct+'% of protein goal';}}catch(e){}
+  try{var r=JSON.parse(safeGet('recovery_'+tk));if(r){document.getElementById('snapSleep').textContent=r.sleep?r.sleep+'h':'—';var fm={great:'🔥',good:'💪',sore:'😬',rest:'🛌'};document.getElementById('snapFeel').textContent=fm[r.feel]||'—';}}catch(e){}
 
   // ── TIPS ──────────────────────────────────────────────────
-  const tips=["<strong>🥩 Protein:</strong> Aim for 100–120g daily. Hit protein within <strong>30 min post-workout</strong>. Prioritize it in your first meal.","<strong>💪 Mind-Muscle:</strong> Slow down every rep. Add a <strong>2-second squeeze</strong> at the top. If you don't feel it in your glutes, you're not building them.","<strong>😴 Recovery:</strong> Muscle is built at <strong>rest</strong>. Aim for 7–9 hours sleep. Take magnesium glycinate at night.","<strong>📈 Progressive Overload:</strong> Add <strong>5 lbs, 1 rep, or 1 set</strong> when current load feels easy. Log lifts so you always know what to beat.","<strong>🔥 Cardio Order:</strong> Always do resistance <strong>before</strong> cardio. NGF after Shred and glute work — never before."];
+  var tips=["<strong>🥩 Protein:</strong> Aim for 100–120g daily. Hit protein within <strong>30 min post-workout</strong>. Prioritize it in your first meal.","<strong>💪 Mind-Muscle:</strong> Slow down every rep. Add a <strong>2-second squeeze</strong> at the top. If you don't feel it in your glutes, you're not building them.","<strong>😴 Recovery:</strong> Muscle is built at <strong>rest</strong>. Aim for 7–9 hours sleep. Take magnesium glycinate at night.","<strong>📈 Progressive Overload:</strong> Add <strong>5 lbs, 1 rep, or 1 set</strong> when current load feels easy. Log lifts so you always know what to beat.","<strong>🔥 Cardio Order:</strong> Always do resistance <strong>before</strong> cardio. NGF after Shred and glute work — never before."];
   function showTip(i){document.getElementById('tipDetail').innerHTML=tips[i];document.querySelectorAll('.tip-chip').forEach(function(c,j){c.classList.toggle('active',j===i);});}
   showTip(0);
 
   // ── TOAST ─────────────────────────────────────────────────
-  function showToast(msg){const t=document.createElement('div');t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#7c3aed;color:#fff;padding:10px 22px;border-radius:20px;font-size:14px;font-weight:700;z-index:99;';t.textContent=msg;document.body.appendChild(t);setTimeout(function(){t.remove();},2200);}
+  function showToast(msg){var t=document.createElement('div');t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#7c3aed;color:#fff;padding:10px 22px;border-radius:20px;font-size:14px;font-weight:700;z-index:99;';t.textContent=msg;document.body.appendChild(t);setTimeout(function(){t.remove();},2200);}
 
   renderBanner();
   renderCal();
