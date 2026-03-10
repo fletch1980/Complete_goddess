@@ -11,7 +11,6 @@
     .header h1 { font-size: 26px; font-weight: 900; color: white; }
     .header p { font-size: 13px; color: #9ca3af; margin-top: 4px; }
 
-    /* COLLAPSIBLE */
     .collapsible { overflow: hidden; transition: max-height 0.35s ease; max-height: 0; }
     .collapsible.open { max-height: 9999px; }
     .collapse-card { border-radius: 16px; margin-bottom: 14px; overflow: hidden; }
@@ -24,10 +23,10 @@
     .ct-arrow { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.15); border-radius: 20px; padding: 4px 10px; white-space: nowrap; }
     .collapse-body { padding: 0 20px 18px; }
 
-    /* TODAY CARD */
     .today-card { background: linear-gradient(135deg, #7c3aed, #db2777); }
     .today-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; opacity: 0.85; text-transform: uppercase; }
-    .today-day { font-size: 22px; font-weight: 900; margin: 2px 0 1px; }
+    .today-day { font-size: 22px; font-weight: 900; margin: 2px 0 0; }
+    .today-date { font-size: 13px; color: rgba(255,255,255,0.75); margin: 2px 0 1px; }
     .today-theme { font-size: 13px; opacity: 0.85; }
     .rest-day { text-align: center; font-size: 16px; padding: 10px 0 4px; opacity: 0.85; }
     .energy-row { display: flex; gap: 6px; margin: 14px 0; }
@@ -54,7 +53,6 @@
     .all-done-bar .ad-title { font-size: 15px; font-weight: 900; color: #4ade80; }
     .all-done-bar .ad-sub { font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 2px; }
 
-    /* APPS CARD */
     .apps-card { background: linear-gradient(135deg, #1a0030, #2d0050); border: 1px solid #7c3aed55; }
     .inner-cards { display: flex; flex-direction: column; gap: 10px; }
     a.card { display: block; text-decoration: none; border-radius: 12px; padding: 14px 16px; color: white; position: relative; overflow: hidden; transition: transform 0.15s, opacity 0.15s; }
@@ -70,14 +68,12 @@
     .card-badge { position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.25); border-radius: 20px; padding: 3px 8px; font-size: 10px; font-weight: 700; }
     .card-badge.today-badge { background: white; color: #7c3aed; }
 
-    /* STREAK */
     .streak-row { display: flex; gap: 10px; margin-bottom: 14px; }
     .streak-card { flex: 1; background: #1a0030; border-radius: 14px; padding: 14px; text-align: center; }
     .streak-val { font-size: 2rem; font-weight: 900; color: #f0abfc; }
     .streak-lbl { font-size: 11px; color: #9ca3af; margin-top: 2px; text-transform: uppercase; letter-spacing: 1px; }
     .streak-card.fire .streak-val { color: #fb923c; }
 
-    /* CALENDAR */
     .cal-box { background: #1a0030; border-radius: 16px; padding: 16px 20px; margin-bottom: 14px; }
     .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
     .cal-title { color: white; font-size: 15px; font-weight: 800; }
@@ -98,7 +94,6 @@
     .leg-item { display: flex; align-items: center; gap: 4px; font-size: 11px; color: #9ca3af; }
     .leg-dot { width: 8px; height: 8px; border-radius: 50%; }
 
-    /* SHRED SNAP */
     .shred-snap { background: #1a0030; border-radius: 14px; padding: 14px 16px; margin-bottom: 14px; border: 1px solid #f9731633; }
     .shred-snap-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
     .shred-snap-title { color: #f97316; font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
@@ -111,7 +106,6 @@
     .danger-btn { background: #1a0010; border: 1px solid #ef4444; color: #ef4444; border-radius: 10px; font-size: 12px; font-weight: 700; padding: 7px 14px; cursor: pointer; white-space: nowrap; }
     .log-workout-btn { width: 100%; background: linear-gradient(135deg,#7c3aed,#db2777); border: none; border-radius: 12px; color: white; font-size: 14px; font-weight: 800; padding: 14px; cursor: pointer; margin-bottom: 14px; letter-spacing: 0.5px; }
 
-    /* MODALS */
     .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 50; align-items: flex-end; justify-content: center; }
     .modal-bg.open { display: flex; }
     .modal { background: #1a0030; border-radius: 20px 20px 0 0; padding: 24px 20px 36px; width: 100%; max-width: 480px; }
@@ -140,7 +134,6 @@
     .remove-btn { background: #1a0010; border: 1px solid #ef444455; color: #ef4444; border-radius: 6px; font-size: 11px; font-weight: 700; padding: 4px 10px; cursor: pointer; }
     .past-date-label { font-size: 12px; color: #9ca3af; margin-bottom: 14px; text-align: center; font-style: italic; }
 
-    /* SNAPSHOT */
     .snapshot-box { background: #1a0030; border-radius: 16px; padding: 16px 20px; margin-bottom: 14px; }
     .snapshot-box h3 { color: white; font-size: 13px; font-weight: 800; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
     .snap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 10px; }
@@ -151,7 +144,6 @@
     .snap-bar { height: 100%; border-radius: 20px; background: linear-gradient(90deg,#7c3aed,#db2777); transition: width 0.4s; }
     .snap-note { font-size: 10px; color: #6b7280; text-align: right; margin-top: 4px; }
 
-    /* TIPS */
     .section-label { font-size: 11px; font-weight: 700; color: #6b7280; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
     .tips-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 10px; }
     .tip-chip { flex-shrink: 0; background: #1a0030; border: 1px solid #7c3aed55; border-radius: 20px; padding: 7px 13px; font-size: 12px; color: #d8b4fe; white-space: nowrap; cursor: pointer; }
@@ -159,7 +151,6 @@
     .tip-detail { background: #1a0030; border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; font-size: 13px; color: #d8b4fe; line-height: 1.6; }
     .tip-detail strong { color: #f0abfc; }
 
-    /* MM CUES */
     .mm-box { background: #1a0030; border-radius: 16px; padding: 16px 20px; margin-bottom: 14px; }
     .mm-box h3 { color: white; font-size: 13px; font-weight: 800; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
     .mm-item { background: #0d0d1a; border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
@@ -177,7 +168,6 @@
   <p>Your transformation toolkit</p>
 </div>
 
-<!-- TODAY COLLAPSIBLE CARD -->
 <div class="collapse-card today-card">
   <button class="collapse-trigger" onclick="toggleSection('todayBody','todayArrow')">
     <div class="ct-left">
@@ -194,14 +184,12 @@
   </div>
 </div>
 
-<!-- STREAKS -->
 <div class="streak-row">
   <div class="streak-card fire"><div class="streak-val" id="streakVal">0</div><div class="streak-lbl">🔥 Streak</div></div>
   <div class="streak-card"><div class="streak-val" id="totalVal">0</div><div class="streak-lbl">💪 Total</div></div>
   <div class="streak-card"><div class="streak-val" id="monthVal">0</div><div class="streak-lbl">📅 Month</div></div>
 </div>
 
-<!-- CALENDAR -->
 <div class="cal-box">
   <div class="cal-header">
     <button class="cal-nav" onclick="changeMonth(-1)">◀</button>
@@ -220,7 +208,6 @@
   </div>
 </div>
 
-<!-- SHRED SNAP -->
 <div class="shred-snap">
   <div class="shred-snap-header">
     <div class="shred-snap-title">🔥 Today's Shred</div>
@@ -234,7 +221,6 @@
 
 <button class="log-workout-btn" onclick="openModal(today())">✅ Log Today's Apps</button>
 
-<!-- APPS COLLAPSIBLE CARD -->
 <div class="collapse-card apps-card">
   <button class="collapse-trigger" onclick="toggleSection('appsBody','appsArrow')">
     <div class="ct-left">
@@ -267,7 +253,6 @@
   </div>
 </div>
 
-<!-- SNAPSHOT -->
 <div class="snapshot-box">
   <h3>📊 Today's Snapshot</h3>
   <div class="snap-grid">
@@ -279,7 +264,6 @@
   <div class="snap-note" id="snapNote">Log in Tracker to fill this in</div>
 </div>
 
-<!-- TIPS -->
 <p class="section-label">💡 Quick Tips</p>
 <div class="tips-row">
   <div class="tip-chip active" onclick="showTip(0)">🥩 Protein</div>
@@ -290,7 +274,6 @@
 </div>
 <div class="tip-detail" id="tipDetail"></div>
 
-<!-- MIND MUSCLE -->
 <div class="mm-box">
   <h3>🧠 Mind-Muscle Cues</h3>
   <div class="mm-item"><div class="mm-ex">Hip Thrust</div><div class="mm-cue">Drive through your heels. Squeeze glutes for 2 full seconds at the top. Feel it in the glute, not your lower back.</div></div>
@@ -356,16 +339,18 @@
   function localDow(){return new Date().getDay();}
   function isoToFriendly(iso){return new Date(iso+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});}
 
-  // ── COLLAPSE ──────────────────────────────────────────────
+  // Live date string for banner e.g. "Tuesday, March 10"
+  function todayFriendly(){
+    var n=new Date();
+    return n.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+  }
+
   function toggleSection(bodyId,arrowId){
-    var body=document.getElementById(bodyId);
-    var arrow=document.getElementById(arrowId);
-    var isOpen=body.classList.contains('open');
+    var body=document.getElementById(bodyId),arrow=document.getElementById(arrowId),isOpen=body.classList.contains('open');
     body.classList.toggle('open',!isOpen);
     arrow.textContent=isOpen?'▼ Show':'▲ Hide';
   }
 
-  // ── SCHEDULE ──────────────────────────────────────────────
   var WORKOUTS={
     1:[
       {id:'shred',  emoji:'🔥',name:'Shred',            desc:'Pick your energy level · Do this first',    link:null},
@@ -401,28 +386,24 @@
   var THEMES={1:'Power Day 🔥',2:'Goddess & Waist Day 💜',3:'Burnout Day 🔥',4:'Goddess & Waist Day 🦵',5:'Full Glute Day 🍑',6:'Rest Day 😴',0:'Rest Day 😴'};
   var DAYNAMES={0:'Sunday',1:'Monday',2:'Tuesday',3:'Wednesday',4:'Thursday',5:'Friday',6:'Saturday'};
 
-  var dow=localDow();
-  var selectedEnergy='';
-  var checkedToday=new Set();
+  var dow=localDow(),selectedEnergy='',checkedToday=new Set();
 
-  // ── TODAY BANNER ──────────────────────────────────────────
   function renderBanner(){
     var banner=document.getElementById('todayBanner');
-    var workouts=WORKOUTS[dow]||[];
-    var isRest=dow===0||dow===6;
-    var w=getW(),s=getS();
-    var existing=w[today()]||[];
+    var workouts=WORKOUTS[dow]||[],isRest=dow===0||dow===6;
+    var w=getW(),s=getS(),existing=w[today()]||[];
     checkedToday=new Set(existing);
-
-    // Update card subtitle
     var sub=document.getElementById('todayCardSub');
     if(sub) sub.textContent=THEMES[dow]||'';
 
-    var html='<div class="today-label">Today</div><div class="today-day">'+DAYNAMES[dow]+'</div><div class="today-theme">'+(THEMES[dow]||'')+'</div>';
+    // Live date line
+    var html='<div class="today-label">Today</div>'
+      +'<div class="today-day">'+DAYNAMES[dow]+'</div>'
+      +'<div class="today-date">'+todayFriendly()+'</div>'
+      +'<div class="today-theme">'+(THEMES[dow]||'')+'</div>';
 
     if(isRest){html+='<div class="rest-day">🛁 Recover. Stretch. Eat your protein.</div>';banner.innerHTML=html;return;}
 
-    // Energy picker
     html+='<div class="energy-row">'
       +'<div class="energy-btn'+(selectedEnergy==='mini'?' sel':'')+'" onclick="pickEnergy(\'mini\')"><div class="e-emoji">😴</div><div class="e-label">Mini</div><div class="e-time">30 min</div></div>'
       +'<div class="energy-btn'+(selectedEnergy==='normal'?' sel':'')+'" onclick="pickEnergy(\'normal\')"><div class="e-emoji">🙂</div><div class="e-label">Regular</div><div class="e-time">50–60 min</div></div>'
@@ -439,8 +420,7 @@
     html+='<div class="workout-list">';
     workouts.forEach(function(wk){
       var done=wk.id==='shred'?shredLogged:checkedToday.has(wk.id);
-      var isNext=!allDone&&wk.id===nextId;
-      var dimmed=!done&&!isNext&&nextId!==null;
+      var isNext=!allDone&&wk.id===nextId,dimmed=!done&&!isNext&&nextId!==null;
       var cls='w-item'+(done?' done':'')+(isNext?' next':'')+(dimmed?' dimmed':'');
       var checkIcon=done?'✅':(isNext?'▶':'');
       var btnLabel=wk.id==='shred'?(done?'Edit 🔥':'Log 🔥'):(isNext?'Start →':'Open →');
@@ -459,26 +439,22 @@
 
   function toggleBannerCheck(id){
     if(id==='shred'){openShredModal();return;}
-    var w=getW(),iso=today();
-    var existing=w[iso]||[];
+    var w=getW(),iso=today(),existing=w[iso]||[];
     if(checkedToday.has(id)){checkedToday.delete(id);existing=existing.filter(function(a){return a!==id;});}
     else{checkedToday.add(id);if(!existing.includes(id))existing.push(id);}
     if(existing.length){w[iso]=existing;}else{delete w[iso];}
     setW(w);renderBanner();renderCal();calcStats();
   }
 
-  // ── ACTIVE CARD BADGES ────────────────────────────────────
   var activeCards={1:["card-glute","card-goddess","card-flex"],2:["card-goddess","card-waist","card-flex"],3:["card-glute","card-goddess","card-flex"],4:["card-goddess","card-waist","card-flex"],5:["card-glute","card-goddess","card-flex"],6:[],0:[]};
   activeCards[dow].forEach(function(id){var c=document.getElementById(id);if(!c)return;var b=document.createElement("div");b.className="card-badge today-badge";b.textContent="TODAY";c.appendChild(b);});
 
-  // ── STORAGE ───────────────────────────────────────────────
   function getW(){try{return JSON.parse(localStorage.getItem('workouts')||'{}');}catch(e){try{return JSON.parse(sessionStorage.getItem('workouts')||'{}');}catch(e2){return {};}}}
   function setW(w){try{localStorage.setItem('workouts',JSON.stringify(w));}catch(e){try{sessionStorage.setItem('workouts',JSON.stringify(w));}catch(e2){}}}
   function getS(){try{return JSON.parse(localStorage.getItem('shred_logs')||'{}');}catch(e){try{return JSON.parse(sessionStorage.getItem('shred_logs')||'{}');}catch(e2){return {};}}}
   function setS(s){try{localStorage.setItem('shred_logs',JSON.stringify(s));}catch(e){try{sessionStorage.setItem('shred_logs',JSON.stringify(s));}catch(e2){}}}
   function safeGet(k){try{return localStorage.getItem(k);}catch(e){try{return sessionStorage.getItem(k);}catch(e2){return null;}}}
 
-  // ── STATS ─────────────────────────────────────────────────
   function calcStats(){
     var w=getW(),s=getS();
     var all=new Set([...Object.keys(w).filter(function(d){return w[d]&&w[d].length;}),...Object.keys(s).filter(function(d){return s[d];})]);
@@ -491,7 +467,6 @@
     document.getElementById('streakVal').textContent=streak;
   }
 
-  // ── CALENDAR ──────────────────────────────────────────────
   var calYear=new Date().getFullYear(),calMonth=new Date().getMonth();
   var appNames={shred:'🔥 Shred',glute:'🍑 Glute',goddess:'✨ Goddess',flex:'🌸 Flex',waist:'⚡ Waist',tracker:'📊 Tracker'};
   var levelLabels={mini:'MINI · 30 min',regular:'REGULAR · 50-60 min',badass:'BAD ASS · 60-75 min'};
@@ -514,10 +489,8 @@
     document.getElementById('calGrid').innerHTML=html;
   }
   function changeMonth(dir){calMonth+=dir;if(calMonth>11){calMonth=0;calYear++;}if(calMonth<0){calMonth=11;calYear--;}renderCal();}
-
   function openCalDay(iso){var w=getW(),s=getS();if((w[iso]&&w[iso].length)||s[iso]){openDayModal(iso);}else{openModal(iso);}}
 
-  // ── DAY DETAIL MODAL ──────────────────────────────────────
   var dayModalDate='';
   function openDayModal(iso){
     var w=getW(),s=getS(),apps=w[iso]||[],shred=s[iso];
@@ -535,7 +508,6 @@
   function removeAppFromDay(app){var w=getW(),iso=dayModalDate;if(w[iso]){w[iso]=w[iso].filter(function(a){return a!==app;});if(!w[iso].length)delete w[iso];}setW(w);renderCal();calcStats();renderBanner();var s=getS();if((w[iso]&&w[iso].length)||s[iso]){openDayModal(iso);}else{closeDayModal();}}
   function removeShredFromDay(){var s=getS(),iso=dayModalDate;delete s[iso];setS(s);renderCal();calcStats();renderShredSnap();var w=getW();if(w[iso]&&w[iso].length){openDayModal(iso);}else{closeDayModal();}}
 
-  // ── APPS MODAL ────────────────────────────────────────────
   var checked=new Set(),modalDate='';
   function openModal(iso){
     iso=iso||today();modalDate=iso;
@@ -566,7 +538,6 @@
   document.getElementById('modalBg').addEventListener('click',function(e){if(e.target===document.getElementById('modalBg'))closeModal();});
   document.getElementById('dayModalBg').addEventListener('click',function(e){if(e.target===document.getElementById('dayModalBg'))closeDayModal();});
 
-  // ── SHRED MODAL ───────────────────────────────────────────
   var selectedLevel='';
   function openShredModal(){var s=getS(),existing=s[today()];selectedLevel=existing?existing.level:'';['mini','regular','badass'].forEach(function(l){document.getElementById('sl-'+l).classList.toggle('sel',l===selectedLevel);});document.getElementById('shredNoteInput').value=existing?existing.note||'':'';document.getElementById('shredDeleteBtn').style.display=existing?'block':'none';document.getElementById('shredModalBg').classList.add('open');}
   function closeShredModal(){document.getElementById('shredModalBg').classList.remove('open');}
@@ -575,23 +546,19 @@
   function deleteShred(){var s=getS();delete s[today()];setS(s);closeShredModal();renderCal();calcStats();renderShredSnap();renderBanner();showToast('Shred log deleted 🗑');}
   document.getElementById('shredModalBg').addEventListener('click',function(e){if(e.target===document.getElementById('shredModalBg'))closeShredModal();});
 
-  // ── SHRED SNAPSHOT ────────────────────────────────────────
   function renderShredSnap(){var s=getS(),entry=s[today()];document.getElementById('shredSnapContent').innerHTML=entry?'<div class="shred-level-pill">'+(levelLabels[entry.level]||entry.level)+'</div>'+(entry.note?'<div class="shred-snap-note">"'+entry.note+'"</div>':''):'<div style="font-size:12px;color:#6b7280;">Not logged yet</div>';document.getElementById('shredBtnRow').innerHTML=entry?'<button class="outline-btn" onclick="toggleShredHistory()">📋 History</button><button class="outline-btn" onclick="openShredModal()">✏️ Edit</button><button class="danger-btn" onclick="deleteShred()">🗑</button>':'<button class="outline-btn" onclick="toggleShredHistory()">📋 History</button><button class="log-shred-btn" onclick="openShredModal()">+ Log Shred</button>';}
   function toggleShredHistory(){var el=document.getElementById('shredHistory');var isOpen=el.style.display==='block';if(!isOpen)renderShredHistory();el.style.display=isOpen?'none':'block';}
   function renderShredHistory(){var s=getS(),dates=Object.keys(s).sort(function(a,b){return b.localeCompare(a);});var el=document.getElementById('shredHistoryList');if(!dates.length){el.innerHTML='<div style="text-align:center;color:#6b7280;font-size:12px;padding:10px 0;">No Shred sessions logged yet.</div>';return;}el.innerHTML=dates.map(function(d){var e=s[d],friendly=new Date(d+'T12:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});return'<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f9731622;"><div style="font-size:12px;color:#f97316;font-weight:700;">'+friendly+'</div><div style="display:flex;align-items:center;gap:8px;"><span style="background:#f9731622;border:1px solid #f97316;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:800;color:#f97316;">'+(levelLabels[e.level]||e.level)+'</span>'+(e.note?'<span style="font-size:11px;color:#9ca3af;font-style:italic;">"'+e.note+'"</span>':'')+'<button class="remove-btn" onclick="deleteShredFromHistory(\''+d+'\')">🗑</button></div></div>';}).join('')+'<div style="font-size:10px;color:#6b7280;text-align:center;margin-top:8px;">'+dates.length+' session'+(dates.length!==1?'s':'')+' logged</div>';}
   function deleteShredFromHistory(date){var s=getS();delete s[date];setS(s);renderCal();calcStats();renderShredSnap();renderShredHistory();showToast('Session deleted 🗑');}
 
-  // ── TRACKER SNAPSHOT ──────────────────────────────────────
   var tk=today();
   try{var p=JSON.parse(safeGet('protein_'+tk));if(p){var tot=(p.meals||[]).reduce(function(s,m){return s+m.p;},0);document.getElementById('snapProtein').textContent=tot+'g';var pct=Math.min(100,Math.round(tot/(p.goal||100)*100));document.getElementById('snapBar').style.width=pct+'%';document.getElementById('snapNote').textContent=pct+'% of protein goal';}}catch(e){}
   try{var r=JSON.parse(safeGet('recovery_'+tk));if(r){document.getElementById('snapSleep').textContent=r.sleep?r.sleep+'h':'—';var fm={great:'🔥',good:'💪',sore:'😬',rest:'🛌'};document.getElementById('snapFeel').textContent=fm[r.feel]||'—';}}catch(e){}
 
-  // ── TIPS ──────────────────────────────────────────────────
   var tips=["<strong>🥩 Protein:</strong> Aim for 100–120g daily. Hit protein within <strong>30 min post-workout</strong>. Prioritize it in your first meal.","<strong>💪 Mind-Muscle:</strong> Slow down every rep. Add a <strong>2-second squeeze</strong> at the top. If you don't feel it in your glutes, you're not building them.","<strong>😴 Recovery:</strong> Muscle is built at <strong>rest</strong>. Aim for 7–9 hours sleep. Take magnesium glycinate at night.","<strong>📈 Progressive Overload:</strong> Add <strong>5 lbs, 1 rep, or 1 set</strong> when current load feels easy. Log lifts so you always know what to beat.","<strong>🔥 Cardio Order:</strong> Always do resistance <strong>before</strong> cardio. NGF after Shred and glute work — never before."];
   function showTip(i){document.getElementById('tipDetail').innerHTML=tips[i];document.querySelectorAll('.tip-chip').forEach(function(c,j){c.classList.toggle('active',j===i);});}
   showTip(0);
 
-  // ── TOAST ─────────────────────────────────────────────────
   function showToast(msg){var t=document.createElement('div');t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#7c3aed;color:#fff;padding:10px 22px;border-radius:20px;font-size:14px;font-weight:700;z-index:99;';t.textContent=msg;document.body.appendChild(t);setTimeout(function(){t.remove();},2200);}
 
   renderBanner();
