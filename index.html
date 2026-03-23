@@ -63,6 +63,7 @@
     .card-waist { background: linear-gradient(135deg, #0369a1, #38bdf8); }
     .card-tracker { background: linear-gradient(135deg, #065f46, #10b981); }
     .card-dance { background: linear-gradient(135deg, #be185d, #f472b6); }
+    .card-nutrition { background: linear-gradient(135deg, #92400e, #f59e0b); }
     .card-icon { font-size: 22px; margin-bottom: 4px; }
     .card-title { font-size: 15px; font-weight: 800; }
     .card-sub { font-size: 11px; opacity: 0.85; margin-top: 2px; }
@@ -229,7 +230,7 @@
       <div class="ct-icon">🗂️</div>
       <div>
         <div class="ct-title">Your Apps</div>
-        <div class="ct-sub">Glute · Goddess · Flex · Waist · Dance · Tracker</div>
+        <div class="ct-sub">Glute · Goddess · Flex · Waist · Dance · Nutrition · Tracker</div>
       </div>
     </div>
     <div class="ct-arrow" id="appsArrow">▼ Show</div>
@@ -250,6 +251,9 @@
       </a>
       <a href="https://fletch1980.github.io/Cardio/" class="card card-dance" target="_blank" id="card-dance">
         <div class="card-icon">💃</div><div class="card-title">Dance Cardio</div><div class="card-sub">Wed · Sat · Sun · Afrobeats · Hip Hop · Latin</div>
+      </a>
+      <a href="https://fletch1980.github.io/Nutrition-/" class="card card-nutrition" target="_blank">
+        <div class="card-icon">🍑</div><div class="card-title">Goddess Nutrition</div><div class="card-sub">Meals · Water · Supplements · Weight Log</div>
       </a>
       <a href="https://fletch1980.github.io/Fitness_tracker/" class="card card-tracker" target="_blank">
         <div class="card-icon">📊</div><div class="card-title">Fitness Tracker</div><div class="card-sub">Protein · Overload · Recovery Log</div>
@@ -349,7 +353,6 @@
 
   var DANCE_URL='https://fletch1980.github.io/Cardio/';
 
-  // dow: 0=Sun,1=Mon,2=Tue,3=Wed,4=Thu,5=Fri,6=Sat
   var WORKOUTS={
     1:[
       {id:'shred',  emoji:'🔥',name:'Shred',            desc:'Pick your energy level · Do this first',    link:null},
@@ -411,7 +414,6 @@
     var isRest=workouts.length===0;
     if(isRest){html+='<div class="rest-day">🛁 Recover. Stretch. Eat your protein.</div>';banner.innerHTML=html;return;}
 
-    // show energy picker only on gym days (not pure dance days)
     var hasGymWork=workouts.some(function(wk){return wk.id==='shred';});
     if(hasGymWork){
       html+='<div class="energy-row">'
@@ -457,7 +459,6 @@
     setW(w);renderBanner();renderCal();calcStats();
   }
 
-  // TODAY badge on app cards — dance on Wed(3), Sat(6), Sun(0)
   var activeCards={1:["card-glute","card-goddess","card-flex"],2:["card-goddess","card-waist","card-flex"],3:["card-glute","card-goddess","card-flex","card-dance"],4:["card-goddess","card-waist","card-flex"],5:["card-glute","card-goddess","card-flex"],6:["card-dance"],0:["card-dance"]};
   activeCards[dow].forEach(function(id){var c=document.getElementById(id);if(!c)return;var b=document.createElement("div");b.className="card-badge today-badge";b.textContent="TODAY";c.appendChild(b);});
 
@@ -567,7 +568,7 @@
   try{var p=JSON.parse(safeGet('protein_'+tk));if(p){var tot=(p.meals||[]).reduce(function(s,m){return s+m.p;},0);document.getElementById('snapProtein').textContent=tot+'g';var pct=Math.min(100,Math.round(tot/(p.goal||100)*100));document.getElementById('snapBar').style.width=pct+'%';document.getElementById('snapNote').textContent=pct+'% of protein goal';}}catch(e){}
   try{var r=JSON.parse(safeGet('recovery_'+tk));if(r){document.getElementById('snapSleep').textContent=r.sleep?r.sleep+'h':'—';var fm={great:'🔥',good:'💪',sore:'😬',rest:'🛌'};document.getElementById('snapFeel').textContent=fm[r.feel]||'—';}}catch(e){}
 
-  var tips=["<strong>🥩 Protein:</strong> Aim for 100–120g daily. Hit protein within <strong>30 min post-workout</strong>. Prioritize it in your first meal.","<strong>💪 Mind-Muscle:</strong> Slow down every rep. Add a <strong>2-second squeeze</strong> at the top. If you don't feel it in your glutes, you're not building them.","<strong>😴 Recovery:</strong> Muscle is built at <strong>rest</strong>. Aim for 7–9 hours sleep. Take magnesium glycinate at night.","<strong>📈 Progressive Overload:</strong> Add <strong>5 lbs, 1 rep, or 1 set</strong> when current load feels easy. Log lifts so you always know what to beat.","<strong>🔥 Cardio Order:</strong> Always do resistance <strong>before</strong> cardio. Dance Cardio is an evening activity on its dedicated days — never before your weight work."];
+  var tips=["<strong>🥩 Protein:</strong> Aim for 95–110g daily. Hit protein within <strong>30 min post-workout</strong>. Prioritize it in your first meal — protein first at every sitting.","<strong>💪 Mind-Muscle:</strong> Slow down every rep. Add a <strong>2-second squeeze</strong> at the top. If you don't feel it in your glutes, you're not building them.","<strong>😴 Recovery:</strong> Muscle is built at <strong>rest</strong>. Aim for 7–9 hours sleep. Take your calcium and B12 consistently — absorption gaps show up months later.","<strong>📈 Progressive Overload:</strong> Add <strong>5 lbs, 1 rep, or 1 set</strong> when current load feels easy. Log lifts so you always know what to beat.","<strong>🔥 Cardio Order:</strong> Always do resistance <strong>before</strong> cardio. Dance Cardio is an evening activity on its dedicated days — never before your weight work."];
   function showTip(i){document.getElementById('tipDetail').innerHTML=tips[i];document.querySelectorAll('.tip-chip').forEach(function(c,j){c.classList.toggle('active',j===i);});}
   showTip(0);
 
