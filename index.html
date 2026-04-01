@@ -13,7 +13,7 @@
 
     .collapsible { overflow: hidden; transition: max-height 0.35s ease; max-height: 0; }
     .collapsible.open { max-height: 9999px; }
-    .collapse-card { border-radius: 16px; margin-bottom: 14px; overflow: hidden; }
+    .collapse-card { border-radius: 16px; margin-bottom: 14px; overflow: hidden; clip-path: inset(0 round 16px); }
     .collapse-trigger { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; cursor: pointer; border: none; background: transparent; text-align: left; }
     .collapse-trigger:active { opacity: 0.8; }
     .ct-left { display: flex; align-items: center; gap: 12px; }
@@ -22,8 +22,9 @@
     .ct-sub { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 2px; }
     .ct-arrow { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.15); border-radius: 20px; padding: 4px 10px; white-space: nowrap; }
     .collapse-body { padding: 0 20px 18px; }
+    .collapsible:not(.open) { max-height: 0 !important; padding: 0 !important; }
 
-    .today-card { background: linear-gradient(135deg, #7c3aed, #db2777); }
+    .today-card { background: linear-gradient(135deg, #7c3aed, #db2877); }
     .today-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; opacity: 0.85; text-transform: uppercase; }
     .today-day { font-size: 22px; font-weight: 900; margin: 2px 0 0; }
     .today-date { font-size: 13px; color: rgba(255,255,255,0.75); margin: 2px 0 1px; }
@@ -58,7 +59,9 @@
     a.card { display: block; text-decoration: none; border-radius: 12px; padding: 14px 16px; color: white; position: relative; overflow: hidden; transition: transform 0.15s, opacity 0.15s; }
     a.card:active { transform: scale(0.97); opacity: 0.9; }
     .card-glute { background: linear-gradient(135deg, #b91c1c, #ef4444); }
+    .collapsible { overflow: hidden; }
     .card-goddess { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+    .card-mindset { background: linear-gradient(135deg, #6d28d9, #db2877); }
     .card-flex { background: linear-gradient(135deg, #4338ca, #6366f1); }
     .card-waist { background: linear-gradient(135deg, #0369a1, #38bdf8); }
     .card-tracker { background: linear-gradient(135deg, #065f46, #10b981); }
@@ -91,7 +94,7 @@
     .cal-day.worked { color: white; }
     .cal-day .dot-row { display: flex; gap: 2px; margin-top: 2px; flex-wrap: wrap; justify-content: center; }
     .dot { width: 5px; height: 5px; border-radius: 50%; }
-    .dot-glute{background:#ef4444;}.dot-goddess{background:#a855f7;}.dot-flex{background:#6366f1;}.dot-waist{background:#38bdf8;}.dot-tracker{background:#10b981;}.dot-shred{background:#f97316;}.dot-dance{background:#f472b6;}
+    .dot-glute{background:#ef4444;}.dot-goddess{background:#a855f7;}.dot-mindset{background:#db2877;}.dot-flex{background:#6366f1;}.dot-waist{background:#38bdf8;}.dot-tracker{background:#10b981;}.dot-shred{background:#f97316;}.dot-dance{background:#f472b6;}
     .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
     .leg-item { display: flex; align-items: center; gap: 4px; font-size: 11px; color: #9ca3af; }
     .leg-dot { width: 8px; height: 8px; border-radius: 50%; }
@@ -106,7 +109,7 @@
     .log-shred-btn { background: linear-gradient(135deg,#f97316,#ea580c); border: none; border-radius: 10px; color: white; font-size: 12px; font-weight: 700; padding: 7px 14px; cursor: pointer; white-space: nowrap; }
     .outline-btn { background: #1a0030; border: 1px solid #f97316; color: #f97316; border-radius: 10px; font-size: 12px; font-weight: 700; padding: 7px 14px; cursor: pointer; white-space: nowrap; }
     .danger-btn { background: #1a0010; border: 1px solid #ef4444; color: #ef4444; border-radius: 10px; font-size: 12px; font-weight: 700; padding: 7px 14px; cursor: pointer; white-space: nowrap; }
-    .log-workout-btn { width: 100%; background: linear-gradient(135deg,#7c3aed,#db2777); border: none; border-radius: 12px; color: white; font-size: 14px; font-weight: 800; padding: 14px; cursor: pointer; margin-bottom: 14px; letter-spacing: 0.5px; }
+    .log-workout-btn { width: 100%; background: linear-gradient(135deg,#7c3aed,#db2877); border: none; border-radius: 12px; color: white; font-size: 14px; font-weight: 800; padding: 14px; cursor: pointer; margin-bottom: 14px; letter-spacing: 0.5px; }
 
     .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 50; align-items: flex-end; justify-content: center; }
     .modal-bg.open { display: flex; }
@@ -119,7 +122,7 @@
     .app-check .ac-icon { font-size: 1.2rem; }
     .app-check .ac-name { font-size: 12px; color: #d8b4fe; font-weight: 600; }
     .modal-btns { display: flex; gap: 10px; }
-    .modal-save { flex: 1; background: linear-gradient(135deg,#7c3aed,#db2777); border: none; border-radius: 10px; color: white; font-size: 14px; font-weight: 700; padding: 12px; cursor: pointer; }
+    .modal-save { flex: 1; background: linear-gradient(135deg,#7c3aed,#db2877); border: none; border-radius: 10px; color: white; font-size: 14px; font-weight: 700; padding: 12px; cursor: pointer; }
     .modal-save.orange { background: linear-gradient(135deg,#f97316,#ea580c); }
     .modal-cancel { background: #0d0d1a; border: 1px solid #7c3aed44; border-radius: 10px; color: #9ca3af; font-size: 14px; padding: 12px 18px; cursor: pointer; }
     .modal-delete { background: #1a0010; border: 1px solid #ef4444; border-radius: 10px; color: #ef4444; font-size: 14px; font-weight: 700; padding: 12px 18px; cursor: pointer; }
@@ -143,13 +146,13 @@
     .snap-val { font-size: 1.2rem; font-weight: 900; color: #c084fc; }
     .snap-lbl { font-size: 10px; color: #6b7280; margin-top: 2px; }
     .snap-bar-wrap { background: #0d0d1a; border-radius: 20px; height: 6px; overflow: hidden; }
-    .snap-bar { height: 100%; border-radius: 20px; background: linear-gradient(90deg,#7c3aed,#db2777); transition: width 0.4s; }
+    .snap-bar { height: 100%; border-radius: 20px; background: linear-gradient(90deg,#7c3aed,#db2877); transition: width 0.4s; }
     .snap-note { font-size: 10px; color: #6b7280; text-align: right; margin-top: 4px; }
 
     .section-label { font-size: 11px; font-weight: 700; color: #6b7280; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
     .tips-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 10px; }
     .tip-chip { flex-shrink: 0; background: #1a0030; border: 1px solid #7c3aed55; border-radius: 20px; padding: 7px 13px; font-size: 12px; color: #d8b4fe; white-space: nowrap; cursor: pointer; }
-    .tip-chip.active { background: linear-gradient(135deg,#7c3aed,#db2777); border-color: transparent; color: white; font-weight: 700; }
+    .tip-chip.active { background: linear-gradient(135deg,#7c3aed,#db2877); border-color: transparent; color: white; font-weight: 700; }
     .tip-detail { background: #1a0030; border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; font-size: 13px; color: #d8b4fe; line-height: 1.6; }
     .tip-detail strong { color: #f0abfc; }
 
@@ -204,6 +207,7 @@
     <div class="leg-item"><div class="leg-dot dot-shred"></div>Shred</div>
     <div class="leg-item"><div class="leg-dot dot-glute"></div>Glute</div>
     <div class="leg-item"><div class="leg-dot dot-goddess"></div>Goddess</div>
+    <div class="leg-item"><div class="leg-dot dot-mindset"></div>Mindset</div>
     <div class="leg-item"><div class="leg-dot dot-flex"></div>Flex</div>
     <div class="leg-item"><div class="leg-dot dot-waist"></div>Waist</div>
     <div class="leg-item"><div class="leg-dot dot-tracker"></div>Tracker</div>
@@ -224,13 +228,13 @@
 
 <button class="log-workout-btn" onclick="openModal(today())">✅ Log Today's Apps</button>
 
-<div class="collapse-card apps-card">
+<div class="collapse-card" style="background:linear-gradient(135deg,#4a0080,#7c3aed);">
   <button class="collapse-trigger" onclick="toggleSection('appsBody','appsArrow')">
     <div class="ct-left">
       <div class="ct-icon">🗂️</div>
       <div>
         <div class="ct-title">Your Apps</div>
-        <div class="ct-sub">Glute · Goddess · Flex · Waist · Dance · Nutrition · Tracker</div>
+        <div class="ct-sub">Glute · Goddess · Mindset · Flex · Waist · Dance · Nutrition · Tracker</div>
       </div>
     </div>
     <div class="ct-arrow" id="appsArrow">▼ Show</div>
@@ -238,22 +242,25 @@
   <div id="appsBody" class="collapsible collapse-body">
     <div class="inner-cards">
       <a href="https://fletch1980.github.io/bootyworkout-/" class="card card-glute" target="_blank" id="card-glute">
-        <div class="card-icon">🍑</div><div class="card-title">Glute Finisher</div><div class="card-sub">Bubble Butt Builder · Mon · Wed · Fri</div>
+        <div class="card-icon">🍑</div><div class="card-title">Bubble Butt Builder</div><div class="card-sub">12-Week Glute Growth · Mon · Wed · Fri</div>
       </a>
       <a href="https://fletch1980.github.io/goddesstraining/" class="card card-goddess" target="_blank" id="card-goddess">
-        <div class="card-icon">✨</div><div class="card-title">Goddess Training</div><div class="card-sub">Hip Control · Core · Pelvic Floor</div>
+        <div class="card-icon">👑</div><div class="card-title">Goddess Training</div><div class="card-sub">Glute Activation · Ab Definition · Core · Tue · Thu</div>
+      </a>
+      <a href="https://fletch1980.github.io/goddess_mindset/" class="card card-mindset" target="_blank" id="card-mindset">
+        <div class="card-icon">🌹</div><div class="card-title">Goddess Mindset</div><div class="card-sub">Burlesque · Belly Dance · Twerk · Confidence · Daily</div>
       </a>
       <a href="https://fletch1980.github.io/Flexibility-/" class="card card-flex" target="_blank" id="card-flex">
         <div class="card-icon">🌸</div><div class="card-title">Flexibility Training</div><div class="card-sub">Daily Routine · Deep Friday Session</div>
       </a>
       <a href="https://fletch1980.github.io/Waistcinch/" class="card card-waist" target="_blank" id="card-waist">
-        <div class="card-icon">⚡</div><div class="card-title">Waist Circuit</div><div class="card-sub">Tuesday & Thursday · Core Sculpting</div>
+        <div class="card-icon">⏳</div><div class="card-title">Waist Circuit</div><div class="card-sub">Tuesday & Thursday · Core Sculpting</div>
       </a>
       <a href="https://fletch1980.github.io/Cardio/" class="card card-dance" target="_blank" id="card-dance">
         <div class="card-icon">💃</div><div class="card-title">Dance Cardio</div><div class="card-sub">Wed · Sat · Sun · Afrobeats · Hip Hop · Latin</div>
       </a>
       <a href="https://fletch1980.github.io/Nutrition-/" class="card card-nutrition" target="_blank">
-        <div class="card-icon">🍑</div><div class="card-title">Goddess Nutrition</div><div class="card-sub">Meals · Water · Supplements · Weight Log</div>
+        <div class="card-icon">🍽️</div><div class="card-title">Goddess Nutrition</div><div class="card-sub">Meals · Water · Supplements · Weight Log</div>
       </a>
       <a href="https://fletch1980.github.io/Fitness_tracker/" class="card card-tracker" target="_blank">
         <div class="card-icon">📊</div><div class="card-title">Fitness Tracker</div><div class="card-sub">Protein · Overload · Recovery Log</div>
@@ -299,12 +306,13 @@
     <div id="modalDateLabel" class="past-date-label" style="display:none;"></div>
     <span class="modal-label" id="modalSubLabel">Tap everything you completed</span>
     <div class="app-check-grid">
-      <div class="app-check" id="chk-shred" onclick="toggleCheck('shred')"><span class="ac-icon">🔥</span><span class="ac-name">Shred</span></div>
-      <div class="app-check" id="chk-glute" onclick="toggleCheck('glute')"><span class="ac-icon">🍑</span><span class="ac-name">Glute Finisher</span></div>
-      <div class="app-check" id="chk-goddess" onclick="toggleCheck('goddess')"><span class="ac-icon">✨</span><span class="ac-name">Goddess Training</span></div>
-      <div class="app-check" id="chk-flex" onclick="toggleCheck('flex')"><span class="ac-icon">🌸</span><span class="ac-name">Flexibility</span></div>
-      <div class="app-check" id="chk-waist" onclick="toggleCheck('waist')"><span class="ac-icon">⚡</span><span class="ac-name">Waist Circuit</span></div>
-      <div class="app-check" id="chk-dance" onclick="toggleCheck('dance')"><span class="ac-icon">💃</span><span class="ac-name">Dance Cardio</span></div>
+      <div class="app-check" id="chk-shred"    onclick="toggleCheck('shred')"  ><span class="ac-icon">🔥</span><span class="ac-name">Shred</span></div>
+      <div class="app-check" id="chk-glute"    onclick="toggleCheck('glute')"  ><span class="ac-icon">🍑</span><span class="ac-name">Glute BBB</span></div>
+      <div class="app-check" id="chk-goddess"  onclick="toggleCheck('goddess')"><span class="ac-icon">👑</span><span class="ac-name">Goddess Training</span></div>
+      <div class="app-check" id="chk-mindset"  onclick="toggleCheck('mindset')"><span class="ac-icon">🌹</span><span class="ac-name">Goddess Mindset</span></div>
+      <div class="app-check" id="chk-flex"     onclick="toggleCheck('flex')"   ><span class="ac-icon">🌸</span><span class="ac-name">Flexibility</span></div>
+      <div class="app-check" id="chk-waist"    onclick="toggleCheck('waist')"  ><span class="ac-icon">⏳</span><span class="ac-name">Waist Circuit</span></div>
+      <div class="app-check" id="chk-dance"    onclick="toggleCheck('dance')"  ><span class="ac-icon">💃</span><span class="ac-name">Dance Cardio</span></div>
     </div>
     <div class="modal-btns">
       <button class="modal-cancel" onclick="closeModal()">Cancel</button>
@@ -330,9 +338,9 @@
     <h3>🔥 Log Today's Shred</h3>
     <span class="modal-label">Pick your level</span>
     <div class="shred-level-grid">
-      <div class="shred-level-btn" id="sl-mini" onclick="selectLevel('mini')"><div class="sl-label">MINI</div><div class="sl-time">30 min</div><div class="sl-desc">Low energy</div></div>
+      <div class="shred-level-btn" id="sl-mini"    onclick="selectLevel('mini')"   ><div class="sl-label">MINI</div><div class="sl-time">30 min</div><div class="sl-desc">Low energy</div></div>
       <div class="shred-level-btn" id="sl-regular" onclick="selectLevel('regular')"><div class="sl-label">REGULAR</div><div class="sl-time">50–60</div><div class="sl-desc">Normal day</div></div>
-      <div class="shred-level-btn" id="sl-badass" onclick="selectLevel('badass')"><div class="sl-label">BAD ASS</div><div class="sl-time">60–75</div><div class="sl-desc">Bring it</div></div>
+      <div class="shred-level-btn" id="sl-badass"  onclick="selectLevel('badass')" ><div class="sl-label">BAD ASS</div><div class="sl-time">60–75</div><div class="sl-desc">Bring it</div></div>
     </div>
     <span class="modal-label">Note (optional)</span>
     <input type="text" class="shred-note-input" id="shredNoteInput" placeholder="e.g. felt strong, focused on legs..."/>
@@ -352,48 +360,56 @@
   function toggleSection(bodyId,arrowId){var body=document.getElementById(bodyId),arrow=document.getElementById(arrowId),isOpen=body.classList.contains('open');body.classList.toggle('open',!isOpen);arrow.textContent=isOpen?'▼ Show':'▲ Hide';}
 
   var DANCE_URL='https://fletch1980.github.io/Cardio/';
+  var MINDSET_URL='https://fletch1980.github.io/goddess_mindset/';
 
   var WORKOUTS={
     1:[
-      {id:'shred',  emoji:'🔥',name:'Shred',            desc:'Pick your energy level · Do this first',    link:null},
-      {id:'glute',  emoji:'🍑',name:'Glute Finisher',   desc:'15–25 min · Right after Shred',             link:'https://fletch1980.github.io/bootyworkout-/'},
-      {id:'goddess',emoji:'✨',name:'Goddess Training', desc:'Hip control · Core stamina · Pelvic floor', link:'https://fletch1980.github.io/goddesstraining/'},
-      {id:'flex',   emoji:'🌸',name:'Flexibility Daily',desc:'🏠 Evening · 15–20 min',                   link:'https://fletch1980.github.io/Flexibility-/'}
+      {id:'shred',   emoji:'🔥',name:'Shred',             desc:'Pick your energy level · Do this first',    link:null},
+      {id:'glute',   emoji:'🍑',name:'Bubble Butt Builder',desc:'15–25 min · Right after Shred',             link:'https://fletch1980.github.io/bootyworkout-/'},
+      {id:'goddess', emoji:'👑',name:'Goddess Training',  desc:'Glute activation · Abs · Core',             link:'https://fletch1980.github.io/goddesstraining/'},
+      {id:'mindset', emoji:'🌹',name:'Goddess Mindset',   desc:'🏠 Daily practice · Anytime',               link:MINDSET_URL},
+      {id:'flex',    emoji:'🌸',name:'Flexibility Daily', desc:'🏠 Evening · 15–20 min',                   link:'https://fletch1980.github.io/Flexibility-/'}
     ],
     2:[
-      {id:'shred',  emoji:'🔥',name:'Shred',            desc:'Pick your energy level · Do this first',    link:null},
-      {id:'goddess',emoji:'✨',name:'Goddess Training', desc:'Hip control · Core stamina · Pelvic floor', link:'https://fletch1980.github.io/goddesstraining/'},
-      {id:'waist',  emoji:'⏳',name:'Waist Circuit',   desc:'🏠 Evening · After Goddess · 20–25 min',    link:'https://fletch1980.github.io/Waistcinch/'},
-      {id:'flex',   emoji:'🌸',name:'Flexibility Daily',desc:'🏠 Evening · 15–20 min',                   link:'https://fletch1980.github.io/Flexibility-/'}
+      {id:'shred',   emoji:'🔥',name:'Shred',             desc:'Pick your energy level · Do this first',    link:null},
+      {id:'goddess', emoji:'👑',name:'Goddess Training',  desc:'Glute activation · Abs · Core',             link:'https://fletch1980.github.io/goddesstraining/'},
+      {id:'waist',   emoji:'⏳',name:'Waist Circuit',     desc:'🏠 Evening · After Goddess · 20–25 min',    link:'https://fletch1980.github.io/Waistcinch/'},
+      {id:'mindset', emoji:'🌹',name:'Goddess Mindset',   desc:'🏠 Daily practice · Anytime',               link:MINDSET_URL},
+      {id:'flex',    emoji:'🌸',name:'Flexibility Daily', desc:'🏠 Evening · 15–20 min',                   link:'https://fletch1980.github.io/Flexibility-/'}
     ],
     3:[
-      {id:'shred',  emoji:'🔥',name:'Shred',            desc:'Pick your energy level · Do this first',    link:null},
-      {id:'glute',  emoji:'🍑',name:'Glute Finisher',   desc:'15–25 min · Right after Shred',             link:'https://fletch1980.github.io/bootyworkout-/'},
-      {id:'goddess',emoji:'✨',name:'Goddess Training', desc:'Hip control · Core stamina · Pelvic floor', link:'https://fletch1980.github.io/goddesstraining/'},
-      {id:'flex',   emoji:'🌸',name:'Flexibility Daily',desc:'🏠 Evening · 15–20 min',                   link:'https://fletch1980.github.io/Flexibility-/'},
-      {id:'dance',  emoji:'💃',name:'Dance Cardio',     desc:'🏠 Evening · Hip Hop · 25–30 min',          link:DANCE_URL}
+      {id:'shred',   emoji:'🔥',name:'Shred',             desc:'Pick your energy level · Do this first',    link:null},
+      {id:'glute',   emoji:'🍑',name:'Bubble Butt Builder',desc:'15–25 min · Right after Shred',             link:'https://fletch1980.github.io/bootyworkout-/'},
+      {id:'goddess', emoji:'👑',name:'Goddess Training',  desc:'Glute activation · Abs · Core',             link:'https://fletch1980.github.io/goddesstraining/'},
+      {id:'mindset', emoji:'🌹',name:'Goddess Mindset',   desc:'🏠 Daily practice · Anytime',               link:MINDSET_URL},
+      {id:'flex',    emoji:'🌸',name:'Flexibility Daily', desc:'🏠 Evening · 15–20 min',                   link:'https://fletch1980.github.io/Flexibility-/'},
+      {id:'dance',   emoji:'💃',name:'Dance Cardio',      desc:'🏠 Evening · Hip Hop · 25–30 min',          link:DANCE_URL}
     ],
     4:[
-      {id:'shred',  emoji:'🔥',name:'Shred',            desc:'Pick your energy level · Do this first',    link:null},
-      {id:'goddess',emoji:'✨',name:'Goddess Training', desc:'Hip control · Core stamina · Pelvic floor', link:'https://fletch1980.github.io/goddesstraining/'},
-      {id:'waist',  emoji:'⏳',name:'Waist Circuit',   desc:'🏠 Evening · After Goddess · 20–25 min',    link:'https://fletch1980.github.io/Waistcinch/'},
-      {id:'flex',   emoji:'🌸',name:'Flexibility Daily',desc:'🏠 Evening · 15–20 min',                   link:'https://fletch1980.github.io/Flexibility-/'}
+      {id:'shred',   emoji:'🔥',name:'Shred',             desc:'Pick your energy level · Do this first',    link:null},
+      {id:'goddess', emoji:'👑',name:'Goddess Training',  desc:'Glute activation · Abs · Core',             link:'https://fletch1980.github.io/goddesstraining/'},
+      {id:'waist',   emoji:'⏳',name:'Waist Circuit',     desc:'🏠 Evening · After Goddess · 20–25 min',    link:'https://fletch1980.github.io/Waistcinch/'},
+      {id:'mindset', emoji:'🌹',name:'Goddess Mindset',   desc:'🏠 Daily practice · Anytime',               link:MINDSET_URL},
+      {id:'flex',    emoji:'🌸',name:'Flexibility Daily', desc:'🏠 Evening · 15–20 min',                   link:'https://fletch1980.github.io/Flexibility-/'}
     ],
     5:[
-      {id:'shred',  emoji:'🔥',name:'Shred',            desc:'Pick your energy level · Do this first',    link:null},
-      {id:'glute',  emoji:'🍑',name:'Glute Finisher',   desc:'15–25 min · Right after Shred',             link:'https://fletch1980.github.io/bootyworkout-/'},
-      {id:'goddess',emoji:'✨',name:'Goddess Training', desc:'Hip control · Core stamina · Pelvic floor', link:'https://fletch1980.github.io/goddesstraining/'},
-      {id:'flex',   emoji:'🌸',name:'Deep Flexibility', desc:'🏠 Evening · 30–40 min · Deep Friday',     link:'https://fletch1980.github.io/Flexibility-/'}
+      {id:'shred',   emoji:'🔥',name:'Shred',             desc:'Pick your energy level · Do this first',    link:null},
+      {id:'glute',   emoji:'🍑',name:'Bubble Butt Builder',desc:'15–25 min · Right after Shred',             link:'https://fletch1980.github.io/bootyworkout-/'},
+      {id:'goddess', emoji:'👑',name:'Goddess Training',  desc:'Glute activation · Abs · Core',             link:'https://fletch1980.github.io/goddesstraining/'},
+      {id:'mindset', emoji:'🌹',name:'Goddess Mindset',   desc:'🏠 Daily practice · Anytime',               link:MINDSET_URL},
+      {id:'flex',    emoji:'🌸',name:'Deep Flexibility',  desc:'🏠 Evening · 30–40 min · Deep Friday',     link:'https://fletch1980.github.io/Flexibility-/'}
     ],
     6:[
-      {id:'dance',  emoji:'💃',name:'Dance Cardio',     desc:'Afrobeats · 25–30 min · Free on YouTube',   link:DANCE_URL}
+      {id:'mindset', emoji:'🌹',name:'Goddess Mindset',   desc:'🏠 Daily practice · Anytime',               link:MINDSET_URL},
+      {id:'dance',   emoji:'💃',name:'Dance Cardio',      desc:'Afrobeats · 25–30 min · Free on YouTube',   link:DANCE_URL}
     ],
     0:[
-      {id:'dance',  emoji:'💃',name:'Dance Cardio',     desc:'Latin · 25–30 min · Free on YouTube',       link:DANCE_URL}
+      {id:'mindset', emoji:'🌹',name:'Goddess Mindset',   desc:'🏠 Daily practice · Anytime',               link:MINDSET_URL},
+      {id:'dance',   emoji:'💃',name:'Dance Cardio',      desc:'Latin · 25–30 min · Free on YouTube',       link:DANCE_URL}
     ]
   };
 
-  var THEMES={1:'Power Day 🔥',2:'Goddess & Waist Day 💜',3:'Burnout + Dance Day 🔥💃',4:'Goddess & Waist Day 🦵',5:'Full Glute Day 🍑',6:'Dance Day 💃',0:'Dance Day 💃'};
+  var THEMES={1:'Power Day 🔥',2:'Goddess & Waist Day 💜',3:'Burnout + Dance Day 🔥💃',4:'Goddess & Waist Day 🦵',5:'Full Glute Day 🍑',6:'Dance & Mindset Day 💃🌹',0:'Dance & Mindset Day 💃🌹'};
   var DAYNAMES={0:'Sunday',1:'Monday',2:'Tuesday',3:'Wednesday',4:'Thursday',5:'Friday',6:'Saturday'};
 
   var dow=localDow(),selectedEnergy='',checkedToday=new Set();
@@ -459,7 +475,16 @@
     setW(w);renderBanner();renderCal();calcStats();
   }
 
-  var activeCards={1:["card-glute","card-goddess","card-flex"],2:["card-goddess","card-waist","card-flex"],3:["card-glute","card-goddess","card-flex","card-dance"],4:["card-goddess","card-waist","card-flex"],5:["card-glute","card-goddess","card-flex"],6:["card-dance"],0:["card-dance"]};
+  // Goddess Mindset shows TODAY badge every day since it's daily
+  var activeCards={
+    1:["card-glute","card-goddess","card-mindset","card-flex"],
+    2:["card-goddess","card-mindset","card-waist","card-flex"],
+    3:["card-glute","card-goddess","card-mindset","card-flex","card-dance"],
+    4:["card-goddess","card-mindset","card-waist","card-flex"],
+    5:["card-glute","card-goddess","card-mindset","card-flex"],
+    6:["card-mindset","card-dance"],
+    0:["card-mindset","card-dance"]
+  };
   activeCards[dow].forEach(function(id){var c=document.getElementById(id);if(!c)return;var b=document.createElement("div");b.className="card-badge today-badge";b.textContent="TODAY";c.appendChild(b);});
 
   function getW(){try{return JSON.parse(localStorage.getItem('workouts')||'{}');}catch(e){try{return JSON.parse(sessionStorage.getItem('workouts')||'{}');}catch(e2){return {};}}}
@@ -481,7 +506,7 @@
   }
 
   var calYear=new Date().getFullYear(),calMonth=new Date().getMonth();
-  var appNames={shred:'🔥 Shred',glute:'🍑 Glute',goddess:'✨ Goddess',flex:'🌸 Flex',waist:'⚡ Waist',tracker:'📊 Tracker',dance:'💃 Dance'};
+  var appNames={shred:'🔥 Shred',glute:'🍑 Glute BBB',goddess:'👑 Goddess Training',mindset:'🌹 Goddess Mindset',flex:'🌸 Flex',waist:'⏳ Waist',tracker:'📊 Tracker',dance:'💃 Dance'};
   var levelLabels={mini:'MINI · 30 min',regular:'REGULAR · 50-60 min',badass:'BAD ASS · 60-75 min'};
 
   function renderCal(){
@@ -527,7 +552,7 @@
     var w=getW(),s=getS(),existing=w[iso]||[],hasShred=!!s[iso];
     checked=new Set(existing);
     var isPast=iso<today();
-    ['shred','glute','goddess','flex','waist','dance'].forEach(function(a){var el=document.getElementById('chk-'+a);if(a==='shred'){el.classList.toggle('checked',hasShred);}else{el.classList.toggle('checked',checked.has(a));}});
+    ['shred','glute','goddess','mindset','flex','waist','dance'].forEach(function(a){var el=document.getElementById('chk-'+a);if(a==='shred'){el.classList.toggle('checked',hasShred);}else{el.classList.toggle('checked',checked.has(a));}});
     var hasExisting=existing.length>0||hasShred;
     if(isPast){document.getElementById('modalTitle').textContent='📅 Log Past Workout';document.getElementById('modalDateLabel').textContent=isoToFriendly(iso);document.getElementById('modalDateLabel').style.display='block';}
     else{document.getElementById('modalTitle').textContent=hasExisting?'✏️ Edit Today\'s Log':'✅ What did you do today?';document.getElementById('modalDateLabel').style.display='none';}
